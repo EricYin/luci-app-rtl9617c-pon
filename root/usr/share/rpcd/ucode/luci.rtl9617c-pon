@@ -1,0 +1,429 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
+'use strict';
+import { readfile, popen, access, glob } from 'fs';
+import { read_text, read_int, parse_fields, read_entropy } from 'rtl9617c.hw';
+
+const PROTO_MAP = {
+	'1': 'icmp',
+	'4': 'ipip',
+	'6': 'tcp',
+	'17': 'udp',
+	'41': 'ipv6-encap',
+	'47': 'gre',
+	'50': 'esp',
+	'51': 'ah',
+	'58': 'icmpv6',
+	'115': 'l2tp'
+};
+
+function as_int(val) {
+	return type(val) == 'int' ? val : null;
+}
+
+function link_details() {
+	let bin = access('/usr/libexec/ip-full', 'x') ? '/usr/libexec/ip-full' :
+		(access('/sbin/ip', 'x') ? '/sbin/ip' : null);
+	if (!bin)
+		return {};
+	let proc = popen(bin + ' -j -d link show 2>/dev/null', 'r');
+	if (!proc)
+		return {};
+	let raw = proc.read('all');
+	let rc = proc.close();
+	if (rc != 0 || raw == null || trim(raw) == '')
+		return {};
+	let parsed;
+	try { parsed = json(raw); }
+	catch (e) { return {}; }
+	if (type(parsed) != 'array')
+		return {};
+
+	let result = {};
+	for (let item in parsed) {
+		if (type(item) != 'object' || type(item.ifname) != 'string')
+			continue;
+		result[item.ifname] = {
+			mtu: as_int(item.mtu),
+			min_mtu: as_int(item.min_mtu),
+			max_mtu: as_int(item.max_mtu),
+			qdisc: type(item.qdisc) == 'string' ? item.qdisc : null,
+			num_tx_queues: as_int(item.num_tx_queues),
+			num_rx_queues: as_int(item.num_rx_queues),
+			gso_max_size: as_int(item.gso_max_size),
+			tso_max_size: as_int(item.tso_max_size),
+			gro_max_size: as_int(item.gro_max_size)
+		};
+	}
+	return result;
+}
+
+function network_ports(links) {
+	let ports = [];
+	for (let name in ['lan1', 'lan2', 'lan3', 'lan4', 'pon0']) {
+		let path = '/sys/class/net/' + name + '/';
+		let present = read_text(path + 'ifindex') != null;
+		let port = { device: name, present: present };
+		for (let key in ['carrier', 'operstate', 'speed', 'duplex', 'address', 'mtu',
+			'tx_queue_len', 'gro_flush_timeout'])
+			port[key] = read_text(path + key);
+		let info = links[name];
+		port.min_mtu = info?.min_mtu ?? null;
+		port.max_mtu = info?.max_mtu ?? read_int(path + 'max_mtu');
+		port.qdisc = info?.qdisc ?? null;
+		port.tx_queues = info?.num_tx_queues ?? (present ? length(glob(path + 'queues/tx-*')) : null);
+		port.rx_queues = info?.num_rx_queues ?? (present ? length(glob(path + 'queues/rx-*')) : null);
+		port.gso_max_size = info?.gso_max_size ?? null;
+		port.tso_max_size = info?.tso_max_size ?? null;
+		port.gro_max_size = info?.gro_max_size ?? null;
+		port.statistics = {};
+		for (let key in ['rx_bytes', 'tx_bytes', 'rx_packets', 'tx_packets',
+			'rx_errors', 'tx_errors', 'rx_dropped', 'tx_dropped'])
+			port.statistics[key] = read_text(path + 'statistics/' + key);
+		push(ports, port);
+	}
+	return ports;
+}
+
+function netdev_mtus(links) {
+	let mtus = {};
+	for (let name, info in links) {
+		if (!match(name, /^(pon[0-9]|lan[0-9]|br-|pppoe-|eth[0-9])/))
+			continue;
+		mtus[name] = { mtu: info.mtu, max_mtu: info.max_mtu };
+	}
+	return mtus;
+}
+
+function port_mtu_int(port) {
+	return port?.mtu != null && match(port.mtu, /^[0-9]+$/) ? +port.mtu : null;
+}
+
+function build_mtu_summary(ports) {
+	let pon_mtu = null, pon_max_mtu = null;
+	let lan_min_mtu = null, lan_min_max_mtu = null;
+	let any_lan_missing_max = false;
+
+	for (let port in ports) {
+		let cur = port_mtu_int(port);
+		let maxm = port.max_mtu;
+		if (port.device == 'pon0') {
+			pon_mtu = cur;
+			pon_max_mtu = maxm;
+		} else if (substr(port.device, 0, 3) == 'lan' && port.present) {
+			if (cur != null && (lan_min_mtu == null || cur < lan_min_mtu))
+				lan_min_mtu = cur;
+			if (maxm == null)
+				any_lan_missing_max = true;
+			else if (lan_min_max_mtu == null || maxm < lan_min_max_mtu)
+				lan_min_max_mtu = maxm;
+		}
+	}
+
+	let supported = null;
+	if (pon_max_mtu != null) {
+		if (pon_max_mtu < 1508 || (lan_min_max_mtu != null && lan_min_max_mtu < 1508))
+			supported = false;
+		else if (!any_lan_missing_max || lan_min_max_mtu != null)
+			supported = true;
+	}
+
+	return {
+		baby_jumbo_threshold: 1508,
+		pon_mtu: pon_mtu,
+		pon_max_mtu: pon_max_mtu,
+		lan_min_mtu: lan_min_mtu,
+		lan_min_max_mtu: lan_min_max_mtu,
+		supported: supported,
+		configured: pon_mtu != null && pon_mtu >= 1508
+	};
+}
+
+function uptime_ms() {
+	let text = read_text('/proc/uptime');
+	if (text == null || text == '')
+		return 0;
+	return +split(text, /\s+/)[0] * 1000;
+}
+
+function status_live(status, now_ms) {
+	if (type(status.pid) != 'int' || status.pid <= 0 || type(status.updated_ms) != 'int')
+		return false;
+	// /proc/uptime is truncated to centiseconds; compare at the same resolution
+	// and allow tiny skew between daemon write and proc read.
+	let updated_ms = status.updated_ms - status.updated_ms % 10;
+	let process = readfile('/proc/' + status.pid + '/stat');
+	let end = process != null ? index(process, ') ') : -1;
+	let state = end >= 0 ? split(substr(process, end + 2), ' ') : [];
+	let recent = now_ms >= updated_ms ? (now_ms - updated_ms < 5000) : (updated_ms - now_ms <= 200);
+	return length(state) > 19 && state[0] != 'Z' && state[0] != 'X' &&
+		state[19] == status.process_start && recent;
+}
+
+function omci_status() {
+	let status = parse_fields(readfile('/var/run/pon-omci'));
+	if (status == null)
+		return null;
+	status.pid = +status.pid;
+	status.updated_ms = +status.updated_ms;
+	status.live = status_live(status, uptime_ms());
+	return status;
+}
+
+function llid_entries() {
+	let table = readfile('/sys/bus/platform/devices/4f5500000.pon/llid_table');
+	let entries = {};
+	if (table == null)
+		return entries;
+	for (let line in split(trim(table), '\n')) {
+		// Hardware LLID values and the local session index are different.
+		let hex = match(line, /llid=([0-9a-fA-F]{4})/);
+		let idx = match(line, /index=([0-9]+)/);
+		if (hex != null && idx != null)
+			entries[+idx[1]] = +('0x' + hex[1]);
+	}
+	return entries;
+}
+
+function oam_ports() {
+	let raw = [];
+	let llids = llid_entries();
+	for (let llid = 0; llid < 32; llid++) {
+		let text = readfile('/var/run/pon-oam/llid-' + llid + '.json');
+		if (text == null)
+			continue;
+		let status;
+		try { status = json(text); }
+		catch (e) { continue; }
+		if (type(status) != 'object' || type(status.pid) != 'int' || status.pid <= 0)
+			continue;
+		status.llid_index = llid;
+		push(raw, status);
+	}
+	if (!length(raw))
+		return [];
+	let now_ms = uptime_ms();
+	let ports = [];
+	for (let status in raw) {
+		let llid = status.llid_index;
+		status.live = status_live(status, now_ms);
+		status.llid = status.live && status.registered && llids[llid] != null ? llids[llid] : null;
+		if (!status.live) {
+			status.registered = false;
+			status.auth_state = null;
+			status.auth_succeeded = false;
+			status.auth_source = "none";
+			status.auth_success_ms = 0;
+			status.auth_duration_ms = 0;
+			status.auth_succ_time = 0;
+			status.discovery_stable = false;
+		}
+		push(ports, status);
+	}
+	return ports;
+}
+
+function normalize_proto(val) {
+	if (val == null || val == '' || val == '-' || val == 'none' || val == 'n/a')
+		return null;
+	let lower = lc(val);
+	if (PROTO_MAP[lower] != null)
+		return PROTO_MAP[lower];
+	return match(lower, /^[a-z0-9_-]{1,16}$/) ? lower : null;
+}
+
+function optional_int(val) {
+	if (val == null || val == '' || val == '-' || val == 'none' || val == 'n/a')
+		return null;
+	return match(val, /^-?[0-9]+$/) ? +val : null;
+}
+
+function count_flow_bucket(bucket, kind, proto, encap, pkts, b) {
+	bucket.flows++;
+	bucket.packets += pkts;
+	bucket.bytes += b;
+	if (kind == 'ipv6')
+		bucket.ipv6++;
+	else if (kind == 'ipv4')
+		bucket.ipv4++;
+	else if (kind == 'bridge')
+		bucket.bridge++;
+	else
+		bucket.other++;
+	if (encap == 'gre' || proto == 'gre' || kind == 'gre')
+		bucket.gre++;
+}
+
+function fe_paths() {
+	let text = readfile('/sys/kernel/debug/4f4300000.ethernet/flows');
+	if (text == null)
+		return null;
+	let up = { flows: 0, ipv4: 0, ipv6: 0, bridge: 0, other: 0, gre: 0, packets: 0, bytes: 0 };
+	let down = { flows: 0, ipv4: 0, ipv6: 0, bridge: 0, other: 0, gre: 0, packets: 0, bytes: 0 };
+	let br = { flows: 0, ipv4: 0, ipv6: 0, bridge: 0, other: 0, gre: 0, packets: 0, bytes: 0 };
+	let ports = {};
+	let protocols = {};
+	let cos_summary = { active: 0, explicit: 0, queues: {} };
+	let entries = [];
+
+	for (let line in split(trim(text), '\n')) {
+		if (line == '')
+			continue;
+		let f = parse_fields(line);
+		if (f == null || +(f.deleting || 0))
+			continue;
+		let kind = lc(split(trim(line), /\s+/)[0] || 'unknown');
+		let inif = f.in || '';
+		let outif = f.out || '';
+		let pkts = +(f.packets || 0);
+		let b = +(f.bytes || 0);
+		let learned = +(f.learned || 0);
+
+		let proto = kind == 'bridge' ? null : normalize_proto(f.proto ?? f.l4 ?? f.ip_proto);
+		let encap = normalize_proto(f.encap ?? f.tunnel);
+		if (encap == null && (+(f.gre || 0) || kind == 'gre' || proto == 'gre'))
+			encap = 'gre';
+		let cos = optional_int(f.cos);
+		let queue = optional_int(f.queue ?? f.voq);
+		let prio = optional_int(f.prio ?? f.priority);
+		let cos_set = f.cos_set != null ? (+f.cos_set != 0) : null;
+		let deepq = f.deepq != null ? (+f.deepq != 0) : null;
+		let pol = optional_int(f.pol);
+		let pol_host = f.host != null ? (+f.host != 0) : null;
+
+		let entry = {
+			k: kind, in: inif, out: outif,
+			h: +(f.hash || 0), c: +(f.counter || 0),
+			p: pkts, b: b, l: learned
+		};
+		if (proto != null) entry.proto = proto;
+		if (encap != null) entry.encap = encap;
+		if (cos != null) entry.cos = cos;
+		if (queue != null) entry.q = queue;
+		if (prio != null) entry.prio = prio;
+		if (cos_set != null) entry.cs = cos_set;
+		if (deepq != null) entry.dq = deepq;
+		if (pol != null) entry.pol = pol;
+		if (pol_host != null) entry.host = pol_host;
+		push(entries, entry);
+
+		protocols[kind] = (protocols[kind] || 0) + 1;
+		if (proto != null && proto != kind)
+			protocols[proto] = (protocols[proto] || 0) + 1;
+		if (encap != null && encap != proto && encap != kind)
+			protocols[encap] = (protocols[encap] || 0) + 1;
+
+		let eff_cos = cos ?? queue;
+		if (eff_cos != null) {
+			cos_summary.active++;
+			if (cos_set == true || (cos_set == null && prio != null))
+				cos_summary.explicit++;
+			let qk = '' + eff_cos;
+			cos_summary.queues[qk] = (cos_summary.queues[qk] || 0) + 1;
+		}
+
+		let in_pon = substr(inif, 0, 3) == 'pon';
+		let out_pon = substr(outif, 0, 3) == 'pon';
+		if (kind == 'bridge' || learned || (!in_pon && !out_pon)) {
+			count_flow_bucket(br, kind, proto, encap, pkts, b);
+			continue;
+		}
+		if (out_pon && !in_pon) {
+			count_flow_bucket(up, kind, proto, encap, pkts, b);
+			if (inif != '') {
+				ports[inif] ??= { up: 0, down: 0 };
+				ports[inif].up++;
+			}
+		} else if (in_pon && !out_pon) {
+			count_flow_bucket(down, kind, proto, encap, pkts, b);
+			if (outif != '') {
+				ports[outif] ??= { up: 0, down: 0 };
+				ports[outif].down++;
+			}
+		}
+	}
+	sort(entries, function(a, b) {
+		let ac = (a.b > 0 || a.p > 0) ? 1 : 0;
+		let bc = (b.b > 0 || b.p > 0) ? 1 : 0;
+		if (ac != bc)
+			return bc - ac;
+		if (a.b != b.b)
+			return b.b - a.b;
+		if (a.p != b.p)
+			return b.p - a.p;
+		return a.h - b.h;
+	});
+	return {
+		upstream: up,
+		downstream: down,
+		bridge: br,
+		ports: ports,
+		protocols: protocols,
+		cos: cos_summary,
+		total_entries: length(entries),
+		entries: slice(entries, 0, 128)
+	};
+}
+
+function fe_resources() {
+	let raw = parse_fields(readfile('/sys/kernel/debug/4f4300000.ethernet/resources'));
+	if (raw == null)
+		return null;
+	let result = {};
+	for (let key, value in raw) {
+		let pair = match(value, /^([0-9]+)\/([0-9]+)$/);
+		if (pair != null)
+			result[key] = { used: +pair[1], total: +pair[2] };
+	}
+	return result;
+}
+
+const methods = {
+	status: {
+		call: function() {
+			const device = '/sys/bus/platform/devices/4f5500000.pon/';
+			const data_path = readfile(device + 'data_path');
+			const links = link_details();
+			const ports = network_ports(links);
+			return {
+				identity: {
+					onu_mac: read_text(device + 'onu_mac'),
+					serial_number: read_text(device + 'active_serial_number')
+				},
+				service: parse_fields(readfile('/var/run/pon-service')),
+				activation: parse_fields(readfile(device + 'activation')),
+				data_path: parse_fields(data_path == null ? null : split(data_path, '\n')[0]),
+				data_path_raw: data_path,
+				omci: omci_status(),
+				state: parse_fields(readfile(device + 'state')),
+				serdes: parse_fields(readfile(device + 'serdes')),
+				bosa: parse_fields(readfile(device + 'bosa')),
+				mac: parse_fields(readfile(device + 'mac')),
+				mpcp: parse_fields(readfile(device + 'mpcp')),
+				traffic: parse_fields(readfile(device + 'traffic')),
+				optical: parse_fields(readfile(device + 'optical')),
+				transceiver: parse_fields(readfile(device + 'transceiver')),
+				fec: parse_fields(readfile(device + 'fec')),
+				fe: parse_fields(readfile(device + 'fe') ?? readfile('/sys/kernel/debug/4f4300000.ethernet/state')),
+				fe_resources: fe_resources(),
+				fe_paths: fe_paths(),
+				puc: readfile(device + 'puc'),
+				pdc: readfile(device + 'pdc'),
+				llids: readfile(device + 'llid_table'),
+				deepq: parse_fields(readfile('/sys/bus/platform/devices/4f4300000.ethernet/pon_deepq')),
+				wan_rx_packets: read_text('/sys/class/net/pon0/statistics/rx_packets'),
+				wan_tx_packets: read_text('/sys/class/net/pon0/statistics/tx_packets'),
+				lan_rx_errors: read_text('/sys/class/net/lan1/statistics/rx_errors'),
+				lan_rx_dropped: read_text('/sys/class/net/lan1/statistics/rx_dropped'),
+				oam_ports: oam_ports(),
+				ports: ports,
+				netdev_mtus: netdev_mtus(links),
+				mtu_summary: build_mtu_summary(ports),
+				entropy: read_entropy(),
+				uptime_ms: uptime_ms(),
+				queried_at: time()
+			};
+		}
+	}
+};
+
+return { 'luci.rtl9617c-pon': methods };

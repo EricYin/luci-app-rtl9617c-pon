@@ -1,0 +1,18 @@
+#!/bin/sh
+# rpcd ignores world-writable ucode scripts.  The build host is an NTFS mount
+# where source modes are always 0777, so fix them before rpcd starts.
+for script in /usr/share/rpcd/ucode/luci.rtl9617c-pon \
+	      /usr/share/rpcd/ucode/luci.rtl9617c-system; do
+	[ -f "$script" ] && chmod 0755 "$script"
+done
+[ -f /usr/share/ucode/rtl9617c/hw.uc ] && chmod 0644 /usr/share/ucode/rtl9617c/hw.uc
+# Append a stat-based suffix to LuCI's resource version so browsers invalidate
+# cached rtl9617c/*.js modules after a sysupgrade from the same git commit.
+if [ -f /usr/share/ucode/luci/version.uc ] && [ -f /www/luci-static/resources/rtl9617c/status.js ]; then
+	suffix="r10-$(wc -c < /www/luci-static/resources/rtl9617c/status.js | tr -d ' ')"
+	sed -i "s/\(export const revision = '[^']*\)~[^']*/\1~$suffix/" /usr/share/ucode/luci/version.uc 2>/dev/null || true
+fi
+rm -f /tmp/luci-indexcache.*
+rm -rf /tmp/luci-modulecache/
+/etc/init.d/rpcd reload >/dev/null 2>&1
+exit 0
