@@ -3,5 +3,7 @@
 uci -q get system.cpu >/dev/null && exit 0
 
 uci -q set system.cpu=cpu
-uci -q set system.cpu.frequency='1000000'
+uci -q set system.cpu.governor='schedutil'
+uci -q set system.cpu.min_freq='400000'
+uci -q set system.cpu.max_freq='1200000'
 uci -q commit system

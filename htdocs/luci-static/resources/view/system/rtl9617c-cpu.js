@@ -258,10 +258,17 @@ return view.extend({
 				setBadge(govBadge, '手动定频', '');
 			else
 				setBadge(govBadge, '未知', '');
-			govNote.textContent = '硬件支持 ' + availKhz.length + ' 档 OPP（' + frequency(Number(minOpp)) + ' ~ ' + frequency(maxOppKhz) + '）· 可选 ' + availGovs.length + ' 种策略。';
+			var vsfcText = '';
+			if (next && next.vsfc && next.vsfc.available) {
+				vsfcText = ' · 硬件 VSFC 空闲分频：' +
+					(next.vsfc.enabled ? '已开启' : '已关闭') +
+					(next.vsfc.trig_cnt != null ? ('（触发 ' + next.vsfc.trig_cnt + ' 次）') : '');
+			}
+			govNote.textContent = '硬件支持 ' + availKhz.length + ' 档 OPP（' + frequency(Number(minOpp)) + ' ~ ' + frequency(maxOppKhz) + '）· 可选 ' + availGovs.length + ' 种策略' + vsfcText + '。';
 
-			var cfgGov = uci.get('system', 'cpu', 'governor') || 'userspace';
 			var cfgFreq = uci.get('system', 'cpu', 'frequency');
+			var defaultGov = (!cfgFreq && availGovs.indexOf('schedutil') >= 0) ? 'schedutil' : 'userspace';
+			var cfgGov = uci.get('system', 'cpu', 'governor') || defaultGov;
 			var cfgMin = uci.get('system', 'cpu', 'min_freq');
 			var cfgMax = uci.get('system', 'cpu', 'max_freq');
 			var expectMin = cfgMin ? Number(cfgMin) : Number(minOpp);
@@ -360,7 +367,7 @@ return view.extend({
 		s.addremove = false;
 
 		var o = s.option(form.ListValue, 'governor', '调频策略');
-		o.default = 'userspace';
+		o.default = availGovs.indexOf('schedutil') >= 0 ? 'schedutil' : 'userspace';
 		o.rmempty = false;
 		var preferredOrder = ['schedutil', 'performance', 'ondemand', 'conservative', 'powersave', 'userspace'];
 		preferredOrder.forEach(function(g) {

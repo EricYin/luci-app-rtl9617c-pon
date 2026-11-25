@@ -20,7 +20,7 @@ apply() {
 	[ -d "$POLICY" ] || return 0
 
 	config_load system
-	config_get governor cpu governor "userspace"
+	config_get governor cpu governor
 	config_get frequency cpu frequency
 	config_get min_freq cpu min_freq
 	config_get max_freq cpu max_freq
@@ -29,6 +29,16 @@ apply() {
 	read -r avail_gov < "$POLICY/scaling_available_governors" || return 1
 	read -r hw_min < "$POLICY/cpuinfo_min_freq" || hw_min=""
 	read -r hw_max < "$POLICY/cpuinfo_max_freq" || hw_max=""
+
+	if [ -z "$governor" ]; then
+		if [ -n "$frequency" ]; then
+			governor="userspace"
+		elif freq_in_list "schedutil" "$avail_gov"; then
+			governor="schedutil"
+		else
+			governor="userspace"
+		fi
+	fi
 
 	if ! freq_in_list "$governor" "$avail_gov"; then
 		logger -t rtl9617c-cpu "unsupported governor: $governor (available: $avail_gov)"

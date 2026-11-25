@@ -16,6 +16,23 @@ function read_time_in_state(policy) {
 	return out;
 }
 
+function read_vsfc() {
+	let dirs = glob('/sys/bus/platform/devices/*.vsfc');
+	if (!length(dirs))
+		return { available: false };
+	let base = dirs[0] + '/';
+	let en = read_int(base + 'enabled');
+	let status_raw = readfile(base + 'status');
+	if (en == null && status_raw == null)
+		return { available: false };
+	return {
+		available: true,
+		enabled: en == 1,
+		trig_cnt: read_int(base + 'trig_cnt'),
+		status: status_raw == null ? null : trim(status_raw)
+	};
+}
+
 return {
 	'luci.rtl9617c-system': {
 		status: {
@@ -46,6 +63,7 @@ return {
 						governor: governor == null ? null : trim(governor),
 						time_in_state: read_time_in_state(policy)
 					},
+					vsfc: read_vsfc(),
 					entropy: read_entropy()
 				};
 			}
