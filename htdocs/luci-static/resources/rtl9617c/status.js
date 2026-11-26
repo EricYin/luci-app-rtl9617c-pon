@@ -670,6 +670,6 @@ return baseclass.extend({
 	temperature: temperature, voltage: voltage, power: power, opticalRows: opticalRows, bosaName: bosaName,
 	omciLive: omciLive, ponState: ponState, ponCard: ponCard, offloadCard: offloadCard,
 	entropyInfo: entropyInfo, entropyCard: entropyCard,
-	style: function() { return E('link', { rel: 'stylesheet', href: L.resource('rtl9617c/status.css') }); },
+	style: function() { return E('link', { rel: 'stylesheet', href: L.resource('rtl9617c/status.css') + '?v=20261126b' }); },
 	callStatus: callStatus
 });
