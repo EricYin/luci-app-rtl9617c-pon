@@ -3,9 +3,12 @@
 
 [ "$(uci -q get luci.main.rtl9617c_argon_migrated)" = 1 ] && exit 0
 [ -f /www/luci-static/argon/css/cascade.css ] || exit 0
-uci batch <<'EOF'
-set luci.themes.Argon='/luci-static/argon'
-set luci.main.mediaurlbase='/luci-static/argon'
-set luci.main.rtl9617c_argon_migrated='1'
-commit luci
-EOF
+cur_theme="$(uci -q get luci.main.mediaurlbase)"
+uci -q set luci.themes.Argon='/luci-static/argon'
+case "$cur_theme" in
+	''|/luci-static/bootstrap*)
+		uci -q set luci.main.mediaurlbase='/luci-static/argon'
+		;;
+esac
+uci -q set luci.main.rtl9617c_argon_migrated='1'
+uci -q commit luci
