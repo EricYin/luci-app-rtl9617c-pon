@@ -41,6 +41,7 @@ var CPU_CSS = [
 	'.rtlcpu .rc-header h2{margin:0 0 6px;padding:0;border:0;font-size:24px;font-weight:600;background:none;box-shadow:none;width:auto}',
 	'.rtlcpu .rc-eyebrow{color:var(--rc-accent);font-size:11px;font-weight:600;letter-spacing:.12em;margin:0 0 4px}',
 	'.rtlcpu .rc-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px}',
+	'.rtlcpu .rc-controls .cbi-button{display:inline-flex;align-items:center;justify-content:center;height:auto;min-height:34px;line-height:1.35;white-space:nowrap}',
 	'.rtlcpu .rc-updated{font-size:12px;color:var(--rc-muted);font-variant-numeric:tabular-nums}',
 	'.rtlcpu .rc-card{min-width:0;padding:18px 20px;border:1px solid var(--rc-border);border-radius:12px;background:var(--rc-surface);box-shadow:0 3px 12px rgba(20,32,60,.035);margin-bottom:18px}',
 	'.rtlcpu .rc-hero{border-top:3px solid var(--rc-accent)}',
@@ -49,9 +50,9 @@ var CPU_CSS = [
 	'.rtlcpu .rc-hero[data-tone="danger"]{border-top-color:var(--rc-danger)}',
 	'.rtlcpu .rc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin:0 0 18px}',
 	'.rtlcpu .rc-grid .rc-card{margin-bottom:0;display:flex;flex-direction:column}',
-	'.rtlcpu .rc-card-head{display:flex;flex-wrap:nowrap;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}',
-	'.rtlcpu .rc-card-head h3{margin:0;padding:0;border:0;font-size:15px;font-weight:600;background:none;box-shadow:none;width:auto;flex:1 1 auto;min-width:0;line-height:1.4;color:var(--rc-text)}',
-	'.rtlcpu .rc-badge{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:6px;background:var(--rc-inset);color:var(--rc-text);font-size:12px;line-height:1.4;flex-shrink:0;white-space:nowrap}',
+	'.rtlcpu .rc-card-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:8px 10px;margin-bottom:12px}',
+	'.rtlcpu .rc-card-head h3{margin:0;padding:0;border:0;font-size:15px;font-weight:600;background:none;box-shadow:none;width:auto;flex:1 1 160px;min-width:0;line-height:1.4;color:var(--rc-text)}',
+	'.rtlcpu .rc-badge{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:6px;background:var(--rc-inset);color:var(--rc-text);font-size:12px;line-height:1.4;flex-shrink:0;white-space:nowrap;max-width:100%}',
 	'.rtlcpu .rc-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rc-muted)}',
 	'.rtlcpu .rc-good::before{background:var(--rc-good)}',
 	'.rtlcpu .rc-warn::before{background:var(--rc-warn)}',
@@ -78,7 +79,8 @@ var CPU_CSS = [
 	'.rtlcpu .rc-meter.is-warn>span{background:var(--rc-warn)}',
 	'.rtlcpu .rc-meter.is-danger>span{background:var(--rc-danger)}',
 	'.rtlcpu .rc-form .cbi-section{border-radius:12px}',
-	'@media (max-width:720px){.rtlcpu .rc-header h2{font-size:21px}.rtlcpu .rc-controls{width:100%;justify-content:space-between}.rtlcpu .rc-card{padding:16px}.rtlcpu .rc-freq-val{font-size:24px}}'
+	'@media (max-width:720px){.rtlcpu .rc-header{gap:10px;margin:4px 0 14px}.rtlcpu .rc-header h2{font-size:20px}.rtlcpu .rc-controls{width:100%;justify-content:space-between;gap:8px}.rtlcpu .rc-controls .rc-updated{width:100%}.rtlcpu .rc-controls .cbi-button{flex:1 1 110px;min-height:36px}.rtlcpu .rc-grid{gap:12px;margin-bottom:14px}.rtlcpu .rc-card{padding:14px;border-radius:10px;margin-bottom:14px}.rtlcpu .rc-card-head h3{font-size:14px;flex-basis:100%}.rtlcpu .rc-badge{white-space:normal}.rtlcpu .rc-kpi{font-size:19px}.rtlcpu .rc-freq-val{font-size:23px}.rtlcpu .rc-form .cbi-value{display:flex;flex-direction:column;align-items:stretch;padding:10px 0}.rtlcpu .rc-form .cbi-value-title{float:none!important;width:auto!important;max-width:100%!important;text-align:left!important;padding:0 0 6px!important}.rtlcpu .rc-form .cbi-value-field{margin-left:0!important;width:100%!important}.rtlcpu .rc-form .cbi-value-field select,.rtlcpu .rc-form .cbi-value-field input:not([type="checkbox"]):not(.cbi-button){width:100%!important;max-width:100%!important}}',
+	'@media (max-width:480px){.rtlcpu .rc-card{padding:12px}.rtlcpu .rc-opp-strip{grid-template-columns:repeat(3,minmax(0,1fr))}}'
 ].join('\n');
 
 function ensureCss() {

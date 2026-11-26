@@ -47,8 +47,8 @@
 }
 
 .tyf-pon .tyf-live > div > .tyf-card { margin: 18px 0; }
-.tyf-pon .tyf-card-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
-.tyf-pon .tyf-card-head h3 { margin: 0; padding: 0; border: 0; color: var(--tyf-text); font-size: 16px; font-weight: 600; }
+.tyf-pon .tyf-card-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 10px; margin-bottom: 18px; }
+.tyf-pon .tyf-card-head h3 { margin: 0; padding: 0; border: 0; color: var(--tyf-text); font-size: 16px; font-weight: 600; min-width: 0; flex: 1 1 160px; overflow-wrap: anywhere; }
 .tyf-pon .tyf-page-header h2, .tyf-pon .tyf-card-head h3, .tyf-pon .tyf-link-state h3 { background: none; box-shadow: none; border-radius: 0; width: auto; }
 .tyf-pon .tyf-card .tyf-card { background: var(--tyf-inset); border: 0; box-shadow: none; }
 .tyf-pon .tyf-tile { background: linear-gradient(120deg, var(--tyf-surface), var(--tyf-inset)); }
@@ -58,14 +58,14 @@
 .tyf-pon .tyf-link-panel { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(240px, 1fr); gap: 24px; border-top: 3px solid var(--tyf-accent); }
 .tyf-pon .tyf-link-state { align-self: center; min-width: 0; }
 .tyf-pon .tyf-link-state h3 { display: flex; align-items: center; gap: 12px; margin: 0; padding: 0; border: 0; font-size: 21px; line-height: 1.5; font-weight: 600; }
-.tyf-pon .tyf-link-facts { border-left: 1px solid var(--tyf-border); padding-left: 24px; }
+.tyf-pon .tyf-link-facts { border-left: 1px solid var(--tyf-border); padding-left: 24px; min-width: 0; }
 .tyf-pon .tyf-link-panel[data-tone="good"] { --tyf-accent: var(--success, #2dce89); }
 .tyf-pon .tyf-link-panel[data-tone="warn"] { --tyf-accent: var(--warning, #fb6340); }
 .tyf-pon .tyf-link-panel[data-tone="danger"] { --tyf-accent: var(--danger, #f5365c); }
 .tyf-pon .tyf-link-panel[data-tone="muted"] { --tyf-accent: var(--tyf-muted); }
 .tyf-pon .tyf-state-dot { flex: 0 0 9px; height: 9px; border-radius: 50%; background: var(--tyf-accent); }
-.tyf-pon .tyf-badge { display: inline-flex; align-items: center; gap: 7px; padding: 4px 9px; border-radius: 6px; background: var(--tyf-inset); color: var(--tyf-text); font-size: 12px; line-height: 1.4; }
-.tyf-pon .tyf-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--tyf-muted); }
+.tyf-pon .tyf-badge { display: inline-flex; align-items: center; gap: 7px; padding: 4px 9px; border-radius: 6px; background: var(--tyf-inset); color: var(--tyf-text); font-size: 12px; line-height: 1.4; max-width: 100%; }
+.tyf-pon .tyf-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--tyf-muted); flex-shrink: 0; }
 .tyf-pon .tyf-good::before { background: var(--success, #2dce89); }
 .tyf-pon .tyf-warn::before { background: var(--warning, #fb6340); }
 .tyf-pon .tyf-danger::before { background: var(--danger, #f5365c); }
@@ -210,16 +210,47 @@
 }
 .tyf-pon a:focus-visible, .tyf-pon button:focus-visible, .tyf-pon summary:focus-visible { outline: 2px solid var(--tyf-accent); outline-offset: 3px; }
 @media (max-width: 720px) {
-	.tyf-pon .tyf-link-panel { grid-template-columns: minmax(0, 1fr); }
-	.tyf-pon .tyf-link-facts { border-left: 0; border-top: 1px solid var(--tyf-border); padding: 20px 0 0; }
-	.tyf-pon .tyf-page-header h2 { font-size: 23px; }
-	.tyf-pon .tyf-refresh-controls { width: 100%; justify-content: space-between; }
-	.tyf-pon .tyf-card, .tyf-pon .tyf-tile, .tyf-pon .tyf-link-panel { padding: 18px; }
-	.tyf-pon .tyf-link-state h3 { font-size: 19px; }
-	.tyf-pon .tyf-fold summary { padding: 16px 18px; }
-	.tyf-pon .tyf-fold > div { padding: 0 18px 18px; }
-	.tyf-pon .cbi-button { min-height: 42px; }
-	.tyf-pon .tyf-facts { grid-template-columns: minmax(90px, 36%) minmax(0, 1fr); gap: 10px; }
-	.tyf-pon .tyf-config .cbi-value-title { float: none; width: auto; text-align: left; }
-	.tyf-pon .tyf-config .cbi-value-field { margin-left: 0; }
+	.tyf-pon .tyf-page-header { margin: 4px 0 16px; gap: 10px; }
+	.tyf-pon .tyf-page-header h2 { font-size: 21px; }
+	.tyf-pon .tyf-refresh-controls { width: 100%; justify-content: space-between; gap: 8px; }
+	.tyf-pon .tyf-grid { gap: 12px; margin: 12px 0; }
+	.tyf-pon .tyf-live > div > .tyf-card,
+	.tyf-pon .tyf-fold { margin: 12px 0; }
+	.tyf-pon .tyf-link-panel { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+	.tyf-pon .tyf-link-facts { border-left: 0; border-top: 1px solid var(--tyf-border); padding: 16px 0 0; }
+	.tyf-pon .tyf-card, .tyf-pon .tyf-tile, .tyf-pon .tyf-link-panel { padding: 15px; border-radius: 10px; }
+	.tyf-pon .tyf-card-head { margin-bottom: 12px; }
+	.tyf-pon .tyf-card-head h3 { font-size: 15px; }
+	.tyf-pon .tyf-link-state h3 { font-size: 18px; }
+	.tyf-pon .tyf-tile dd { font-size: 19px; margin-top: 8px; }
+	.tyf-pon .tyf-fold summary { padding: 14px 15px; }
+	.tyf-pon .tyf-fold > div { padding: 0 15px 15px; }
+	.tyf-pon .cbi-button {
+		display: inline-flex; align-items: center; justify-content: center;
+		height: auto; min-height: 38px; line-height: 1.35; padding: 7px 12px;
+	}
+	.tyf-pon .tyf-actions { gap: 8px; }
+	.tyf-pon .tyf-actions .cbi-button,
+	.tyf-pon .tyf-actions .tyf-link { flex: 1 1 130px; margin: 0; }
+	.tyf-pon .tyf-facts { grid-template-columns: minmax(90px, 36%) minmax(0, 1fr); gap: 8px 10px; font-size: 12.5px; }
+	.tyf-pon .tyf-fe-visual { padding: 12px 12px 10px; }
+	.tyf-pon .tyf-fe-legend { justify-content: flex-start; gap: 6px 12px; }
+	.tyf-pon .tyf-fe-table-wrap { -webkit-overflow-scrolling: touch; }
+	.tyf-pon pre { padding: 12px; font-size: 11.5px; }
+	.tyf-pon .tyf-config { margin: 16px 0; }
+	.tyf-pon .tyf-config .cbi-value { display: flex; flex-direction: column; align-items: stretch; padding: 10px 0; }
+	.tyf-pon .tyf-config .cbi-value-title { float: none !important; width: auto !important; max-width: 100% !important; text-align: left !important; padding: 0 0 6px !important; }
+	.tyf-pon .tyf-config .cbi-value-field { margin-left: 0 !important; width: 100% !important; }
+	.tyf-pon .tyf-config .cbi-value-field input:not([type="checkbox"]):not([type="radio"]):not(.cbi-button),
+	.tyf-pon .tyf-config .cbi-value-field select,
+	.tyf-pon .tyf-config .cbi-value-field .cbi-dropdown { width: 100% !important; max-width: 100% !important; }
+}
+@media (max-width: 480px) {
+	.tyf-pon .tyf-card, .tyf-pon .tyf-tile, .tyf-pon .tyf-link-panel { padding: 13px; }
+	.tyf-pon .tyf-badge { white-space: normal; }
+	.tyf-pon .tyf-facts { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+	.tyf-pon .tyf-facts dt { margin-top: 8px; font-size: 11.5px; }
+	.tyf-pon .tyf-facts dt:first-child { margin-top: 0; }
+	.tyf-pon .tyf-facts dd { padding-bottom: 6px; border-bottom: 1px dashed var(--tyf-border); }
+	.tyf-pon .tyf-facts dd:last-child { border-bottom: 0; padding-bottom: 0; }
 }
