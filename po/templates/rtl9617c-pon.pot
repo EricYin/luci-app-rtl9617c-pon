@@ -1,0 +1,1913 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: luci-app-rtl9617c-pon\n"
+"POT-Creation-Date: 2026-11-26 06:31+0000\n"
+"PO-Revision-Date: 2026-11-26 06:31+0000\n"
+"Last-Translator: RTL9617C Maintainers <noreply@localhost>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:422
+msgid "\"Dynamic (schedutil, recommended)\" lets the kernel scheduler scale frequency by live load, dropping to 400 MHz when idle to stay cool and ramping to 1200 MHz under full load."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:423
+msgid "\"Performance (performance)\" locks all cores at 1200 MHz; \"Fixed Frequency (userspace)\" lets you lock a specific hardware OPP."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:274
+msgid "%d OPP steps supported (%s ~ %s) · %d governors available%s."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:608
+#: htdocs/luci-static/resources/rtl9617c/status.js:611
+msgid "%d flows"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:247
+msgid "%d ports up"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:76
+msgid "%d s"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:641
+msgid "%d tagged"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:333
+msgid "%s / %s flows"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:73
+msgid "%s error code: %s. Check Diagnostics and the system log."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:87
+msgid "%s error code: %s. Check Diagnostics."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:244
+msgid "%s °C / 105 °C passive thermal threshold"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:38
+msgid "0x86 (Compatibility)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:37
+msgid "0xb0 (Default)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:7
+msgid "10G EPON (Asymmetric)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:7
+msgid "10G EPON (Symmetric)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:133
+msgid "10G Sym"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:386
+msgid "64K Hash Flow Lookup"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:658
+msgid "8-VoQ compatible (CoS field absent in current flow table)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:30
+msgid "A2h module detected, DDMI available"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:29
+msgid "A2h optical telemetry"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:106
+msgid "Absent"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:95
+msgid "Activated · Awaiting Services"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:94
+msgid "Activated · Services Configured"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:54
+msgid "Activation State"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:96
+msgid "Activation state: %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:482
+msgid "Active"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:566
+msgid "Active (Tracked)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:169
+msgid "Active Governor"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:652
+msgid "Active HW Flows"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:14
+msgid "Active PON Identity"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:123
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:15
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:26
+msgid "Active Protocol"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:221
+msgid "Active range: %s ~ %s · Quad-core Cortex-A55 shared clock domain."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:310
+msgid "Actual frequency matches the saved target (%s)."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:29
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:18
+msgid "Advanced"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:27
+msgid "All authentication parameters are optional. Switching protocols only changes visible fields without clearing credentials for other protocols."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:424
+msgid "All four Cortex-A55 cores share a single clock domain; the live frequency bar and OPP strip below update every 2 seconds."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:29
+msgid "Allowed"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:308
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:319
+msgid "Applied"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:75
+msgid "Auth Duration"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:72
+msgid "Auth Method"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:61
+msgid "Auth Rejected"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:73
+msgid "Auth Source"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:52
+msgid "Authenticated"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:61
+msgid "Authenticating"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:91
+#: htdocs/luci-static/resources/rtl9617c/status.js:103
+msgid "Authentication Failed"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:52
+msgid "Authentication Failed (code %s)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:34
+msgid "Auto"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:494
+msgid "Available Hardware Sources"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:32
+msgid "Available entropy %s bits"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:32
+msgid "Available entropy %s bits · Inactive fallback"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:96
+msgid "Awaiting Activation"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:61
+msgid "Awaiting Auth"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:66
+msgid "Awaiting OAM Discovery"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:99
+#: htdocs/luci-static/resources/rtl9617c/ui.js:65
+msgid "Awaiting Registration"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:74
+msgid "Awaiting Result"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:66
+msgid "Awaiting Status"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:236
+msgid "Awaiting initial read"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:18
+msgid "BOSA Model"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:132
+msgid "Baby Jumbo Enabled"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:132
+msgid "Baby Jumbo Ready"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:629
+msgid "Bound %d"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:632
+msgid "Bridge %d"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:17
+msgid "Bridge Ports"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:420
+msgid "Burst Buffer · TX"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:378
+msgid "Bypassed"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:378
+msgid "CPU Bypass"
+msgstr ""
+
+#: root/usr/share/luci/menu.d/luci-rtl9617c-system.json:3
+msgid "CPU Frequency"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:432
+msgid "CPU Frequency & Dynamic Scaling"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:355
+msgid "CPU RX"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:372
+msgid "CPU Scaling Settings"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:455
+msgid "CPU Slow Path & Flow Setup"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:362
+msgid "CPU TX"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:41
+msgid "Channel"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:405
+msgid "Checksum · %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:291
+msgid "Clock controller reported a frequency transition failure; check the system log."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:519
+msgid "CoS %s (Explicit)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:551
+msgid "CoS / Queue"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:658
+msgid "CoS / Queue Parsing"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:656
+msgid "CoS Queue Distribution"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:71
+msgid "Completed"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:17
+msgid "Config Status"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:174
+msgid "Configuration Status"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:32
+msgid "Configure IPTV VLAN / Dedicated Port / Single-Line Multiplexing"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:16
+msgid "Configure Identity & Auth"
+msgstr ""
+
+#: root/usr/share/rpcd/acl.d/luci-app-rtl9617c-pon.json:3
+msgid "Configure RTL9617C PON identity and read native PON status"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:118
+msgid "Configure WAN Interface"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:17
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:30
+msgid "Configured"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:115
+msgid "Configured WAN Device"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:317
+msgid "Configured range %s ~ %s; click \"Save & Apply\" to sync."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:106
+msgid "Connected"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:18
+msgid "Connection Type"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:28
+msgid "Conservative (conservative)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:19
+msgid "Conservative (conservative, gradual frequency scaling)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:13
+msgid "Control characters are not allowed."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:35
+msgid "Controls only PPP IPv6 negotiation without deleting or rewriting wan6; use Interfaces for complex dual-stack setups."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:608
+#: htdocs/luci-static/resources/rtl9617c/status.js:611
+msgid "Counter %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:554
+msgid "Counter Slot"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:343
+#: htdocs/luci-static/resources/rtl9617c/status.js:626
+msgid "Counters %s/%s"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:42
+msgid "Current PHY Rate"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:493
+msgid "Current Source"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:43
+msgid "Current WAN requires native Interfaces management: unconfigured WAN, custom protocols, legacy device references, or multi-address/CIDR configs are left untouched."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:216
+msgid "Current manual frequency: %s · Quad-core Cortex-A55 shared clock domain."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:176
+msgid "Current physical interface max_mtu is %s; PPPoE payload is capped at 1492 (Baby Jumbo inactive)."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:33
+msgid "Dedicated port bridging and single-line multiplexing use native VLAN/bridge settings. This package does not install IGMP proxy, HTTP multicast relay, or SIP/H.248 voice services, so no unbacked toggles are shown."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:640
+msgid "Default / OLT Queue"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:427
+msgid "Demux to FE"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:432
+msgid "Dequeue to NI"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:12
+msgid "Device Info"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:17
+msgid "Diagnostic Tools"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:9
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:28
+msgid "Diagnostics"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:295
+msgid "Differs from saved config"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:44
+msgid "Disable OMCI Enhanced Security (Class 332)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:68
+#: htdocs/luci-static/resources/rtl9617c/status.js:81
+#: htdocs/luci-static/resources/rtl9617c/status.js:332
+#: htdocs/luci-static/resources/rtl9617c/status.js:582
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+#: htdocs/luci-static/resources/rtl9617c/ui.js:42
+msgid "Disabled"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:240
+#: htdocs/luci-static/resources/rtl9617c/ui.js:106
+#: htdocs/luci-static/resources/rtl9617c/ui.js:219
+msgid "Disconnected"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:16
+msgid "Download Snapshot"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:454
+msgid "Downstream Fast Path: PON → NI → FE → PE → QM(DeepQ) → NI → LAN"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:20
+msgid "Driver & Protocol State"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:224
+msgid "Driver Not Ready"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:79
+msgid "Driver has not provided a valid link state yet. Check the system log."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:110
+msgid "Dropped RX / TX"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:25
+msgid "Dynamic (schedutil)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:16
+msgid "Dynamic (schedutil, recommended: cool at idle, scales to 1200 MHz under load)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:254
+msgid "Dynamic Scaling"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:320
+msgid "Dynamic governor active"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:218
+msgid "Dynamic · %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:50
+msgid "EPON Logical Links"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:16
+msgid "EPON does not use ITU-T SN. Identity overrides can be set under Line & Authentication; leave empty to restore factory values."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:11
+msgid "Edits native network.wan directly without creating extra service configs or taking over LAN ports or the firewall. Uses LuCI connection confirmation and rollback on apply."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:238
+msgid "Elevated Temp"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:30
+msgid "Enable Optical Link"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:26
+msgid "Enable only if this bridge needs to send multicast queries locally."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:592
+#: htdocs/luci-static/resources/rtl9617c/status.js:593
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+#: htdocs/luci-static/resources/rtl9617c/ui.js:42
+msgid "Enabled"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:95
+msgid "Enter if required by your ISP, up to 4 bytes."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:23
+msgid "Enter only the parameters required by your ISP. Changes take effect after Save & Apply; the optical link may briefly reconnect."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:107
+msgid "Enter the 32-char hex key when required by your ISP for enhanced security."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:496
+msgid "Entropy Quality"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:75
+msgid "Equipment ID"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:586
+msgid "Error"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:330
+msgid "Error %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:290
+msgid "Error code %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:586
+msgid "Error code: %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:640
+msgid "Explicit %d"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:324
+msgid "FE Attached"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:324
+msgid "FE Detached"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:383
+msgid "FE Forwarding"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:167
+msgid "FE MTU Slots %s/%s"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:592
+msgid "FE engine is ready; no interfaces are bound for offloading yet"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:11
+msgid "Failed to read PON identity."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:24
+msgid "Failed to read PON status."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:332
+msgid "Failed to read live status: %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:217
+msgid "Failed to read network status; historical data is not shown as live state."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:249
+msgid "Failed to read status; no live data yet."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:232
+msgid "Failed to read status; no live data yet. Configuration editing is unaffected."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:39
+msgid "Failed to read wireless status."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:44
+msgid "Firewall"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:582
+msgid "Firewall flow offloading is disabled; all forwarding runs on the CPU"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:13
+msgid "Firmware"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:47
+msgid "Firmware info not provided"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:327
+msgid "First-packet flow setup to FE · Proxy / unoffloaded slow path"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:30
+msgid "Fixed Frequency (userspace)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:21
+msgid "Fixed Frequency (userspace, manual target frequency)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:309
+msgid "Fixed frequency active"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:214
+msgid "Fixed · userspace"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:20
+msgid "Forward multicast based on group membership to avoid flooding all ports."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:41
+msgid "Frequency"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:27
+msgid "From A2h 0x60/0x61"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:26
+msgid "From active driver mode"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:376
+msgid "Governor"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:320
+msgid "Governor active"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:218
+msgid "Governor · %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:420
+msgid "Guide"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:329
+msgid "HW Bypassed"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:590
+msgid "HW Not Ready"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+msgid "HW Off"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:360
+msgid "HW Offload Off"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+msgid "HW On"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:660
+msgid "HW Table Slots"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:588
+msgid "HW Unavailable"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:31
+msgid "Hardware Entropy"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:491
+msgid "Hardware Entropy (TRNG)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:9
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:12
+msgid "Hardware Identity"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:662
+msgid "Hardware Offload"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:33
+msgid "Hardware TRNG active"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:33
+msgid "Hardware TRNG inactive"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:499
+msgid "Hardware TRNG is active and continuously feeding the kernel RNG pool."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:271
+msgid "Hardware VSFC idle scaling: Off"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:268
+msgid "Hardware VSFC idle scaling: Off (triggered %s times)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:270
+msgid "Hardware VSFC idle scaling: On"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:267
+msgid "Hardware VSFC idle scaling: On (triggered %s times)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:76
+msgid "Hardware Version"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:572
+msgid "Hardware allocates dedicated exact counters for up to 32 interface/flow combinations; remaining flows shown as \"Active (Tracked)\" are also forwarded at line rate by the FE chip. The CoS / Queue column is backward-compatible with kernel flowtable exports (shows — when absent). To inspect plaintext IP/port 5-tuples (including [HW_OFFLOAD] markers), go to \"Status → Realtime Graphs → Connections\"."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:500
+msgid "Hardware entropy is inactive (shown as unavailable); the kernel continues using its software entropy pool."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:584
+msgid "Hardware offloading is disabled; traffic is forwarded via CPU software flowtable"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:590
+msgid "Hardware offloading is requested, but the FE engine is not enabled"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:588
+msgid "Hardware offloading is requested, but the driver does not provide FE"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:553
+msgid "Hash Slot"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:235
+msgid "High Temperature"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:556
+msgid "Hit Bytes"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:555
+msgid "Hit Packets"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:29
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:24
+msgid "IPTV & Multicast"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:25
+msgid "IPv4 Address"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:25
+msgid "IPv4 Gateway"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:27
+msgid "ISP Authentication"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:15
+msgid "ITU-T SN (Hex)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:71
+msgid "Incomplete"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:73
+msgid "Init Error"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:18
+msgid "Init Error Code"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:541
+msgid "Inspect Hardware Flow Table (%d entries)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:540
+msgid "Inspect Hardware Flow Table (first %d of %d entries)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:542
+msgid "Inspect Hardware Flow Table (no active flows)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:41
+msgid "Interface"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:179
+msgid "Interface MTU & Hardware Features"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:219
+msgid "Interface Up"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:44
+msgid "Interfaces / VLAN / Bridge"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:41
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:20
+msgid "Internet"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:23
+msgid "Keep the current device selection; use Interfaces below to create VLANs or configure bridges."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:13
+msgid "Kernel"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:495
+msgid "Kernel Entropy Pool"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:505
+msgid "L2 Bridge"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:182
+msgid "LAN Port MTU"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:367
+msgid "LAN Ports"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:175
+msgid "LAN max_mtu is unlocked to %s, but PON max_mtu is still %s; both must allow >= 1508 for Baby Jumbo."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:69
+msgid "LOID Password"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:66
+msgid "Leave blank to use the factory identity; clear any custom value and apply to restore the factory MAC."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:94
+msgid "Leave empty for default"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:65
+msgid "Leave empty for factory MAC"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:99
+msgid "Leave empty for factory SN; supports 12-char SN or 16-char hex."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:84
+msgid "Leave empty for factory value"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:316
+msgid "Limits differ from config"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:123
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:16
+msgid "Line & Authentication"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:23
+msgid "Line Configuration"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:32
+msgid "Line Protocol"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:48
+msgid "Line protocol not ready; authentication status unavailable."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:121
+msgid "Line registration and authentication do not guarantee Internet connectivity; check WAN status in Interfaces."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:244
+msgid "Link Up"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:149
+msgid "Live CPU Frequency"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:125
+msgid "Live Registration & Authentication"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:164
+msgid "Live SoC Temperature"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:321
+msgid "Live governor matches configuration; the kernel manages CPU clock frequency automatically."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:133
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:159
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:166
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:171
+msgid "Loading"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:128
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:138
+msgid "Loading…"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:437
+msgid "MAC · DMA · L3FE Demux (aggregates LAN/PON RX/TX, connects directly to FE / QM / CPU)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:108
+msgid "MTU / Queue"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:646
+msgid "MTU Slots %s/%s"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:37
+msgid "Manage Internet"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:44
+msgid "Manage Wi-Fi 6"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:34
+msgid "Manual"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:260
+msgid "Manual Fixed"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:98
+#: htdocs/luci-static/resources/rtl9617c/ui.js:140
+#: htdocs/luci-static/resources/rtl9617c/ui.js:143
+msgid "Max %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:256
+msgid "Max Frequency"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:137
+msgid "Max MTU not provided"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:14
+msgid "Maximum %d bytes."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:401
+msgid "Maximum Frequency"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:410
+msgid "Maximum frequency cannot be lower than minimum frequency"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:394
+msgid "Minimum Frequency"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:304
+msgid "Mismatch"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:12
+msgid "Model"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:433
+msgid "Monitor live CPU frequency, temperature, and hardware OPP steps; adjust settings below and click \"Save & Apply\" to take effect immediately."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:40
+msgid "Multicast"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:21
+msgid "Multicast Querier"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:11
+msgid "Multicast Settings on Existing Bridges"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:436
+msgid "NI Network Interface"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:52
+msgid "No LOID auth result received"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:116
+msgid "No LOS"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:79
+msgid "No OAM authentication sessions yet; awaiting logical link registration."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:44
+msgid "No OMCI GEM service channels to display yet. EPON uses LLIDs instead of GEM."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:44
+msgid "No OMCI multicast channels obtained yet. This does not mean IPTV is unavailable on the line; check EPON services and local VLANs in Interfaces."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:125
+msgid "No TX Fault"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:226
+msgid "No cpufreq policy interface detected."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:77
+msgid "No incoming optical signal detected. Check the fiber and uplink."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:31
+msgid "No native device-type bridges found yet. Edit legacy interface bridge configs in Interfaces."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:240
+msgid "No physical link"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:300
+msgid "No target frequency set"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:241
+msgid "Normal"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:329
+msgid "Not Enabled"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:30
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:285
+msgid "Not Ready"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:48
+msgid "Not disabled by default. Enable only if the line does not support enhanced security; independent of OMCC version."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:116
+#: htdocs/luci-static/resources/rtl9617c/status.js:125
+#: htdocs/luci-static/resources/rtl9617c/ui.js:42
+#: htdocs/luci-static/resources/rtl9617c/ui.js:52
+#: htdocs/luci-static/resources/rtl9617c/ui.js:82
+#: htdocs/luci-static/resources/rtl9617c/ui.js:90
+#: htdocs/luci-static/resources/rtl9617c/ui.js:140
+#: htdocs/luci-static/resources/rtl9617c/ui.js:144
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:12
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:13
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:15
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:17
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:26
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:29
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:30
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:94
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:204
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:209
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:246
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:249
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:252
+msgid "Not provided"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:79
+msgid "Note: EPON OLTs typically complete LLID allocation and CTC OAM provisioning for any ONU MAC (which vendor firmware reports as OLT registered/authenticated). ISPs may enforce MAC or broadband account binding at the service VLAN / BRAS layer; verify WAN connectivity accordingly."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:59
+msgid "O5 means the optical link is activated; service usability still depends on OLT provisioning and WAN configuration."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:71
+msgid "OAM Discovery"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:74
+msgid "OAM Model ID"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:73
+msgid "OLT Auth Result"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:61
+#: htdocs/luci-static/resources/rtl9617c/ui.js:64
+msgid "OLT Authenticated"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:56
+msgid "OLT LOID Auth"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:30
+msgid "OLT Multicast Channels"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:64
+msgid "OLT Provisioned"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:74
+msgid "OLT Provisioning (Vendor Criteria)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:108
+msgid "OLT completed OAM discovery and CTC service provisioning (vendor pass criteria for OLT registration). Some ISPs validate unregistered MACs at the upper VLAN/BRAS layer rather than OAM; verify actual WAN connectivity."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:103
+msgid "OLT rejected LOID authentication. Check your LOID and password."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:103
+msgid "OLT rejected authentication. Check your ONU MAC address or ISP credentials."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:91
+msgid "OLT returned LOID auth status code: %s. Verify your ISP credentials."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:107
+msgid "OLT returned a CTC authentication pass result; if your ISP also checks MAC or account credentials at the service layer, verify your WAN dial-up or service status."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:46
+msgid "OLT-Provisioned GEM Service Channels"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:36
+msgid "OMCC Version"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:103
+msgid "OMCI Enhanced Auth PSK"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:58
+msgid "OMCI Error Code"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:78
+msgid "OMCI Operator ID"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:57
+msgid "OMCI RX / TX"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:55
+msgid "OMCI Status"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:89
+msgid "OMCI Unavailable"
+msgstr ""
+
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:3
+msgid "ONU"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:58
+msgid "ONU MAC Address"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:70
+msgid "ONU Serial Number (SN)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:34
+msgid "Off"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+msgid "Offload Mode"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:360
+msgid "Offload flows to FE"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:27
+msgid "On-Demand (ondemand)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:18
+msgid "On-Demand (ondemand, scales dynamically with load)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:120
+msgid "Only configured values are shown here, not live connection status. Configure dial-up, IPv6, VLANs, and bridging in Interfaces."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:121
+msgid "Open Interfaces →"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:30
+msgid "Optical Calibration"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:17
+msgid "Optical Calibration / Telemetry"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:26
+msgid "Optical Link"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:29
+msgid "Optical TX"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:75
+msgid "Optical TX Fault"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:27
+msgid "Optical Temperature"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:19
+msgid "Optical link, service networks, and wireless at a glance. Interface up does not imply Internet reachability."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:75
+msgid "Optical module reported TX Fault. Check Diagnostics."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:84
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:106
+msgid "Optional"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:622
+msgid "Other %d"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:398
+msgid "PE Packet Edit"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:72
+msgid "PLOAM Password"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:119
+msgid "PON / LIVE OPTICAL LINK"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:445
+msgid "PON Port"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:181
+msgid "PON Port MTU / Max"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:158
+msgid "PON Queues TX %s / RX %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:33
+msgid "PPPoE IPv6 Negotiation"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:24
+msgid "PPPoE Password"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:24
+msgid "PPPoE Username"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:431
+msgid "PROCESSOR FREQUENCY & THERMAL · QUAD-CORE CORTEX-A55 SHARED CLOCK"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:135
+msgid "Partial (LAN Max %s / PON %s)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:550
+msgid "Path"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:345
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:353
+msgid "Pause Refresh"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:294
+msgid "Pending Apply"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:26
+msgid "Performance (performance)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:17
+msgid "Performance (performance, locked at max 1200 MHz)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:45
+msgid "Physical Ports & Cumulative Traffic"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:172
+msgid "Physical interfaces allow max_mtu (%s, Baby Jumbo ready). Set PON/WAN MTU to 1508 (PPPoE 1500) in Internet or Interfaces."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:171
+msgid "Physical interfaces support and have enabled >= %s MTU, satisfying RFC 4638 full 1500-byte PPPoE payload."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:18
+msgid "Ping / Traceroute / DNS"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:108
+msgid "Please enter a 32-char hexadecimal key."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:62
+msgid "Please enter a non-zero unicast MAC address, or leave empty to use the factory identity."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:100
+msgid "Please enter a valid 12-char SN or 16-char hex SN."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:552
+msgid "Policer"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:21
+msgid "Port MAC Addresses"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:29
+msgid "Power Save (powersave)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:20
+msgid "Power Save (powersave, locked at minimum frequency)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:258
+msgid "Power Saving"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:9
+msgid "Preserves raw error codes, session liveness, and full multi-GEM data for troubleshooting line issues."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:22
+msgid "Preserves the native factory identity and calibration import flow. This page does not write MTD/UBI partitions or read identity data from other devices."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:19
+msgid "Protocol"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:220
+msgid "Protocol / Device"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:413
+msgid "QM Queue Mgr"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:148
+msgid "Quad-core Cortex-A55 shared clock domain"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:222
+msgid "Quad-core Cortex-A55 shared clock domain."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:42
+msgid "Queue"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:184
+msgid "Queues & Offload Features"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:377
+msgid "RTL9617C Hardware Offload Engine Data Path"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:109
+msgid "RX / TX"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:77
+msgid "RX / TX Frames"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:77
+#: htdocs/luci-static/resources/rtl9617c/status.js:115
+msgid "RX LOS"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:315
+msgid "Range Pending"
+msgstr ""
+
+#: root/usr/share/rpcd/acl.d/luci-rtl9617c-system.json:3
+msgid "Read SoC temperature and configure the shared CPU frequency"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:333
+msgid "Read failed"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:9
+msgid "Reads the active hardware identity without writing to factory partitions or exporting credentials."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:163
+msgid "Real-time sampling from on-chip cpu-thermal sensor; < 75 °C recommended for daily operation."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:361
+msgid "Refresh Now"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:235
+msgid "Refresh Status"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:249
+msgid "Refresh failed; the state below is from the last successful read, not live. Configuration editing is unaffected."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:70
+msgid "Registered"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:109
+msgid "Registered · Awaiting Auth"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:107
+msgid "Registered · OLT Authenticated"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:108
+msgid "Registered · OLT Provisioned"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:70
+msgid "Registration"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:35
+msgid "Registration & Authentication"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:345
+msgid "Resume Refresh"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:399
+msgid "Rewrite"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:40
+msgid "Running"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:28
+msgid "Rx / Tx Power"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:39
+msgid "Rx Optical Power"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:124
+msgid "Rx Signal"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+msgid "SW Off"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+msgid "SW On"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:609
+#: htdocs/luci-static/resources/rtl9617c/status.js:612
+msgid "Sampling…"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:296
+msgid "Saved governor is %s, active is %s; click \"Save & Apply\" below to apply."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:289
+msgid "Scaling Error"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:286
+msgid "Scaling driver not ready"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:301
+msgid "Select a target fixed frequency below and click \"Save & Apply\"."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:35
+msgid "Select according to your ISP line; the banner above shows the actual active protocol and does not change until applied."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:87
+msgid "Service Config Error"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:58
+msgid "Service Error Code"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:37
+msgid "Service Networks"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:57
+msgid "Service Paths"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:65
+msgid "Session Expired"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:29
+msgid "Shut Off"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:355
+msgid "Slow-path DMA RX"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:362
+msgid "Slow-path TX"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:327
+msgid "Software Flowtable only (via CPU)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:584
+msgid "Software Only"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:77
+msgid "Software Version"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:107
+msgid "Speed"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:136
+msgid "Standard MTU (Max %s)"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:327
+msgid "Standard kernel forwarding (via CPU)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:20
+msgid "Static Address"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:19
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:8
+msgid "Status"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:79
+msgid "Status Unavailable"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:40
+msgid "Stopped"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:25
+msgid "Subnet Mask"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:12
+msgid "System"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:18
+msgid "System Log"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:125
+msgid "TX Alarm"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:125
+msgid "TX Fault"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:306
+msgid "Target %s, actual %s; please re-apply or check logs."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:389
+msgid "Target Fixed Frequency"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:305
+msgid "Target differs from actual"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:37
+msgid "Temperature"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:19
+msgid "Temperature, voltage, and optical power come from optical module A2h; — is shown when Tx/Rx is 0."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:573
+msgid "The FE hardware flow table is currently empty, or the debug interface returned no entries."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:19
+msgid "The snapshot only contains runtime state read by this page and excludes LOID, passwords, PSK, and factory images; it may still include line and service identifiers."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:38
+msgid "Tx Bias"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:38
+msgid "Tx Optical Power"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:549
+msgid "Type"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:287
+msgid "Unable to read live frequency from /sys/devices/system/cpu/cpufreq/policy0."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:177
+msgid "Unable to read physical interface max_mtu (missing ip-full or interface not registered); showing active MTU only."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:89
+msgid "Unable to read the latest state from a live control process; historical data remains in Diagnostics. Check the system log."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:331
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+#: htdocs/luci-static/resources/rtl9617c/ui.js:55
+msgid "Unavailable"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:113
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:116
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:17
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:18
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:299
+msgid "Unconfigured"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:154
+msgid "Unconfigured / Disconnected"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:40
+msgid "Unicast"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:262
+msgid "Unknown"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:70
+msgid "Unregistered"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:653
+msgid "Up / Down Paths"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:91
+msgid "Up to 14 bytes in ITU-T modes, up to 16 bytes in EPON modes."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:181
+msgid "Updated %s · 2s refresh"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:236
+msgid "Updated %s · 5s refresh"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:42
+msgid "Upstream AES"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:453
+msgid "Upstream Fast Path: LAN → NI → FE → PE → QM → NI → PON"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:11
+msgid "Uses Linux bridge / netifd IGMP snooping and querier settings directly. Does not automatically remove LAN ports, create service VLANs, or modify the firewall."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:123
+msgid "Uses native device configuration. Modify only ISP-required parameters; the optical link may briefly reconnect when applied."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:56
+msgid "Usually 1."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:42
+msgid "Usually keep the default. Try 0x86 if the OLT is incompatible during OMCI provisioning."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:55
+msgid "Valid"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:73
+msgid "Vendor ID"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:29
+msgid "Verify OLT-provisioned multicast channels first, then configure local service VLANs and set-top box ports."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:41
+msgid "View live interface addresses and configure the existing WAN. Bridging, VLANs, IPv6, and advanced firewall settings remain managed by native OpenWrt."
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:37
+msgid "Voltage"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:21
+msgid "WAN Device"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:28
+msgid "WAN Interface"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:183
+msgid "WAN Interface MTU"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:112
+msgid "WAN Protocol"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:11
+msgid "WAN Settings"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:419
+msgid "What Is This? (CPU Governor & Selection Guide)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:39
+msgid "Wireless Networks"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:336
+msgid "↑ %d flows"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:336
+msgid "↑ Upstream"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:337
+msgid "↓ %d flows"
+msgstr ""
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:337
+msgid "↓ Downstream"
+msgstr ""
+
+msgid "Temperature read error"
+msgstr ""
+
+msgid "Temperature unavailable"
+msgstr ""

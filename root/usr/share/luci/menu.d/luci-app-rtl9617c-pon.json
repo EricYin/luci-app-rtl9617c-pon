@@ -5,27 +5,27 @@
     "depends": {"acl": ["luci-app-rtl9617c-pon"]}
   },
   "admin/onu/status": {
-    "title": "运行状态", "order": 10,
+    "title": "Status", "order": 10,
     "action": {"type": "view", "path": "rtl9617c/overview"}
   },
   "admin/onu/hardware": {
-    "title": "硬件身份", "order": 20,
+    "title": "Hardware Identity", "order": 20,
     "action": {"type": "view", "path": "rtl9617c/hardware"}
   },
   "admin/onu/config": {
-    "title": "线路与认证", "order": 30,
+    "title": "Line & Authentication", "order": 30,
     "action": {"type": "view", "path": "network/rtl9617c-pon"}
   },
   "admin/onu/internet": {
-    "title": "上网配置", "order": 40,
+    "title": "Internet", "order": 40,
     "action": {"type": "view", "path": "rtl9617c/internet"}
   },
   "admin/onu/iptv": {
-    "title": "IPTV 与组播", "order": 50,
+    "title": "IPTV & Multicast", "order": 50,
     "action": {"type": "view", "path": "rtl9617c/iptv"}
   },
   "admin/onu/diagnostics": {
-    "title": "诊断", "order": 70,
+    "title": "Diagnostics", "order": 70,
     "action": {"type": "view", "path": "rtl9617c/diagnostics"}
   },
   "admin/network/pon": {

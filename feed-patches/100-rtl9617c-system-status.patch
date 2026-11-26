@@ -28,9 +28,9 @@
  		}
  
 +		var hardware = data[5];
-+		var temperature = hardware.temperature_error ? '温度读取失败' : hardware.temperature_mC == null ?
-+			'温度未提供' : (hardware.temperature_mC / 1000).toFixed(1) + '°C';
-+		var platform = 'Realtek/RTL9617C（' + temperature + '）';
++		var temperature = hardware.temperature_error ? _('Temperature read error') : hardware.temperature_mC == null ?
++			_('Temperature unavailable') : (hardware.temperature_mC / 1000).toFixed(1) + '°C';
++		var platform = 'Realtek/RTL9617C (' + temperature + ')';
 +
  		var fields = [
  			_('Hostname'),         boardinfo.hostname,

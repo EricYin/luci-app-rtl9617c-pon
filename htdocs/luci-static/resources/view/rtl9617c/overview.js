@@ -16,35 +16,35 @@ return view.extend({
 			.then(function(result) { return result[1]; });
 	},
 	render: function(initial) {
-		return ui.page('运行状态', '光链路、业务网络与无线，集中查看。接口连接不等于互联网可达。', initial, ui.snapshot, function(data) {
+		return ui.page(_('Status'), _('Optical link, service networks, and wireless at a glance. Interface up does not imply Internet reachability.'), initial, ui.snapshot, function(data) {
 			var pon = data.pon || {}, optical = pon.optical || {}, bosa = pon.bosa || {};
 			var ent = status.entropyInfo(pon);
 			var model = data.board.model || '';
 			var hasWifi = (data.wifi || []).length > 0 && !/PT1500/i.test(model);
-			return E('div', {}, [data.pon ? status.ponCard(pon) : E('p', { class: 'alert-message warning' }, 'PON 状态读取失败。'),
+			return E('div', {}, [data.pon ? status.ponCard(pon) : E('p', { class: 'alert-message warning' }, _('Failed to read PON status.')),
 				ui.grid([
-					ui.tile('运行协议', status.modes[(pon.serdes || {}).mode] || '未提供', '来自驱动实际运行模式'),
-					ui.tile('光模块温度', status.temperature(pon.transceiver), '来自 A2h 0x60/0x61'),
-					ui.tile('收 / 发光功率', status.power((pon.transceiver || {}).rx_power_raw) + ' / ' + status.power((pon.transceiver || {}).tx_power_raw), 'A2h 0x66~0x69'),
-					ui.tile('光口发射', optical.tx_disabled == null ? '未提供' : optical.tx_disabled === '1' ? '已关闭' : '已允许', 'A2h 光模块遥测'),
-					ui.tile('光学校准', bosa.configured == null ? '未提供' : bosa.configured === '1' ? '已配置' : '未就绪', 'A2H 模块已识别，DDMI 可用'),
-					ui.tile('硬件熵源', ent.current, ent.availBits != null
-						? ('可用熵 ' + ent.availBits + ' bits' + (ent.active ? '' : ' · 未激活降级'))
-						: (ent.active ? '硬件 TRNG 已激活' : '硬件 TRNG 未激活'))
+					ui.tile(_('Active Protocol'), status.modes[(pon.serdes || {}).mode] || _('Not provided'), _('From active driver mode')),
+					ui.tile(_('Optical Temperature'), status.temperature(pon.transceiver), _('From A2h 0x60/0x61')),
+					ui.tile(_('Rx / Tx Power'), status.power((pon.transceiver || {}).rx_power_raw) + ' / ' + status.power((pon.transceiver || {}).tx_power_raw), 'A2h 0x66~0x69'),
+					ui.tile(_('Optical TX'), optical.tx_disabled == null ? _('Not provided') : optical.tx_disabled === '1' ? _('Shut Off') : _('Allowed'), _('A2h optical telemetry')),
+					ui.tile(_('Optical Calibration'), bosa.configured == null ? _('Not provided') : bosa.configured === '1' ? _('Configured') : _('Not Ready'), _('A2h module detected, DDMI available')),
+					ui.tile(_('Hardware Entropy'), ent.current, ent.availBits != null
+						? (ent.active ? _('Available entropy %s bits').format(ent.availBits) : _('Available entropy %s bits · Inactive fallback').format(ent.availBits))
+						: (ent.active ? _('Hardware TRNG active') : _('Hardware TRNG inactive')))
 				]),
-				status.card('注册与认证', null, ui.authentication(pon)),
+				status.card(_('Registration & Authentication'), null, ui.authentication(pon)),
 				status.offloadCard(pon, firewallFlag('flow_offloading'), firewallFlag('flow_offloading_hw')),
-				status.card('业务网络', null, [ui.networks(data), ui.link('管理上网', 'admin/onu/internet')]),
+				status.card(_('Service Networks'), null, [ui.networks(data), ui.link(_('Manage Internet'), 'admin/onu/internet')]),
 				ui.mtuSummary(data),
-				hasWifi ? status.card('无线网络', null, [data.wifiError ? ui.note('无线状态读取失败。') : ui.grid(data.wifi.map(function(wifi) {
-					return status.card(wifi.ssid || wifi.name, status.badge(wifi.up ? '运行中' : '未运行', wifi.up ? 'good' : 'muted'), status.rows([
-						['接口', wifi.name], ['信道', status.value(wifi.channel)], ['频率', wifi.frequency ? wifi.frequency + ' GHz' : '—'],
-						['当前 PHY 速率', wifi.bitrate ? wifi.bitrate + ' Mbit/s' : '—']
+				hasWifi ? status.card(_('Wireless Networks'), null, [data.wifiError ? ui.note(_('Failed to read wireless status.')) : ui.grid(data.wifi.map(function(wifi) {
+					return status.card(wifi.ssid || wifi.name, status.badge(wifi.up ? _('Running') : _('Stopped'), wifi.up ? 'good' : 'muted'), status.rows([
+						[_('Interface'), wifi.name], [_('Channel'), status.value(wifi.channel)], [_('Frequency'), wifi.frequency ? wifi.frequency + ' GHz' : '—'],
+						[_('Current PHY Rate'), wifi.bitrate ? wifi.bitrate + ' Mbit/s' : '—']
 					]));
-				})), ui.link('管理 Wi-Fi 6', 'admin/network/wireless')]) : null,
-				ui.fold('物理端口与累计流量', 'ports', ui.ports(pon)),
-				ui.fold('OLT 下发的 GEM 业务通道', 'paths', ui.services(pon)),
-				ui.note((data.board.model || 'PT1500') + ' · ' + ((data.board.release || {}).description || '固件信息未提供'))
+				})), ui.link(_('Manage Wi-Fi 6'), 'admin/network/wireless')]) : null,
+				ui.fold(_('Physical Ports & Cumulative Traffic'), 'ports', ui.ports(pon)),
+				ui.fold(_('OLT-Provisioned GEM Service Channels'), 'paths', ui.services(pon)),
+				ui.note((data.board.model || 'PT1500') + ' · ' + ((data.board.release || {}).description || _('Firmware info not provided')))
 			]);
 		});
 	},

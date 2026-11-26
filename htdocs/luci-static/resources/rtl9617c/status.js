@@ -4,7 +4,7 @@
 
 var callStatus = rpc.declare({ object: 'luci.rtl9617c-pon', method: 'status', expect: { '': {} }, reject: true });
 var modes = {
-	epon: 'EPON', 'epon-d10g': '10G EPON（非对称）', 'epon-bi10g': '10G EPON（对称）',
+	epon: 'EPON', 'epon-d10g': _('10G EPON (Asymmetric)'), 'epon-bi10g': _('10G EPON (Symmetric)'),
 	gpon: 'GPON', xgpon: 'XG-PON', xgspon: 'XGS-PON'
 };
 
@@ -34,9 +34,9 @@ function power(raw) {
 }
 function opticalRows(data) {
 	var t = (data || {}).transceiver || {};
-	return [['温度', temperature(t)], ['电压', voltage(t)],
-		['Tx 偏置', bias(t)], ['Tx 光功率', power(t.tx_power_raw)],
-		['Rx 光功率', power(t.rx_power_raw)]];
+	return [[_('Temperature'), temperature(t)], [_('Voltage'), voltage(t)],
+		[_('Tx Bias'), bias(t)], [_('Tx Optical Power'), power(t.tx_power_raw)],
+		[_('Rx Optical Power'), power(t.rx_power_raw)]];
 }
 function bosaName(bosa) {
 	if (!bosa) return '—';
@@ -65,64 +65,64 @@ function ponState(data) {
 	data = data || {};
 	var serdes = data.serdes || {}, mac = data.mac || {}, mpcp = data.mpcp || {};
 	if (data.service && data.service.enabled === '0')
-		return { text: '未启用', tone: 'muted' };
+		return { text: _('Disabled'), tone: 'muted' };
 	var failed = ['service', 'activation', 'bosa', 'serdes', 'mac', 'mpcp'].find(function(name) {
 		return data[name] && data[name].error != null && +data[name].error !== 0;
 	});
 	if (failed)
-		return { text: '初始化异常', tone: 'danger', help: failed + ' 错误码：' + data[failed].error + '。请查看高级诊断和系统日志。' };
+		return { text: _('Init Error'), tone: 'danger', help: _('%s error code: %s. Check Diagnostics and the system log.').format(failed, data[failed].error) };
 	if (flag((data.optical || {}).tx_fault))
-		return { text: '光模块发射故障', tone: 'danger', help: '光模块报告 TX Fault，请检查高级诊断。' };
+		return { text: _('Optical TX Fault'), tone: 'danger', help: _('Optical module reported TX Fault. Check Diagnostics.') };
 	if (flag((data.optical || {}).rx_los) || flag(serdes.rx_los))
-		return { text: '接收失光', tone: 'danger', help: '未检测到接收光信号，请检查光纤与上联线路。' };
+		return { text: _('RX LOS'), tone: 'danger', help: _('No incoming optical signal detected. Check the fiber and uplink.') };
 	if (!modes[serdes.mode] || serdes.configured == null)
-		return { text: '状态不可用', tone: 'muted', help: '驱动尚未提供有效线路状态，请查看系统日志。' };
+		return { text: _('Status Unavailable'), tone: 'muted', help: _('Driver has not provided a valid link state yet. Check the system log.') };
 	if (serdes.configured === '0' || mac.enabled === '0' || /^epon/.test(serdes.mode) && mpcp.enabled === '0')
-		return { text: '未启用', tone: 'muted' };
+		return { text: _('Disabled'), tone: 'muted' };
 	if (/^(gpon|xgpon|xgspon)$/.test(serdes.mode)) {
 		var businessError = ['data_path', 'omci'].find(function(name) {
 			return data[name] && (name !== 'omci' || omciLive(data)) && data[name].error != null && +data[name].error !== 0;
 		});
 		if (businessError)
-			return { text: '业务配置异常', tone: 'danger', help: businessError + ' 错误码：' + data[businessError].error + '。请查看高级诊断。' };
+			return { text: _('Service Config Error'), tone: 'danger', help: _('%s error code: %s. Check Diagnostics.').format(businessError, data[businessError].error) };
 		if (!omciLive(data))
-			return { text: 'OMCI 状态不可用', tone: 'danger', help: '未取得存活控制进程的最新状态；历史数据保留在高级诊断中，请检查系统日志。' };
+			return { text: _('OMCI Unavailable'), tone: 'danger', help: _('Unable to read the latest state from a live control process; historical data remains in Diagnostics. Check the system log.') };
 		if (+data.omci.auth > 1)
-			return { text: '认证未通过', tone: 'danger', help: 'OLT 返回 LOID 认证状态码：' + data.omci.auth + '。请核对运营商认证参数。' };
+			return { text: _('Authentication Failed'), tone: 'danger', help: _('OLT returned LOID auth status code: %s. Verify your ISP credentials.').format(data.omci.auth) };
 		return mac.activation === 'O5' && flag(mac.prepared)
 			? flag((data.data_path || {}).configured)
-				? { text: '已激活 · 业务已配置', tone: 'good' }
-				: { text: '已激活 · 等待业务下发', tone: 'warn' }
-			: { text: '等待激活', tone: 'warn', help: '激活状态：' + value(mac.activation) };
+				? { text: _('Activated · Services Configured'), tone: 'good' }
+				: { text: _('Activated · Awaiting Services'), tone: 'warn' }
+			: { text: _('Awaiting Activation'), tone: 'warn', help: _('Activation state: %s').format(value(mac.activation)) };
 	}
 	if (!flag(mpcp.enabled) || !/^[0-9a-f]+$/i.test(mpcp.registered || '') || !parseInt(mpcp.registered, 16))
-		return { text: '等待注册', tone: 'warn' };
+		return { text: _('Awaiting Registration'), tone: 'warn' };
 	var ports = (data.oam_ports || []).filter(function(p) { return p.live && p.registered; });
 	var rejected = ports.find(function(p) { return p.auth_state === 'rejected'; });
 	if (rejected)
-		return { text: '认证未通过', tone: 'danger', help: rejected.auth_mode === 'loid' ? 'OLT 拒绝 LOID 认证，请核对 LOID 和密码。' : 'OLT 拒绝认证，请核对 ONU MAC 地址或运营商认证参数。' };
+		return { text: _('Authentication Failed'), tone: 'danger', help: rejected.auth_mode === 'loid' ? _('OLT rejected LOID authentication. Check your LOID and password.') : _('OLT rejected authentication. Check your ONU MAC address or ISP credentials.') };
 	var accepted = ports.find(function(p) { return p.auth_state === 'accepted' && p.discovery_stable; });
 	if (accepted)
 		return accepted.auth_source === 'ctc-result'
-			? { text: '已注册 · OLT 认证通过', tone: 'good', help: 'OLT 已返回 CTC 认证通过结果；若运营商在业务层校验 MAC/账号，请同时确认 WAN 拨号或业务通道状态。' }
-			: { text: '已注册 · OLT 配置已下发', tone: 'good', help: 'OLT 已完成 OAM 发现与 CTC 业务配置下发（原厂判据视为 OLT 注册成功）；部分运营商不在 OLT OAM 层拦截未备案 MAC，而在上层 VLAN/BRAS 放行数据，请以 WAN 拨号连通为准。' };
-	return { text: '已注册 · 等待认证', tone: 'warn' };
+			? { text: _('Registered · OLT Authenticated'), tone: 'good', help: _('OLT returned a CTC authentication pass result; if your ISP also checks MAC or account credentials at the service layer, verify your WAN dial-up or service status.') }
+			: { text: _('Registered · OLT Provisioned'), tone: 'good', help: _('OLT completed OAM discovery and CTC service provisioning (vendor pass criteria for OLT registration). Some ISPs validate unregistered MACs at the upper VLAN/BRAS layer rather than OAM; verify actual WAN connectivity.') };
+	return { text: _('Registered · Awaiting Auth'), tone: 'warn' };
 }
 
 function ponCard(data) {
 	data = data || {};
 	var state = ponState(data), optical = data.optical || {}, serdes = data.serdes || {};
-	var los = flag(serdes.rx_los) || flag(optical.rx_los) ? '接收失光' :
-		serdes.rx_los != null || optical.rx_los != null ? '未失光' : '未提供';
+	var los = flag(serdes.rx_los) || flag(optical.rx_los) ? _('RX LOS') :
+		serdes.rx_los != null || optical.rx_los != null ? _('No LOS') : _('Not provided');
 	return E('section', { class: 'tyf-link-panel', 'data-tone': state.tone }, [
 		E('div', { class: 'tyf-link-state' }, [
-			E('p', { class: 'tyf-eyebrow' }, 'PON / 实时光链路'),
+			E('p', { class: 'tyf-eyebrow' }, _('PON / LIVE OPTICAL LINK')),
 			E('h3', {}, [E('span', { class: 'tyf-state-dot', 'aria-hidden': 'true' }), state.text]),
-			E('p', { class: 'tyf-note' }, state.help || '线路注册与认证不等同于互联网连通，请在接口管理中确认 WAN 状态。')]),
+			E('p', { class: 'tyf-note' }, state.help || _('Line registration and authentication do not guarantee Internet connectivity; check WAN status in Interfaces.'))]),
 		E('div', { class: 'tyf-link-facts' }, rows([
-			['运行协议', modes[serdes.mode] || value(serdes.mode)],
-			['接收光信号', los],
-			['发射告警', optical.tx_fault == null ? '未提供' : flag(optical.tx_fault) ? '发射故障' : '无发射故障']
+			[_('Active Protocol'), modes[serdes.mode] || value(serdes.mode)],
+			[_('Rx Signal'), los],
+			[_('TX Alarm'), optical.tx_fault == null ? _('Not provided') : flag(optical.tx_fault) ? _('TX Fault') : _('No TX Fault')]
 		].concat(opticalRows(data))))
 	]);
 }
@@ -130,7 +130,7 @@ function ponCard(data) {
 var SVG_NS = 'http://www.w3.org/2000/svg';
 var offloadSample = null;
 var shortModes = {
-	epon: 'EPON', 'epon-d10g': '10G EPON', 'epon-bi10g': '10G 对称',
+	epon: 'EPON', 'epon-d10g': '10G EPON', 'epon-bi10g': _('10G Sym'),
 	gpon: 'GPON', xgpon: 'XG-PON', xgspon: 'XGS-PON'
 };
 
@@ -237,14 +237,14 @@ function lanSummary(data, fePaths) {
 	var ports = (data.ports || []).filter(function(p) { return /^lan/.test(p.device || ''); });
 	var upPorts = ports.filter(function(p) { return p.present && p.carrier === '1'; });
 	var portMap = (fePaths && fePaths.ports) || {};
-	var topLine = '未连接', subLine = '无物理连接';
+	var topLine = _('Disconnected'), subLine = _('No physical link');
 
 	if (upPorts.length === 1) {
 		var p = upPorts[0];
-		var spd = Number(p.speed) > 0 ? (Number(p.speed) >= 1000 ? (Number(p.speed) / 1000).toFixed(Number(p.speed) % 1000 ? 1 : 0) + 'G' : p.speed + 'M') : '已连';
+		var spd = Number(p.speed) > 0 ? (Number(p.speed) >= 1000 ? (Number(p.speed) / 1000).toFixed(Number(p.speed) % 1000 ? 1 : 0) + 'G' : p.speed + 'M') : _('Link Up');
 		topLine = p.device + ' · ' + spd;
 	} else if (upPorts.length > 1) {
-		topLine = '已连 ' + upPorts.length + ' 口';
+		topLine = _('%d ports up').format(upPorts.length);
 	}
 
 	var activeLan = Object.keys(portMap);
@@ -321,26 +321,26 @@ function offloadDiagram(data, software, hardware, fe, rates) {
 	var serdes = data.serdes || {};
 	var ponPort = (data.ports || []).find(function(p) { return p.device === 'pon0'; }) || {};
 	var ponProto = shortModes[serdes.mode] || value(serdes.mode);
-	var ponAttach = flag(fe.pon_attached) ? '已挂载 FE' : '未挂载 FE';
+	var ponAttach = flag(fe.pon_attached) ? _('FE Attached') : _('FE Detached');
 	var ponUp = ponPort.present && ponPort.carrier === '1';
 
-	var cpuSub = hwReady ? '首包建流写入 FE · 代理/未卸载慢路径' : software ? '仅软件 Flowtable（经 CPU 转发）' : '普通内核转发（经 CPU 转发）';
+	var cpuSub = hwReady ? _('First-packet flow setup to FE · Proxy / unoffloaded slow path') : software ? _('Software Flowtable only (via CPU)') : _('Standard kernel forwarding (via CPU)');
 	var feStateCls = !software || !hardware ? 'is-muted' : (!available || !enabled || hwError) ? 'is-danger' : 'is-good';
-	var feStatLine = !software ? '未开启' : !hardware ? '硬件旁路' :
-		hwError ? ('异常 ' + fe.error) :
-		!available ? '不可用' :
-		!enabled ? '未启用' :
-		(flows + ' / ' + hashEntries.toLocaleString() + ' 流');
+	var feStatLine = !software ? _('Not Enabled') : !hardware ? _('HW Bypassed') :
+		hwError ? _('Error %s').format(fe.error) :
+		!available ? _('Unavailable') :
+		!enabled ? _('Disabled') :
+		_('%s / %s flows').format(flows, hashEntries.toLocaleString());
 	var pct = hashEntries > 0 ? Math.min(100, Math.max(flows > 0 ? 4 : 0, (flows / hashEntries) * 100)) : 0;
 
-	var upLabel = upFlows != null ? ('↑ ' + upFlows + '流') : '↑ 上行';
-	var downLabel = downFlows != null ? ('↓ ' + downFlows + '流') : '↓ 下行';
+	var upLabel = upFlows != null ? _('↑ %d flows').format(upFlows) : _('↑ Upstream');
+	var downLabel = downFlows != null ? _('↓ %d flows').format(downFlows) : _('↓ Downstream');
 	var bindStyle = phaseStyle(hwReady ? 2100 : 0);
 	var cSlots = Number(fe.counter_slots || 32);
 	var cUsed = Number(fe.counted_flows || 0);
 	var slotPct = cSlots > 0 ? Math.min(100, Math.max(cUsed > 0 ? 4 : 0, (cUsed / cSlots) * 100)) : 0;
 	var qmPct = hwReady ? (flag(fe.pon_attached) ? 100 : 50) : 0;
-	var slotInfo = fe.counted_flows != null && fe.counter_slots != null ? ('计数槽 ' + fe.counted_flows + '/' + fe.counter_slots) : 'NAT·PPPoE';
+	var slotInfo = fe.counted_flows != null && fe.counter_slots != null ? _('Counters %s/%s').format(fe.counted_flows, fe.counter_slots) : 'NAT·PPPoE';
 
 	return E('div', { class: 'tyf-fe-visual' }, [
 		E('div', { class: 'tyf-fe-scroll' }, [
@@ -352,19 +352,19 @@ function offloadDiagram(data, software, hardware, fe, rates) {
 						E('span', { class: 'tyf-fe-cpu-desc' }, cpuSub)
 					]),
 					E('div', { class: 'tyf-fe-top-links' }, [
-						E('span', { class: 'tyf-fe-top-tag' }, hwReady ? '慢路径 DMA 收包' : 'CPU 收包'),
+						E('span', { class: 'tyf-fe-top-tag' }, hwReady ? _('Slow-path DMA RX') : _('CPU RX')),
 						E('div', { class: 'tyf-fe-bind ' + (hwReady ? 'is-active' : 'is-muted') }, [
 							E('span', { class: 'tyf-fe-bind-line' }, [
 								hwReady ? E('span', { class: 'tyf-fe-bind-dot', style: bindStyle }) : null
 							]),
-							E('span', { class: 'tyf-fe-bind-txt' }, hwReady ? '下发流表到 FE' : '未开启硬卸载')
+							E('span', { class: 'tyf-fe-bind-txt' }, hwReady ? _('Offload flows to FE') : _('HW Offload Off'))
 						]),
-						E('span', { class: 'tyf-fe-top-tag' }, hwReady ? '慢路径调度发送' : 'CPU 发包')
+						E('span', { class: 'tyf-fe-top-tag' }, hwReady ? _('Slow-path TX') : _('CPU TX'))
 					])
 				]),
 				E('div', { class: 'tyf-fe-arch-grid' }, [
 					E('div', { class: 'tyf-fe-node tyf-fe-endpoint ' + (lanInfo.upCount ? 'is-up' : '') }, [
-						E('div', { class: 'tyf-fe-node-head' }, [E('i', { class: 'tyf-fe-ndot' }), 'LAN 端口']),
+						E('div', { class: 'tyf-fe-node-head' }, [E('i', { class: 'tyf-fe-ndot' }), _('LAN Ports')]),
 						E('div', { class: 'tyf-fe-node-val' }, lanInfo.top),
 						E('div', { class: 'tyf-fe-node-sub' }, lanInfo.sub)
 					]),
@@ -374,16 +374,16 @@ function offloadDiagram(data, software, hardware, fe, rates) {
 					]),
 					E('div', { class: 'tyf-fe-soc ' + feStateCls }, [
 						E('div', { class: 'tyf-fe-soc-head' }, [
-							E('span', { class: 'tyf-fe-soc-title' }, 'RTL9617C 硬件卸载引擎内部通路'),
-							E('span', { class: 'tyf-fe-core-chip' }, hwReady ? '绕过 CPU 直通' : '引擎旁路')
+							E('span', { class: 'tyf-fe-soc-title' }, _('RTL9617C Hardware Offload Engine Data Path')),
+							E('span', { class: 'tyf-fe-core-chip' }, hwReady ? _('CPU Bypass') : _('Bypassed'))
 						]),
 						E('div', { class: 'tyf-fe-core-row' }, [
 							E('div', { class: 'tyf-fe-mod is-fe ' + feStateCls }, [
 								E('div', { class: 'tyf-fe-mod-top' }, [
-									E('span', { class: 'tyf-fe-mod-name' }, 'FE 转发引擎'),
+									E('span', { class: 'tyf-fe-mod-name' }, _('FE Forwarding')),
 									E('span', { class: 'tyf-fe-mod-tag' }, 'L2/L3')
 								]),
-								E('div', { class: 'tyf-fe-mod-sub' }, '64K Hash 流表查表'),
+								E('div', { class: 'tyf-fe-mod-sub' }, _('64K Hash Flow Lookup')),
 								E('div', { class: 'tyf-fe-cap-bar' }, [
 									E('span', { class: 'tyf-fe-cap-fill ' + feStateCls, style: 'width:' + pct.toFixed(1) + '%' })
 								]),
@@ -395,14 +395,14 @@ function offloadDiagram(data, software, hardware, fe, rates) {
 							]),
 							E('div', { class: 'tyf-fe-mod is-pe ' + feStateCls }, [
 								E('div', { class: 'tyf-fe-mod-top' }, [
-									E('span', { class: 'tyf-fe-mod-name' }, 'PE 报文编辑'),
-									E('span', { class: 'tyf-fe-mod-tag' }, '改写')
+									E('span', { class: 'tyf-fe-mod-name' }, _('PE Packet Edit')),
+									E('span', { class: 'tyf-fe-mod-tag' }, _('Rewrite'))
 								]),
 								E('div', { class: 'tyf-fe-mod-sub' }, 'NAT / PPPoE / VLAN'),
 								E('div', { class: 'tyf-fe-cap-bar' }, [
 									E('span', { class: 'tyf-fe-cap-fill ' + feStateCls, style: 'width:' + slotPct.toFixed(1) + '%' })
 								]),
-								E('div', { class: 'tyf-fe-mod-meta' }, '校验和 · ' + slotInfo)
+								E('div', { class: 'tyf-fe-mod-meta' }, _('Checksum · %s').format(slotInfo))
 							]),
 							E('div', { class: 'tyf-fe-dual-link' }, [
 								conduitTrack('is-up is-ltr', upSpeed, null),
@@ -410,31 +410,31 @@ function offloadDiagram(data, software, hardware, fe, rates) {
 							]),
 							E('div', { class: 'tyf-fe-mod is-qm ' + feStateCls }, [
 								E('div', { class: 'tyf-fe-mod-top' }, [
-									E('span', { class: 'tyf-fe-mod-name' }, 'QM 队列管理'),
+									E('span', { class: 'tyf-fe-mod-name' }, _('QM Queue Mgr')),
 									E('span', { class: 'tyf-fe-mod-tag' }, 'DeepQ')
 								]),
-								E('div', { class: 'tyf-fe-mod-sub' }, 'VoQ 调度 · EQ0+EQ8'),
+								E('div', { class: 'tyf-fe-mod-sub' }, 'VoQ · EQ0+EQ8'),
 								E('div', { class: 'tyf-fe-cap-bar' }, [
 									E('span', { class: 'tyf-fe-cap-fill ' + feStateCls, style: 'width:' + qmPct + '%' })
 								]),
-								E('div', { class: 'tyf-fe-mod-meta' }, '防突发缓冲 · 出队发包')
+								E('div', { class: 'tyf-fe-mod-meta' }, _('Burst Buffer · TX'))
 							])
 						]),
 						E('div', { class: 'tyf-fe-bus-links' }, [
 							E('div', { class: 'tyf-fe-vpair' }, [
 								verticalConduit('is-btt', 'is-up', upSpeed),
 								verticalConduit('is-btt', 'is-down', downSpeed),
-								E('span', { class: 'tyf-fe-vlabel' }, 'Demux 送 FE')
+								E('span', { class: 'tyf-fe-vlabel' }, _('Demux to FE'))
 							]),
 							E('div', { class: 'tyf-fe-vpair' }, [
 								verticalConduit('is-ttb', 'is-up', upSpeed),
 								verticalConduit('is-ttb', 'is-down', downSpeed),
-								E('span', { class: 'tyf-fe-vlabel' }, '出队回 NI 发')
+								E('span', { class: 'tyf-fe-vlabel' }, _('Dequeue to NI'))
 							])
 						]),
 						E('div', { class: 'tyf-fe-ni-bus ' + feStateCls }, [
-							E('span', { class: 'tyf-fe-mod-name' }, 'NI 网络接口层'),
-							E('span', { class: 'tyf-fe-ni-desc' }, 'MAC · DMA · L3FE Demux（承接 LAN 与 PON 收发汇总，并直连 FE / QM / CPU）')
+							E('span', { class: 'tyf-fe-mod-name' }, _('NI Network Interface')),
+							E('span', { class: 'tyf-fe-ni-desc' }, _('MAC · DMA · L3FE Demux (aggregates LAN/PON RX/TX, connects directly to FE / QM / CPU)'))
 						])
 					]),
 					E('div', { class: 'tyf-fe-conduit' }, [
@@ -442,7 +442,7 @@ function offloadDiagram(data, software, hardware, fe, rates) {
 						conduitTrack('is-down is-rtl', downSpeed, downLabel)
 					]),
 					E('div', { class: 'tyf-fe-node tyf-fe-endpoint ' + (ponUp ? 'is-up' : '') }, [
-						E('div', { class: 'tyf-fe-node-head' }, [E('i', { class: 'tyf-fe-ndot' }), 'PON 光口']),
+						E('div', { class: 'tyf-fe-node-head' }, [E('i', { class: 'tyf-fe-ndot' }), _('PON Port')]),
 						E('div', { class: 'tyf-fe-node-val' }, ponProto),
 						E('div', { class: 'tyf-fe-node-sub' }, ponAttach + ' · PDC/PUC')
 					])
@@ -450,9 +450,9 @@ function offloadDiagram(data, software, hardware, fe, rates) {
 			])
 		]),
 		E('div', { class: 'tyf-fe-legend' }, [
-			E('span', { class: 'tyf-fe-leg-item' }, [E('i', { class: 'tyf-fe-swatch is-up' }), '上行直通：LAN → NI → FE → PE → QM → NI → PON']),
-			E('span', { class: 'tyf-fe-leg-item' }, [E('i', { class: 'tyf-fe-swatch is-down' }), '下行直通：PON → NI → FE → PE → QM(DeepQ) → NI → LAN']),
-			E('span', { class: 'tyf-fe-leg-item' }, [E('i', { class: 'tyf-fe-swatch is-cpu' }), 'CPU 慢路径 & 建流下发'])
+			E('span', { class: 'tyf-fe-leg-item' }, [E('i', { class: 'tyf-fe-swatch is-up' }), _('Upstream Fast Path: LAN → NI → FE → PE → QM → NI → PON')]),
+			E('span', { class: 'tyf-fe-leg-item' }, [E('i', { class: 'tyf-fe-swatch is-down' }), _('Downstream Fast Path: PON → NI → FE → PE → QM(DeepQ) → NI → LAN')]),
+			E('span', { class: 'tyf-fe-leg-item' }, [E('i', { class: 'tyf-fe-swatch is-cpu' }), _('CPU Slow Path & Flow Setup')])
 		])
 	]);
 }
@@ -479,7 +479,7 @@ function entropyInfo(data) {
 		poolBits: poolBits,
 		quality: quality,
 		tone: active ? 'good' : (sources.length ? 'warn' : 'muted'),
-		badgeText: active ? '已激活' : 'unavailable'
+		badgeText: active ? _('Active') : 'unavailable'
 	};
 }
 
@@ -488,21 +488,21 @@ function entropyCard(data) {
 	var poolStr = info.availBits == null ? 'unavailable' :
 		(info.poolBits != null ? (info.availBits + ' / ' + info.poolBits + ' bits') : (info.availBits + ' bits'));
 
-	return card('硬件熵源 (TRNG)', badge(info.badgeText, info.tone), [
+	return card(_('Hardware Entropy (TRNG)'), badge(info.badgeText, info.tone), [
 		rows([
-			['当前熵源', info.current],
-			['可用硬件熵源', info.sources.length ? info.sources.join(', ') : 'unavailable'],
-			['内核可用熵池', poolStr],
-			['熵源质量', info.quality != null ? String(info.quality) : (info.active ? '—' : 'unavailable')]
+			[_('Current Source'), info.current],
+			[_('Available Hardware Sources'), info.sources.length ? info.sources.join(', ') : 'unavailable'],
+			[_('Kernel Entropy Pool'), poolStr],
+			[_('Entropy Quality'), info.quality != null ? String(info.quality) : (info.active ? '—' : 'unavailable')]
 		]),
 		E('p', { class: 'tyf-note' }, info.active
-			? '硬件 TRNG 已激活并持续向内核随机数池供熵。'
-			: '硬件熵源当前未激活（降级显示 unavailable）；系统仍使用内核软件熵池。')
+			? _('Hardware TRNG is active and continuously feeding the kernel RNG pool.')
+			: _('Hardware entropy is inactive (shown as unavailable); the kernel continues using its software entropy pool.'))
 	]);
 }
 
 function flowTypeLabel(row) {
-	var base = row.k === 'bridge' || row.l ? '二层桥接' : (String(row.k || '').toUpperCase() || '—');
+	var base = row.k === 'bridge' || row.l ? _('L2 Bridge') : (String(row.k || '').toUpperCase() || '—');
 	var tags = [];
 	[row.encap, row.proto].forEach(function(item) {
 		if (!item) return;
@@ -516,7 +516,7 @@ function flowTypeLabel(row) {
 function flowCosLabel(row) {
 	var parts = [];
 	if (row.cos != null && isFinite(Number(row.cos)))
-		parts.push('CoS ' + row.cos + (row.cs === true ? ' (显式)' : ''));
+		parts.push(row.cs === true ? _('CoS %s (Explicit)').format(row.cos) : ('CoS ' + row.cos));
 	else if (row.q != null && isFinite(Number(row.q)))
 		parts.push('Q' + row.q);
 	else if (row.prio != null && isFinite(Number(row.prio)))
@@ -536,22 +536,24 @@ function offloadFlowsTable(fp) {
 	var list = (fp && fp.entries) || [];
 	var total = (fp && fp.total_entries != null) ? fp.total_entries : list.length;
 	var title = list.length
-		? ('查看硬件流表详情（' + (total > list.length ? ('前 ' + list.length + ' / 共 ' + total) : ('共 ' + list.length)) + ' 条）')
-		: '查看硬件流表详情（暂无活跃流）';
+		? (total > list.length
+			? _('Inspect Hardware Flow Table (first %d of %d entries)').format(list.length, total)
+			: _('Inspect Hardware Flow Table (%d entries)').format(list.length))
+		: _('Inspect Hardware Flow Table (no active flows)');
 
 	return E('details', { class: 'tyf-fe-details', 'data-tyf-fold': 'fe-flows' }, [
 		E('summary', {}, title),
 		list.length ? E('div', { class: 'tyf-fe-table-wrap' }, [
 			E('table', { class: 'tyf-fe-table' }, [
 				E('thead', {}, E('tr', {}, [
-					E('th', {}, '类型'),
-					E('th', {}, '通道方向'),
-					E('th', {}, 'CoS / 队列'),
-					E('th', {}, '限速策略'),
-					E('th', {}, 'Hash 槽'),
-					E('th', {}, '计数槽'),
-					E('th', {}, '命中包数'),
-					E('th', {}, '命中字节')
+					E('th', {}, _('Type')),
+					E('th', {}, _('Path')),
+					E('th', {}, _('CoS / Queue')),
+					E('th', {}, _('Policer')),
+					E('th', {}, _('Hash Slot')),
+					E('th', {}, _('Counter Slot')),
+					E('th', {}, _('Hit Packets')),
+					E('th', {}, _('Hit Bytes'))
 				])),
 				E('tbody', {}, list.map(function(row) {
 					var activeStat = row.p > 0 || row.b > 0;
@@ -561,14 +563,14 @@ function offloadFlowsTable(fp) {
 						E('td', {}, flowCosLabel(row)),
 						E('td', {}, flowPolicerLabel(row)),
 						E('td', {}, value(row.h)),
-						E('td', {}, activeStat ? ('#' + value(row.c)) : '活动跟踪'),
+						E('td', {}, activeStat ? ('#' + value(row.c)) : _('Active (Tracked)')),
 						E('td', {}, activeStat ? String(row.p) : '—'),
 						E('td', {}, activeStat ? formatBytes(row.b) : '—')
 					]);
 				}))
 			]),
-			E('p', { class: 'tyf-note' }, '硬件最多为 32 个接口/流组合分配独立精确计数器；其余显示“活动跟踪”的流同样由 FE 芯片全速硬件转发。CoS / 协议列向后兼容内核流表导出字段（未携带时显示 —）。如需查看明文 IP/端口五元组（含 [HW_OFFLOAD] 标记），可前往“状态 → 实时信息 → 连接”。')
-		]) : E('p', { class: 'tyf-note' }, '当前 FE 硬件流表为空，或调试接口未返回流表条目。')
+			E('p', { class: 'tyf-note' }, _('Hardware allocates dedicated exact counters for up to 32 interface/flow combinations; remaining flows shown as "Active (Tracked)" are also forwarded at line rate by the FE chip. The CoS / Queue column is backward-compatible with kernel flowtable exports (shows — when absent). To inspect plaintext IP/port 5-tuples (including [HW_OFFLOAD] markers), go to "Status → Realtime Graphs → Connections".'))
+		]) : E('p', { class: 'tyf-note' }, _('The FE hardware flow table is currently empty, or the debug interface returned no entries.'))
 	]);
 }
 
@@ -577,18 +579,18 @@ function offloadState(software, hardware, fe) {
 	var bindings = fe.bindings == null ? null : Number(fe.bindings);
 
 	if (!software)
-		return ['未启用', 'muted', '防火墙未开启流量卸载，所有转发均经由 CPU 处理'];
+		return [_('Disabled'), 'muted', _('Firewall flow offloading is disabled; all forwarding runs on the CPU')];
 	if (!hardware)
-		return ['仅软件卸载', 'muted', '硬件卸载未开启，流量经由 CPU 软件 Flowtable 转发'];
+		return [_('Software Only'), 'muted', _('Hardware offloading is disabled; traffic is forwarded via CPU software flowtable')];
 	if (fe.error != null && Number(fe.error) !== 0)
-		return ['运行异常', 'danger', '错误码：' + fe.error];
+		return [_('Error'), 'danger', _('Error code: %s').format(fe.error)];
 	if (!available)
-		return ['硬件不可用', 'danger', '已请求硬件卸载，但驱动未提供 FE'];
+		return [_('HW Unavailable'), 'danger', _('Hardware offloading is requested, but the driver does not provide FE')];
 	if (!enabled)
-		return ['硬件未就绪', 'danger', '已请求硬件卸载，但 FE 引擎未启用'];
+		return [_('HW Not Ready'), 'danger', _('Hardware offloading is requested, but the FE engine is not enabled')];
 	if (!bindings)
-		return ['已启用', 'good', 'FE 引擎已就绪，尚无接口完成卸载绑定'];
-	return ['已启用', 'good', null];
+		return [_('Enabled'), 'good', _('FE engine is ready; no interfaces are bound for offloading yet')];
+	return [_('Enabled'), 'good', null];
 }
 
 function offloadCard(data, software, hardware) {
@@ -603,11 +605,11 @@ function offloadCard(data, software, hardware) {
 	var txRateStr = formatRate(rates.ponTxBps);
 	var rxRateStr = formatRate(rates.ponRxBps);
 	var upText = fp && fp.upstream
-		? (fp.upstream.flows + ' 条' + (txRateStr ? ' · ' + txRateStr : '') + (fp.upstream.bytes > 0 ? '（计数槽 ' + formatBytes(fp.upstream.bytes) + '）' : ''))
-		: (txRateStr ? txRateStr : '采样中…');
+		? (_('%d flows').format(fp.upstream.flows) + (txRateStr ? ' · ' + txRateStr : '') + (fp.upstream.bytes > 0 ? ' (' + _('Counter %s').format(formatBytes(fp.upstream.bytes)) + ')' : ''))
+		: (txRateStr ? txRateStr : _('Sampling…'));
 	var downText = fp && fp.downstream
-		? (fp.downstream.flows + ' 条' + (rxRateStr ? ' · ' + rxRateStr : '') + (fp.downstream.bytes > 0 ? '（计数槽 ' + formatBytes(fp.downstream.bytes) + '）' : ''))
-		: (rxRateStr ? rxRateStr : '采样中…');
+		? (_('%d flows').format(fp.downstream.flows) + (rxRateStr ? ' · ' + rxRateStr : '') + (fp.downstream.bytes > 0 ? ' (' + _('Counter %s').format(formatBytes(fp.downstream.bytes)) + ')' : ''))
+		: (rxRateStr ? rxRateStr : _('Sampling…'));
 
 	var protoParts = [];
 	if (fp && fp.upstream && fp.downstream) {
@@ -617,17 +619,17 @@ function offloadCard(data, software, hardware) {
 		var other = Number(fp.upstream.other || 0) + Number(fp.downstream.other || 0);
 		protoParts.push('IPv4 ' + v4, 'IPv6 ' + v6);
 		if (gre > 0) protoParts.push('GRE ' + gre);
-		if (other > 0) protoParts.push('其他 ' + other);
+		if (other > 0) protoParts.push(_('Other %d').format(other));
 	}
 	var protoDetail = protoParts.length ? protoParts.join(' · ') : null;
 	var slotDetail = fe.counted_flows != null && fe.counter_slots != null
-		? ('计数槽 ' + fe.counted_flows + '/' + fe.counter_slots) : null;
+		? _('Counters %s/%s').format(fe.counted_flows, fe.counter_slots) : null;
 	var flowDetail = [
 		value(fe.flows) + ' / ' + value(fe.hash_entries || 65536),
-		bindings == null ? null : ('绑定 ' + bindings + ' 口'),
+		bindings == null ? null : _('Bound %d').format(bindings),
 		protoDetail,
 		slotDetail,
-		Number(fe.bridge_flows || 0) > 0 ? ('桥接 ' + fe.bridge_flows) : null
+		Number(fe.bridge_flows || 0) > 0 ? _('Bridge %d').format(fe.bridge_flows) : null
 	].filter(Boolean).join(' · ');
 
 	var cosSummary = null;
@@ -635,29 +637,29 @@ function offloadCard(data, software, hardware) {
 		var qDist = Object.keys(fp.cos.queues || {}).sort().map(function(q) {
 			return 'CoS' + q + '×' + fp.cos.queues[q];
 		}).slice(0, 6).join(' · ');
-		cosSummary = (fp.cos.explicit > 0 ? ('显式 ' + fp.cos.explicit + ' 条 · ') : '默认/OLT 队列 · ') +
-			(qDist || (fp.cos.active + ' 条已标记'));
+		cosSummary = (fp.cos.explicit > 0 ? (_('Explicit %d').format(fp.cos.explicit) + ' · ') : (_('Default / OLT Queue') + ' · ')) +
+			(qDist || _('%d tagged').format(fp.cos.active));
 	}
 
 	var resSummary = res ? [
 		res.interface ? ('EIF ' + res.interface.used + '/' + res.interface.total) : null,
-		res.mtu ? ('MTU 槽 ' + res.mtu.used + '/' + res.mtu.total) : null,
+		res.mtu ? _('MTU Slots %s/%s').format(res.mtu.used, res.mtu.total) : null,
 		res.source_mac ? ('SMAC ' + res.source_mac.used + '/' + res.source_mac.total) : null
 	].filter(Boolean).join(' · ') : null;
 
 	var factRows = [
-		['卸载模式', (software ? '软件开' : '软件关') + ' / ' + (hardware ? '硬件开' : '硬件关') + ' · FE ' + (flag(fe.available) ? flag(fe.enabled) ? '已启用' : '未启用' : '不可用')],
-		['活跃硬件流', flowDetail],
-		['上行 / 下行通道', '↑ ' + upText + '  |  ↓ ' + downText]
+		[_('Offload Mode'), (software ? _('SW On') : _('SW Off')) + ' / ' + (hardware ? _('HW On') : _('HW Off')) + ' · FE ' + (flag(fe.available) ? flag(fe.enabled) ? _('Enabled') : _('Disabled') : _('Unavailable'))],
+		[_('Active HW Flows'), flowDetail],
+		[_('Up / Down Paths'), '↑ ' + upText + '  |  ↓ ' + downText]
 	];
 	if (cosSummary)
-		factRows.push(['CoS 队列分布', cosSummary]);
+		factRows.push([_('CoS Queue Distribution'), cosSummary]);
 	else if (fp != null)
-		factRows.push(['CoS / 队列解析', '兼容 8-VoQ（当前流表未携带 CoS 字段）']);
+		factRows.push([_('CoS / Queue Parsing'), _('8-VoQ compatible (CoS field absent in current flow table)')]);
 	if (resSummary)
-		factRows.push(['硬件表槽位', resSummary]);
+		factRows.push([_('HW Table Slots'), resSummary]);
 
-	return card('硬件转发', badge(state[0], state[1]), E('div', {}, [
+	return card(_('Hardware Offload'), badge(state[0], state[1]), E('div', {}, [
 		offloadDiagram(data, software, hardware, fe, rates),
 		rows(factRows),
 		state[2] ? E('p', { class: 'tyf-note' }, state[2]) : null,
@@ -670,6 +672,6 @@ return baseclass.extend({
 	temperature: temperature, voltage: voltage, power: power, opticalRows: opticalRows, bosaName: bosaName,
 	omciLive: omciLive, ponState: ponState, ponCard: ponCard, offloadCard: offloadCard,
 	entropyInfo: entropyInfo, entropyCard: entropyCard,
-	style: function() { return E('link', { rel: 'stylesheet', href: L.resource('rtl9617c/status.css') + '?v=20261126b' }); },
+	style: function() { return E('link', { rel: 'stylesheet', href: L.resource('rtl9617c/status.css') + '?v=20261126c' }); },
 	callStatus: callStatus
 });

@@ -1,10 +1,10 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=RTL9617C PON configuration and live status
-LUCI_DEPENDS:=@TARGET_rtl9617c +luci-base +luci-mod-network +luci-mod-status +luci-proto-ppp +luci-proto-ipv6 +luci-i18n-base-zh-cn +rpcd-mod-ucode +ucode-mod-fs +rtl9617c-pon-control
+LUCI_DEPENDS:=@TARGET_rtl9617c +luci-base +luci-mod-network +luci-mod-status +luci-proto-ppp +luci-proto-ipv6 +rpcd-mod-ucode +ucode-mod-fs +rtl9617c-pon-control
 LUCI_PKGARCH:=all
 PKG_VERSION:=0.11.0
-PKG_RELEASE:=13
+PKG_RELEASE:=14
 PKG_LICENSE:=GPL-2.0-or-later
 # CSSTidy 1.3 predates CSS variables and responsive grid expressions.
 CONFIG_LUCI_CSSTIDY:=

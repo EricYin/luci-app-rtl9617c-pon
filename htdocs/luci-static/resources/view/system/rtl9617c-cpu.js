@@ -13,21 +13,21 @@ var callStatus = rpc.declare({
 });
 
 var GOV_LABELS = {
-	schedutil: '动态调频 (schedutil，推荐：空闲降温、满载自动 1200 MHz)',
-	performance: '性能模式 (performance，锁定最高频 1200 MHz)',
-	ondemand: '按需调频 (ondemand，按负载自动升降频)',
-	conservative: '保守调频 (conservative，平缓升降频)',
-	powersave: '省电模式 (powersave，锁定最低频)',
-	userspace: '固定频率 (userspace，手动锁定目标频率)'
+	schedutil: _('Dynamic (schedutil, recommended: cool at idle, scales to 1200 MHz under load)'),
+	performance: _('Performance (performance, locked at max 1200 MHz)'),
+	ondemand: _('On-Demand (ondemand, scales dynamically with load)'),
+	conservative: _('Conservative (conservative, gradual frequency scaling)'),
+	powersave: _('Power Save (powersave, locked at minimum frequency)'),
+	userspace: _('Fixed Frequency (userspace, manual target frequency)')
 };
 
 var GOV_SHORT = {
-	schedutil: '动态调频 (schedutil)',
-	performance: '性能模式 (performance)',
-	ondemand: '按需调频 (ondemand)',
-	conservative: '保守调频 (conservative)',
-	powersave: '省电模式 (powersave)',
-	userspace: '固定频率 (userspace)'
+	schedutil: _('Dynamic (schedutil)'),
+	performance: _('Performance (performance)'),
+	ondemand: _('On-Demand (ondemand)'),
+	conservative: _('Conservative (conservative)'),
+	powersave: _('Power Save (powersave)'),
+	userspace: _('Fixed Frequency (userspace)')
 };
 
 var DYNAMIC_GOVS = ['schedutil', 'ondemand', 'conservative'];
@@ -79,7 +79,7 @@ var CPU_CSS = [
 	'.rtlcpu .rc-meter.is-warn>span{background:var(--rc-warn)}',
 	'.rtlcpu .rc-meter.is-danger>span{background:var(--rc-danger)}',
 	'.rtlcpu .rc-form .cbi-section{border-radius:12px}',
-	'@media (max-width:720px){.rtlcpu .rc-header{gap:10px;margin:4px 0 14px}.rtlcpu .rc-header h2{font-size:20px}.rtlcpu .rc-controls{width:100%;justify-content:space-between;gap:8px}.rtlcpu .rc-controls .rc-updated{width:100%}.rtlcpu .rc-controls .cbi-button{flex:1 1 110px;min-height:36px}.rtlcpu .rc-grid{gap:12px;margin-bottom:14px}.rtlcpu .rc-card{padding:14px;border-radius:10px;margin-bottom:14px}.rtlcpu .rc-card-head h3{font-size:14px;flex-basis:100%}.rtlcpu .rc-badge{white-space:normal}.rtlcpu .rc-kpi{font-size:19px}.rtlcpu .rc-freq-val{font-size:23px}.rtlcpu .rc-form .cbi-value{display:flex;flex-direction:column;align-items:stretch;padding:10px 0}.rtlcpu .rc-form .cbi-value-title{float:none!important;width:auto!important;max-width:100%!important;text-align:left!important;padding:0 0 6px!important}.rtlcpu .rc-form .cbi-value-field{margin-left:0!important;width:100%!important}.rtlcpu .rc-form .cbi-value-field select,.rtlcpu .rc-form .cbi-value-field input:not([type="checkbox"]):not(.cbi-button){width:100%!important;max-width:100%!important}}',
+	'@media (max-width:720px){.rtlcpu .rc-header{gap:10px;margin:4px 0 14px}.rtlcpu .rc-header h2{font-size:20px}.rtlcpu .rc-controls{width:100%;justify-content:space-between;gap:8px}.rtlcpu .rc-controls .rc-updated{width:100%}.rtlcpu .rc-controls .cbi-button{flex:1 1 110px;min-height:36px}.rtlcpu .rc-grid{gap:12px;margin-bottom:14px}.rtlcpu .rc-card{padding:14px;border-radius:10px;margin-bottom:14px}.rtlcpu .rc-card-head h3{font-size:14px;flex-basis:100%}.rtlcpu .rc-badge{white-space:normal}.rtlcpu .rc-kpi{font-size:19px}.rtlcpu .rc-freq-val{font-size:23px}.rtlcpu .rc-form .cbi-value{display:flex;flex-direction:column;align-items:stretch;padding:10px 0}.rtlcpu .rc-form .cbi-value-title{float:none!important;width:auto!important;max-width:100%!important;text-align:left!important;padding:0 0 6px!important}.rtlcpu .rc-form .cbi-value-field{margin-left:0!important;width:100%!important}.rtlcpu .rc-form .cbi-value-field select,.rtlcpu .rc-form .cbi-value-field input:not([type="checkbox"]):not([type="radio"]):not(.cbi-button){width:100%!important;max-width:100%!important}}',
 	'@media (max-width:480px){.rtlcpu .rc-card{padding:12px}.rtlcpu .rc-opp-strip{grid-template-columns:repeat(3,minmax(0,1fr))}}'
 ].join('\n');
 
@@ -91,7 +91,7 @@ function ensureCss() {
 }
 
 function frequency(value) {
-	return value == null ? '未提供' : (value / 1000) + ' MHz';
+	return value == null ? _('Not provided') : (value / 1000) + ' MHz';
 }
 
 function setBadge(el, text, tone) {
@@ -125,17 +125,17 @@ return view.extend({
 		var maxOpp = availKhz.length ? String(availKhz[availKhz.length - 1]) : '1200000';
 		var maxOppKhz = Number(maxOpp) || 1200000;
 
-		var updatedEl = E('span', { class: 'rc-updated' }, ['读取中…']);
+		var updatedEl = E('span', { class: 'rc-updated' }, [_('Loading…')]);
 		var alertEl = E('p', { class: 'alert-message warning', role: 'status', hidden: true });
 		var paused = false;
 		var pending = null;
 
-		var heroBadge = E('span', { class: 'rc-badge' }, ['读取中']);
+		var heroBadge = E('span', { class: 'rc-badge' }, [_('Loading')]);
 		var freqValEl = E('span', { class: 'rc-freq-val' }, ['—']);
 		var freqCapEl = E('span', { class: 'rc-freq-cap' }, ['/ ' + frequency(maxOppKhz)]);
 		var freqPctEl = E('span', { class: 'rc-freq-pct' }, ['0%']);
 		var freqFillEl = E('span', { class: 'rc-freq-fill' });
-		var freqTrackEl = E('div', { class: 'rc-freq-track', title: '读取中…' }, [freqFillEl]);
+		var freqTrackEl = E('div', { class: 'rc-freq-track', title: _('Loading…') }, [freqFillEl]);
 		var oppPills = availKhz.map(function(khz) {
 			return {
 				khz: Number(khz),
@@ -145,8 +145,8 @@ return view.extend({
 		var oppStripEl = oppPills.length
 			? E('div', { class: 'rc-opp-strip' }, oppPills.map(function(p) { return p.el; }))
 			: null;
-		var freqNoteEl = E('p', { class: 'rc-note' }, ['四核 Cortex-A55 共享时钟域']);
-		var heroCard = makeCard('实时 CPU 频率', heroBadge, [
+		var freqNoteEl = E('p', { class: 'rc-note' }, [_('Quad-core Cortex-A55 shared clock domain')]);
+		var heroCard = makeCard(_('Live CPU Frequency'), heroBadge, [
 			E('div', { class: 'rc-freq-row' }, [
 				E('div', { class: 'rc-freq-main' }, [freqValEl, freqCapEl]),
 				freqPctEl
@@ -156,29 +156,29 @@ return view.extend({
 			freqNoteEl
 		], 'rc-hero');
 
-		var tempBadge = E('span', { class: 'rc-badge' }, ['读取中']);
+		var tempBadge = E('span', { class: 'rc-badge' }, [_('Loading')]);
 		var tempKpi = E('div', { class: 'rc-kpi' }, ['—']);
 		var tempFill = E('span');
 		var tempMeter = E('div', { class: 'rc-meter' }, [tempFill]);
-		var tempNote = E('p', { class: 'rc-note' }, ['片上 cpu-thermal 传感器实时采样，建议日常 < 75 °C。']);
-		var tempCard = makeCard('SoC 实时温度', tempBadge, [tempKpi, tempMeter, tempNote]);
+		var tempNote = E('p', { class: 'rc-note' }, [_('Real-time sampling from on-chip cpu-thermal sensor; < 75 °C recommended for daily operation.')]);
+		var tempCard = makeCard(_('Live SoC Temperature'), tempBadge, [tempKpi, tempMeter, tempNote]);
 
-		var govBadge = E('span', { class: 'rc-badge' }, ['读取中']);
+		var govBadge = E('span', { class: 'rc-badge' }, [_('Loading')]);
 		var govKpi = E('div', { class: 'rc-kpi' }, ['—']);
 		var govNote = E('p', { class: 'rc-note' }, ['']);
-		var govCard = makeCard('当前调频策略', govBadge, [govKpi, govNote]);
+		var govCard = makeCard(_('Active Governor'), govBadge, [govKpi, govNote]);
 
-		var stateBadge = E('span', { class: 'rc-badge' }, ['读取中']);
+		var stateBadge = E('span', { class: 'rc-badge' }, [_('Loading')]);
 		var stateKpi = E('div', { class: 'rc-kpi' }, ['—']);
 		var stateNote = E('p', { class: 'rc-note' }, ['']);
-		var stateCard = makeCard('配置生效状态', stateBadge, [stateKpi, stateNote]);
+		var stateCard = makeCard(_('Configuration Status'), stateBadge, [stateKpi, stateNote]);
 
 		function update(next) {
 			var nc = (next && next.cpu) || {};
 			var gov = nc.governor || '';
 			var isDyn = DYNAMIC_GOVS.indexOf(gov) >= 0;
 			var now = new Date();
-			updatedEl.textContent = '更新于 ' + now.toTimeString().slice(0, 8) + ' · 2 秒刷新';
+			updatedEl.textContent = _('Updated %s · 2s refresh').format(now.toTimeString().slice(0, 8));
 			alertEl.hidden = true;
 
 			if (nc.current_khz != null && maxOppKhz > 0) {
@@ -201,29 +201,29 @@ return view.extend({
 					p.el.className = cls;
 				});
 			} else {
-				freqValEl.textContent = '未提供';
+				freqValEl.textContent = _('Not provided');
 				freqPctEl.textContent = '—';
 				freqPctEl.className = 'rc-freq-pct';
 				freqFillEl.style.width = '0%';
 				freqFillEl.className = 'rc-freq-fill';
-				freqTrackEl.setAttribute('title', '未提供');
+				freqTrackEl.setAttribute('title', _('Not provided'));
 				oppPills.forEach(function(p) { p.el.className = 'rc-opp-pill'; });
 			}
 
 			if (gov === 'userspace') {
-				setBadge(heroBadge, '固定频率 · userspace', 'good');
+				setBadge(heroBadge, _('Fixed · userspace'), 'good');
 				heroCard.setAttribute('data-tone', '');
-				freqNoteEl.textContent = '当前手动定频：' + frequency(nc.setspeed_khz != null ? nc.setspeed_khz : nc.current_khz) + ' · 四核 Cortex-A55 共享时钟域。';
+				freqNoteEl.textContent = _('Current manual frequency: %s · Quad-core Cortex-A55 shared clock domain.').format(frequency(nc.setspeed_khz != null ? nc.setspeed_khz : nc.current_khz));
 			} else if (gov) {
-				setBadge(heroBadge, (isDyn ? '动态托管 · ' : '策略托管 · ') + gov, 'good');
+				setBadge(heroBadge, (isDyn ? _('Dynamic · %s') : _('Governor · %s')).format(gov), 'good');
 				heroCard.setAttribute('data-tone', isDyn ? 'good' : '');
 				freqNoteEl.textContent = (nc.min_khz != null && nc.max_khz != null)
-					? ('当前生效区间：' + frequency(nc.min_khz) + ' ~ ' + frequency(nc.max_khz) + ' · 四核 Cortex-A55 共享时钟域。')
-					: '四核 Cortex-A55 共享时钟域。';
+					? _('Active range: %s ~ %s · Quad-core Cortex-A55 shared clock domain.').format(frequency(nc.min_khz), frequency(nc.max_khz))
+					: _('Quad-core Cortex-A55 shared clock domain.');
 			} else {
-				setBadge(heroBadge, '驱动未就绪', 'muted');
+				setBadge(heroBadge, _('Driver Not Ready'), 'muted');
 				heroCard.setAttribute('data-tone', 'warn');
-				freqNoteEl.textContent = '未检测到 cpufreq 策略接口。';
+				freqNoteEl.textContent = _('No cpufreq policy interface detected.');
 			}
 
 			if (next && next.temperature_mC != null) {
@@ -232,41 +232,46 @@ return view.extend({
 				tempKpi.textContent = tempC.toFixed(1) + ' °C';
 				tempFill.style.width = tempPct + '%';
 				if (tempC >= 85) {
-					setBadge(tempBadge, '高温预警', 'danger');
+					setBadge(tempBadge, _('High Temperature'), 'danger');
 					tempMeter.className = 'rc-meter is-danger';
 				} else if (tempC >= 70) {
-					setBadge(tempBadge, '温度偏高', 'warn');
+					setBadge(tempBadge, _('Elevated Temp'), 'warn');
 					tempMeter.className = 'rc-meter is-warn';
 				} else {
-					setBadge(tempBadge, '温度正常', 'good');
+					setBadge(tempBadge, _('Normal'), 'good');
 					tempMeter.className = 'rc-meter';
 				}
-				tempMeter.setAttribute('title', tempC.toFixed(1) + ' °C / 105 °C 被动温控阈值');
+				tempMeter.setAttribute('title', _('%s °C / 105 °C passive thermal threshold').format(tempC.toFixed(1)));
 			} else {
-				tempKpi.textContent = '未提供';
+				tempKpi.textContent = _('Not provided');
 				tempFill.style.width = '0%';
 				tempMeter.className = 'rc-meter';
-				setBadge(tempBadge, '未提供', '');
+				setBadge(tempBadge, _('Not provided'), '');
 			}
 
-			govKpi.textContent = GOV_SHORT[gov] || (gov || '未提供');
+			govKpi.textContent = GOV_SHORT[gov] || (gov || _('Not provided'));
 			if (isDyn)
-				setBadge(govBadge, '动态调频', 'good');
+				setBadge(govBadge, _('Dynamic Scaling'), 'good');
 			else if (gov === 'performance')
-				setBadge(govBadge, '锁定最高频', 'good');
+				setBadge(govBadge, _('Max Frequency'), 'good');
 			else if (gov === 'powersave')
-				setBadge(govBadge, '节能模式', 'warn');
+				setBadge(govBadge, _('Power Saving'), 'warn');
 			else if (gov === 'userspace')
-				setBadge(govBadge, '手动定频', '');
+				setBadge(govBadge, _('Manual Fixed'), '');
 			else
-				setBadge(govBadge, '未知', '');
-			var vsfcText = '';
+				setBadge(govBadge, _('Unknown'), '');
+			var vsfcPart = '';
 			if (next && next.vsfc && next.vsfc.available) {
-				vsfcText = ' · 硬件 VSFC 空闲分频：' +
-					(next.vsfc.enabled ? '已开启' : '已关闭') +
-					(next.vsfc.trig_cnt != null ? ('（触发 ' + next.vsfc.trig_cnt + ' 次）') : '');
+				vsfcPart = next.vsfc.trig_cnt != null
+					? (next.vsfc.enabled
+						? _('Hardware VSFC idle scaling: On (triggered %s times)').format(next.vsfc.trig_cnt)
+						: _('Hardware VSFC idle scaling: Off (triggered %s times)').format(next.vsfc.trig_cnt))
+					: (next.vsfc.enabled
+						? _('Hardware VSFC idle scaling: On')
+						: _('Hardware VSFC idle scaling: Off'));
 			}
-			govNote.textContent = '硬件支持 ' + availKhz.length + ' 档 OPP（' + frequency(Number(minOpp)) + ' ~ ' + frequency(maxOppKhz) + '）· 可选 ' + availGovs.length + ' 种策略' + vsfcText + '。';
+			var vsfcText = vsfcPart ? (' · ' + vsfcPart) : '';
+			govNote.textContent = _('%d OPP steps supported (%s ~ %s) · %d governors available%s.').format(availKhz.length, frequency(Number(minOpp)), frequency(maxOppKhz), availGovs.length, vsfcText);
 
 			var cfgFreq = uci.get('system', 'cpu', 'frequency');
 			var defaultGov = (!cfgFreq && availGovs.indexOf('schedutil') >= 0) ? 'schedutil' : 'userspace';
@@ -277,43 +282,43 @@ return view.extend({
 			var expectMax = cfgMax ? Number(cfgMax) : maxOppKhz;
 
 			if (nc.current_khz == null) {
-				setBadge(stateBadge, '未就绪', 'warn');
-				stateKpi.textContent = '调频驱动未就绪';
-				stateNote.textContent = '未读取到 /sys/devices/system/cpu/cpufreq/policy0 实时频率。';
+				setBadge(stateBadge, _('Not Ready'), 'warn');
+				stateKpi.textContent = _('Scaling driver not ready');
+				stateNote.textContent = _('Unable to read live frequency from /sys/devices/system/cpu/cpufreq/policy0.');
 			} else if (nc.transition_error != null && nc.transition_error !== 0) {
-				setBadge(stateBadge, '调频异常', 'danger');
-				stateKpi.textContent = '错误码 ' + nc.transition_error;
-				stateNote.textContent = '时钟控制器报告切频失败，请检查系统日志。';
+				setBadge(stateBadge, _('Scaling Error'), 'danger');
+				stateKpi.textContent = _('Error code %s').format(nc.transition_error);
+				stateNote.textContent = _('Clock controller reported a frequency transition failure; check the system log.');
 				heroCard.setAttribute('data-tone', 'danger');
 			} else if (gov !== cfgGov) {
-				setBadge(stateBadge, '待应用', 'warn');
-				stateKpi.textContent = '与已保存配置不同';
-				stateNote.textContent = '已保存策略为 ' + cfgGov + '，当前运行为 ' + gov + '；点击底部「保存并应用」生效。';
+				setBadge(stateBadge, _('Pending Apply'), 'warn');
+				stateKpi.textContent = _('Differs from saved config');
+				stateNote.textContent = _('Saved governor is %s, active is %s; click "Save & Apply" below to apply.').format(cfgGov, gov);
 			} else if (cfgGov === 'userspace') {
 				if (!cfgFreq) {
-					setBadge(stateBadge, '未配置', 'warn');
-					stateKpi.textContent = '尚未指定固定频率';
-					stateNote.textContent = '请在下方选择目标固定频率并点击「保存并应用」。';
+					setBadge(stateBadge, _('Unconfigured'), 'warn');
+					stateKpi.textContent = _('No target frequency set');
+					stateNote.textContent = _('Select a target fixed frequency below and click "Save & Apply".');
 				} else if (Number(cfgFreq) !== Number(nc.current_khz) ||
 					(nc.setspeed_khz != null && Number(nc.setspeed_khz) !== Number(nc.current_khz))) {
-					setBadge(stateBadge, '不一致', 'warn');
-					stateKpi.textContent = '目标与实测不符';
-					stateNote.textContent = '目标 ' + frequency(Number(cfgFreq)) + '，当前实测 ' + frequency(nc.current_khz) + '，请重新应用或查看日志。';
+					setBadge(stateBadge, _('Mismatch'), 'warn');
+					stateKpi.textContent = _('Target differs from actual');
+					stateNote.textContent = _('Target %s, actual %s; please re-apply or check logs.').format(frequency(Number(cfgFreq)), frequency(nc.current_khz));
 				} else {
-					setBadge(stateBadge, '已生效', 'good');
-					stateKpi.textContent = '固定频率运行中';
-					stateNote.textContent = '当前实际频率与已保存目标频率完全一致（' + frequency(nc.current_khz) + '）。';
+					setBadge(stateBadge, _('Applied'), 'good');
+					stateKpi.textContent = _('Fixed frequency active');
+					stateNote.textContent = _('Actual frequency matches the saved target (%s).').format(frequency(nc.current_khz));
 				}
 			} else if (DYNAMIC_GOVS.indexOf(cfgGov) >= 0 &&
 				((nc.min_khz != null && Number(nc.min_khz) !== expectMin) ||
 				 (nc.max_khz != null && Number(nc.max_khz) !== expectMax))) {
-				setBadge(stateBadge, '范围待应用', 'warn');
-				stateKpi.textContent = '上下限与配置不同';
-				stateNote.textContent = '配置区间 ' + frequency(expectMin) + ' ~ ' + frequency(expectMax) + '，点击「保存并应用」同步。';
+				setBadge(stateBadge, _('Range Pending'), 'warn');
+				stateKpi.textContent = _('Limits differ from config');
+				stateNote.textContent = _('Configured range %s ~ %s; click "Save & Apply" to sync.').format(frequency(expectMin), frequency(expectMax));
 			} else {
-				setBadge(stateBadge, '已生效', 'good');
-				stateKpi.textContent = isDyn ? '动态策略托管中' : '策略已生效';
-				stateNote.textContent = '实时策略与配置完全一致，内核自动管理 CPU 时钟频率。';
+				setBadge(stateBadge, _('Applied'), 'good');
+				stateKpi.textContent = isDyn ? _('Dynamic governor active') : _('Governor active');
+				stateNote.textContent = _('Live governor matches configuration; the kernel manages CPU clock frequency automatically.');
 			}
 		}
 
@@ -324,8 +329,8 @@ return view.extend({
 				update(next);
 			}).catch(function(err) {
 				alertEl.hidden = false;
-				alertEl.textContent = '实时状态读取失败：' + (err && err.message ? err.message : String(err));
-				updatedEl.textContent = '读取失败';
+				alertEl.textContent = _('Failed to read live status: %s').format(err && err.message ? err.message : String(err));
+				updatedEl.textContent = _('Read failed');
 			}).then(function() {
 				pending = null;
 			});
@@ -337,7 +342,7 @@ return view.extend({
 			class: 'btn cbi-button',
 			click: function() {
 				paused = !paused;
-				toggleBtn.textContent = paused ? '恢复刷新' : '暂停刷新';
+				toggleBtn.textContent = paused ? _('Resume Refresh') : _('Pause Refresh');
 				if (paused)
 					poll.stop();
 				else {
@@ -345,7 +350,7 @@ return view.extend({
 					refresh();
 				}
 			}
-		}, ['暂停刷新']);
+		}, [_('Pause Refresh')]);
 
 		var refreshBtn = E('button', {
 			type: 'button',
@@ -353,7 +358,7 @@ return view.extend({
 			click: function() {
 				refresh();
 			}
-		}, ['立即刷新']);
+		}, [_('Refresh Now')]);
 
 		update(state);
 		poll.add(refresh, 2);
@@ -364,11 +369,11 @@ return view.extend({
 
 		var m = new form.Map('system', null, null);
 		m.readonly = !L.hasViewPermission();
-		var s = m.section(form.NamedSection, 'cpu', 'cpu', 'CPU 调频参数设置');
+		var s = m.section(form.NamedSection, 'cpu', 'cpu', _('CPU Scaling Settings'));
 		s.anonymous = true;
 		s.addremove = false;
 
-		var o = s.option(form.ListValue, 'governor', '调频策略');
+		var o = s.option(form.ListValue, 'governor', _('Governor'));
 		o.default = availGovs.indexOf('schedutil') >= 0 ? 'schedutil' : 'userspace';
 		o.rmempty = false;
 		var preferredOrder = ['schedutil', 'performance', 'ondemand', 'conservative', 'powersave', 'userspace'];
@@ -381,19 +386,19 @@ return view.extend({
 				o.value(g, g);
 		});
 
-		o = s.option(form.ListValue, 'frequency', '目标固定频率');
+		o = s.option(form.ListValue, 'frequency', _('Target Fixed Frequency'));
 		o.depends('governor', 'userspace');
 		o.rmempty = false;
 		availKhz.forEach(function(khz) { o.value(String(khz), frequency(khz)); });
 
-		o = s.option(form.ListValue, 'min_freq', '最低频率下限');
+		o = s.option(form.ListValue, 'min_freq', _('Minimum Frequency'));
 		o.depends('governor', 'schedutil');
 		o.depends('governor', 'ondemand');
 		o.depends('governor', 'conservative');
 		o.default = minOpp;
 		availKhz.forEach(function(khz) { o.value(String(khz), frequency(khz)); });
 
-		o = s.option(form.ListValue, 'max_freq', '最高频率上限');
+		o = s.option(form.ListValue, 'max_freq', _('Maximum Frequency'));
 		o.depends('governor', 'schedutil');
 		o.depends('governor', 'ondemand');
 		o.depends('governor', 'conservative');
@@ -402,7 +407,7 @@ return view.extend({
 		o.validate = function(section_id, value) {
 			var minVal = Number(this.section.formvalue(section_id, 'min_freq'));
 			if (minVal > 0 && Number(value) > 0 && Number(value) < minVal)
-				return '最高频率上限不能低于最低频率下限';
+				return _('Maximum frequency cannot be lower than minimum frequency');
 			return true;
 		};
 
@@ -411,21 +416,21 @@ return view.extend({
 			this.handleSaveApply = this.handleSave = this.handleReset = null;
 		}
 
-		var guideCard = makeCard('这是什么？（CPU 调频策略与选型指南）',
-			E('span', { class: 'rc-badge' }, ['配置指南']),
+		var guideCard = makeCard(_('What Is This? (CPU Governor & Selection Guide)'),
+			E('span', { class: 'rc-badge' }, [_('Guide')]),
 			[E('ul', { class: 'rc-note', style: 'margin:0;padding-left:18px;line-height:1.8' }, [
-				E('li', {}, ['「动态调频 (schedutil，推荐)」由内核调度器按实时负载自动升降频，空闲回落至 400 MHz 降温省电，满载瞬时拉升至 1200 MHz。']),
-				E('li', {}, ['「性能模式 (performance)」全程锁定 1200 MHz 最高频；「固定频率 (userspace)」可手动指定单个硬件频点。']),
-				E('li', {}, ['四颗 Cortex-A55 核心共享同一时钟域，下方实时频率进度条与 OPP 档位每 2 秒自动采样更新。'])
+				E('li', {}, [_('"Dynamic (schedutil, recommended)" lets the kernel scheduler scale frequency by live load, dropping to 400 MHz when idle to stay cool and ramping to 1200 MHz under full load.')]),
+				E('li', {}, [_('"Performance (performance)" locks all cores at 1200 MHz; "Fixed Frequency (userspace)" lets you lock a specific hardware OPP.')]),
+				E('li', {}, [_('All four Cortex-A55 cores share a single clock domain; the live frequency bar and OPP strip below update every 2 seconds.')])
 			])]);
 
 		return m.render().then(function(formNode) {
 			return E('div', { class: 'rtlcpu' }, [
 				E('div', { class: 'rc-header' }, [
 					E('div', {}, [
-						E('p', { class: 'rc-eyebrow' }, ['处理器频率与热管理 · 四核 CORTEX-A55 共享时钟域']),
-						E('h2', {}, ['CPU 频率与动态调频']),
-						E('p', { class: 'rc-note' }, ['实时监控片上频率、温度与硬件 OPP 档位；调整下方策略后点击「保存并应用」即时生效。'])
+						E('p', { class: 'rc-eyebrow' }, [_('PROCESSOR FREQUENCY & THERMAL · QUAD-CORE CORTEX-A55 SHARED CLOCK')]),
+						E('h2', {}, [_('CPU Frequency & Dynamic Scaling')]),
+						E('p', { class: 'rc-note' }, [_('Monitor live CPU frequency, temperature, and hardware OPP steps; adjust settings below and click "Save & Apply" to take effect immediately.')])
 					]),
 					E('div', { class: 'rc-controls' }, [updatedEl, toggleBtn, refreshBtn])
 				]),

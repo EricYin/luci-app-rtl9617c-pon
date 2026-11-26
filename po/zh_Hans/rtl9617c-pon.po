@@ -1,0 +1,1914 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: luci-app-rtl9617c-pon\n"
+"POT-Creation-Date: 2026-11-26 06:31+0000\n"
+"PO-Revision-Date: 2026-11-26 06:31+0000\n"
+"Last-Translator: RTL9617C Maintainers <noreply@localhost>\n"
+"Language-Team: Chinese (Simplified Han script)\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:422
+msgid "\"Dynamic (schedutil, recommended)\" lets the kernel scheduler scale frequency by live load, dropping to 400 MHz when idle to stay cool and ramping to 1200 MHz under full load."
+msgstr "「动态调频 (schedutil，推荐)」由内核调度器按实时负载自动升降频，空闲回落至 400 MHz 降温省电，满载瞬时拉升至 1200 MHz。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:423
+msgid "\"Performance (performance)\" locks all cores at 1200 MHz; \"Fixed Frequency (userspace)\" lets you lock a specific hardware OPP."
+msgstr "「性能模式 (performance)」全程锁定 1200 MHz 最高频；「固定频率 (userspace)」可手动指定单个硬件频点。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:274
+msgid "%d OPP steps supported (%s ~ %s) · %d governors available%s."
+msgstr "硬件支持 %d 档 OPP（%s ~ %s）· 可选 %d 种策略%s。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:608
+#: htdocs/luci-static/resources/rtl9617c/status.js:611
+msgid "%d flows"
+msgstr "%d 条"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:247
+msgid "%d ports up"
+msgstr "已连 %d 口"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:76
+msgid "%d s"
+msgstr "%d 秒"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:641
+msgid "%d tagged"
+msgstr "%d 条已标记"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:333
+msgid "%s / %s flows"
+msgstr "%s / %s 流"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:73
+msgid "%s error code: %s. Check Diagnostics and the system log."
+msgstr "%s 错误码：%s。请查看高级诊断和系统日志。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:87
+msgid "%s error code: %s. Check Diagnostics."
+msgstr "%s 错误码：%s。请查看高级诊断。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:244
+msgid "%s °C / 105 °C passive thermal threshold"
+msgstr "%s °C / 105 °C 被动温控阈值"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:38
+msgid "0x86 (Compatibility)"
+msgstr "0x86（兼容模式）"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:37
+msgid "0xb0 (Default)"
+msgstr "0xb0（默认）"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:7
+msgid "10G EPON (Asymmetric)"
+msgstr "10G EPON（非对称）"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:7
+msgid "10G EPON (Symmetric)"
+msgstr "10G EPON（对称）"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:133
+msgid "10G Sym"
+msgstr "10G 对称"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:386
+msgid "64K Hash Flow Lookup"
+msgstr "64K Hash 流表查表"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:658
+msgid "8-VoQ compatible (CoS field absent in current flow table)"
+msgstr "兼容 8-VoQ（当前流表未携带 CoS 字段）"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:30
+msgid "A2h module detected, DDMI available"
+msgstr "A2H 模块已识别，DDMI 可用"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:29
+msgid "A2h optical telemetry"
+msgstr "A2h 光模块遥测"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:106
+msgid "Absent"
+msgstr "不存在"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:95
+msgid "Activated · Awaiting Services"
+msgstr "已激活 · 等待业务下发"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:94
+msgid "Activated · Services Configured"
+msgstr "已激活 · 业务已配置"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:54
+msgid "Activation State"
+msgstr "激活状态"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:96
+msgid "Activation state: %s"
+msgstr "激活状态：%s"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:482
+msgid "Active"
+msgstr "已激活"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:566
+msgid "Active (Tracked)"
+msgstr "活动跟踪"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:169
+msgid "Active Governor"
+msgstr "当前调频策略"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:652
+msgid "Active HW Flows"
+msgstr "活跃硬件流"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:14
+msgid "Active PON Identity"
+msgstr "生效中的 PON 身份"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:123
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:15
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:26
+msgid "Active Protocol"
+msgstr "运行协议"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:221
+msgid "Active range: %s ~ %s · Quad-core Cortex-A55 shared clock domain."
+msgstr "当前生效区间：%s ~ %s · 四核 Cortex-A55 共享时钟域。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:310
+msgid "Actual frequency matches the saved target (%s)."
+msgstr "当前实际频率与已保存目标频率完全一致（%s）。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:29
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:18
+msgid "Advanced"
+msgstr "高级参数"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:27
+msgid "All authentication parameters are optional. Switching protocols only changes visible fields without clearing credentials for other protocols."
+msgstr "认证参数均可选填。切换协议只改变显示的字段，不会清除其他协议的认证信息。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:424
+msgid "All four Cortex-A55 cores share a single clock domain; the live frequency bar and OPP strip below update every 2 seconds."
+msgstr "四颗 Cortex-A55 核心共享同一时钟域，下方实时频率进度条与 OPP 档位每 2 秒自动采样更新。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:29
+msgid "Allowed"
+msgstr "已允许"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:308
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:319
+msgid "Applied"
+msgstr "已生效"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:75
+msgid "Auth Duration"
+msgstr "认证持续时间"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:72
+msgid "Auth Method"
+msgstr "认证方式"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:61
+msgid "Auth Rejected"
+msgstr "认证拒绝"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:73
+msgid "Auth Source"
+msgstr "认证依据"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:52
+msgid "Authenticated"
+msgstr "认证通过"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:61
+msgid "Authenticating"
+msgstr "正在认证"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:91
+#: htdocs/luci-static/resources/rtl9617c/status.js:103
+msgid "Authentication Failed"
+msgstr "认证未通过"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:52
+msgid "Authentication Failed (code %s)"
+msgstr "认证未通过（状态码 %s）"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:34
+msgid "Auto"
+msgstr "自动"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:494
+msgid "Available Hardware Sources"
+msgstr "可用硬件熵源"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:32
+msgid "Available entropy %s bits"
+msgstr "可用熵 %s bits"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:32
+msgid "Available entropy %s bits · Inactive fallback"
+msgstr "可用熵 %s bits · 未激活降级"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:96
+msgid "Awaiting Activation"
+msgstr "等待激活"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:61
+msgid "Awaiting Auth"
+msgstr "等待认证"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:66
+msgid "Awaiting OAM Discovery"
+msgstr "等待 OAM 发现"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:99
+#: htdocs/luci-static/resources/rtl9617c/ui.js:65
+msgid "Awaiting Registration"
+msgstr "等待注册"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:74
+msgid "Awaiting Result"
+msgstr "等待结果"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:66
+msgid "Awaiting Status"
+msgstr "等待状态"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:236
+msgid "Awaiting initial read"
+msgstr "等待首次读取"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:18
+msgid "BOSA Model"
+msgstr "BOSA 型号"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:132
+msgid "Baby Jumbo Enabled"
+msgstr "Baby Jumbo 已启用"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:132
+msgid "Baby Jumbo Ready"
+msgstr "Baby Jumbo 就绪"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:629
+msgid "Bound %d"
+msgstr "绑定 %d 口"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:632
+msgid "Bridge %d"
+msgstr "桥接 %d"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:17
+msgid "Bridge Ports"
+msgstr "桥成员"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:420
+msgid "Burst Buffer · TX"
+msgstr "防突发缓冲 · 出队发包"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:378
+msgid "Bypassed"
+msgstr "引擎旁路"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:378
+msgid "CPU Bypass"
+msgstr "绕过 CPU 直通"
+
+#: root/usr/share/luci/menu.d/luci-rtl9617c-system.json:3
+msgid "CPU Frequency"
+msgstr "CPU 频率"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:432
+msgid "CPU Frequency & Dynamic Scaling"
+msgstr "CPU 频率与动态调频"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:355
+msgid "CPU RX"
+msgstr "CPU 收包"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:372
+msgid "CPU Scaling Settings"
+msgstr "CPU 调频参数设置"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:455
+msgid "CPU Slow Path & Flow Setup"
+msgstr "CPU 慢路径 & 建流下发"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:362
+msgid "CPU TX"
+msgstr "CPU 发包"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:41
+msgid "Channel"
+msgstr "信道"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:405
+msgid "Checksum · %s"
+msgstr "校验和 · %s"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:291
+msgid "Clock controller reported a frequency transition failure; check the system log."
+msgstr "时钟控制器报告切频失败，请检查系统日志。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:519
+msgid "CoS %s (Explicit)"
+msgstr "CoS %s (显式)"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:551
+msgid "CoS / Queue"
+msgstr "CoS / 队列"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:658
+msgid "CoS / Queue Parsing"
+msgstr "CoS / 队列解析"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:656
+msgid "CoS Queue Distribution"
+msgstr "CoS 队列分布"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:71
+msgid "Completed"
+msgstr "已完成"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:17
+msgid "Config Status"
+msgstr "配置状态"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:174
+msgid "Configuration Status"
+msgstr "配置生效状态"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:32
+msgid "Configure IPTV VLAN / Dedicated Port / Single-Line Multiplexing"
+msgstr "配置 IPTV VLAN / 专用口 / 单线复用"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:16
+msgid "Configure Identity & Auth"
+msgstr "配置身份与认证"
+
+#: root/usr/share/rpcd/acl.d/luci-app-rtl9617c-pon.json:3
+msgid "Configure RTL9617C PON identity and read native PON status"
+msgstr "配置 RTL9617C PON 身份并读取原生 PON 状态"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:118
+msgid "Configure WAN Interface"
+msgstr "配置上网接口"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:17
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:30
+msgid "Configured"
+msgstr "已配置"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:115
+msgid "Configured WAN Device"
+msgstr "WAN 配置设备"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:317
+msgid "Configured range %s ~ %s; click \"Save & Apply\" to sync."
+msgstr "配置区间 %s ~ %s，点击「保存并应用」同步。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:106
+msgid "Connected"
+msgstr "已连接"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:18
+msgid "Connection Type"
+msgstr "上网方式"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:28
+msgid "Conservative (conservative)"
+msgstr "保守调频 (conservative)"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:19
+msgid "Conservative (conservative, gradual frequency scaling)"
+msgstr "保守调频 (conservative，平缓升降频)"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:13
+msgid "Control characters are not allowed."
+msgstr "不能包含控制字符。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:35
+msgid "Controls only PPP IPv6 negotiation without deleting or rewriting wan6; use Interfaces for complex dual-stack setups."
+msgstr "只控制 PPP 会话的 IPv6 协商，不删除或重写 wan6；复杂双栈配置请使用原生接口管理。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:608
+#: htdocs/luci-static/resources/rtl9617c/status.js:611
+msgid "Counter %s"
+msgstr "计数槽 %s"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:554
+msgid "Counter Slot"
+msgstr "计数槽"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:343
+#: htdocs/luci-static/resources/rtl9617c/status.js:626
+msgid "Counters %s/%s"
+msgstr "计数槽 %s/%s"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:42
+msgid "Current PHY Rate"
+msgstr "当前 PHY 速率"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:493
+msgid "Current Source"
+msgstr "当前熵源"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:43
+msgid "Current WAN requires native Interfaces management: unconfigured WAN, custom protocols, legacy device references, or multi-address/CIDR configs are left untouched."
+msgstr "当前 WAN 需要原生接口管理：未配置 WAN、自定义协议、旧式设备引用或多地址/CIDR 配置均保持原样。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:216
+msgid "Current manual frequency: %s · Quad-core Cortex-A55 shared clock domain."
+msgstr "当前手动定频：%s · 四核 Cortex-A55 共享时钟域。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:176
+msgid "Current physical interface max_mtu is %s; PPPoE payload is capped at 1492 (Baby Jumbo inactive)."
+msgstr "当前物理接口 max_mtu 为 %s，PPPoE 上限为 1492（未开启 Baby Jumbo）。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:33
+msgid "Dedicated port bridging and single-line multiplexing use native VLAN/bridge settings. This package does not install IGMP proxy, HTTP multicast relay, or SIP/H.248 voice services, so no unbacked toggles are shown."
+msgstr "专用口桥接与单线复用使用原生 VLAN/网桥配置。本包未安装 IGMP proxy、HTTP 组播中继或 SIP/H.248 语音服务，因此不提供无后端的开关。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:640
+msgid "Default / OLT Queue"
+msgstr "默认/OLT 队列"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:427
+msgid "Demux to FE"
+msgstr "Demux 送 FE"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:432
+msgid "Dequeue to NI"
+msgstr "出队回 NI 发"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:12
+msgid "Device Info"
+msgstr "设备信息"
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:17
+msgid "Diagnostic Tools"
+msgstr "诊断工具"
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:9
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:28
+msgid "Diagnostics"
+msgstr "诊断"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:295
+msgid "Differs from saved config"
+msgstr "与已保存配置不同"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:44
+msgid "Disable OMCI Enhanced Security (Class 332)"
+msgstr "禁用 OMCI 增强认证（Class 332）"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:68
+#: htdocs/luci-static/resources/rtl9617c/status.js:81
+#: htdocs/luci-static/resources/rtl9617c/status.js:332
+#: htdocs/luci-static/resources/rtl9617c/status.js:582
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+#: htdocs/luci-static/resources/rtl9617c/ui.js:42
+msgid "Disabled"
+msgstr "未启用"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:240
+#: htdocs/luci-static/resources/rtl9617c/ui.js:106
+#: htdocs/luci-static/resources/rtl9617c/ui.js:219
+msgid "Disconnected"
+msgstr "未连接"
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:16
+msgid "Download Snapshot"
+msgstr "下载当前快照"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:454
+msgid "Downstream Fast Path: PON → NI → FE → PE → QM(DeepQ) → NI → LAN"
+msgstr "下行直通：PON → NI → FE → PE → QM(DeepQ) → NI → LAN"
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:20
+msgid "Driver & Protocol State"
+msgstr "驱动与协议状态"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:224
+msgid "Driver Not Ready"
+msgstr "驱动未就绪"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:79
+msgid "Driver has not provided a valid link state yet. Check the system log."
+msgstr "驱动尚未提供有效线路状态，请查看系统日志。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:110
+msgid "Dropped RX / TX"
+msgstr "丢包 RX / TX"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:25
+msgid "Dynamic (schedutil)"
+msgstr "动态调频 (schedutil)"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:16
+msgid "Dynamic (schedutil, recommended: cool at idle, scales to 1200 MHz under load)"
+msgstr "动态调频 (schedutil，推荐：空闲降温、满载自动 1200 MHz)"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:254
+msgid "Dynamic Scaling"
+msgstr "动态调频"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:320
+msgid "Dynamic governor active"
+msgstr "动态策略托管中"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:218
+msgid "Dynamic · %s"
+msgstr "动态托管 · %s"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:50
+msgid "EPON Logical Links"
+msgstr "EPON 逻辑链路数"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:16
+msgid "EPON does not use ITU-T SN. Identity overrides can be set under Line & Authentication; leave empty to restore factory values."
+msgstr "EPON 不使用 ITU-T SN。身份覆盖值可在线路与认证中设置；留空恢复原厂值。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:11
+msgid "Edits native network.wan directly without creating extra service configs or taking over LAN ports or the firewall. Uses LuCI connection confirmation and rollback on apply."
+msgstr "直接编辑原生 network.wan，不新建业务配置、不接管 LAN 端口或防火墙。应用沿用 LuCI 的连接确认与回滚流程。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:238
+msgid "Elevated Temp"
+msgstr "温度偏高"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:30
+msgid "Enable Optical Link"
+msgstr "启用光链路"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:26
+msgid "Enable only if this bridge needs to send multicast queries locally."
+msgstr "仅在此网桥确实需要本机发送组播查询时启用。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:592
+#: htdocs/luci-static/resources/rtl9617c/status.js:593
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+#: htdocs/luci-static/resources/rtl9617c/ui.js:42
+msgid "Enabled"
+msgstr "已启用"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:95
+msgid "Enter if required by your ISP, up to 4 bytes."
+msgstr "运营商有要求时填写，最多 4 字节。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:23
+msgid "Enter only the parameters required by your ISP. Changes take effect after Save & Apply; the optical link may briefly reconnect."
+msgstr "仅填写运营商要求的参数。保存并应用后生效，光链路可能短暂中断。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:107
+msgid "Enter the 32-char hex key when required by your ISP for enhanced security."
+msgstr "运营商要求增强认证时填写 32 位十六进制密钥。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:496
+msgid "Entropy Quality"
+msgstr "熵源质量"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:75
+msgid "Equipment ID"
+msgstr "设备型号"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:586
+msgid "Error"
+msgstr "运行异常"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:330
+msgid "Error %s"
+msgstr "异常 %s"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:290
+msgid "Error code %s"
+msgstr "错误码 %s"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:586
+msgid "Error code: %s"
+msgstr "错误码：%s"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:640
+msgid "Explicit %d"
+msgstr "显式 %d 条"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:324
+msgid "FE Attached"
+msgstr "已挂载 FE"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:324
+msgid "FE Detached"
+msgstr "未挂载 FE"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:383
+msgid "FE Forwarding"
+msgstr "FE 转发引擎"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:167
+msgid "FE MTU Slots %s/%s"
+msgstr "FE MTU 槽 %s/%s"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:592
+msgid "FE engine is ready; no interfaces are bound for offloading yet"
+msgstr "FE 引擎已就绪，尚无接口完成卸载绑定"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:11
+msgid "Failed to read PON identity."
+msgstr "PON 身份读取失败。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:24
+msgid "Failed to read PON status."
+msgstr "PON 状态读取失败。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:332
+msgid "Failed to read live status: %s"
+msgstr "实时状态读取失败：%s"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:217
+msgid "Failed to read network status; historical data is not shown as live state."
+msgstr "网络状态读取失败；未将历史数据作为实时连接状态。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:249
+msgid "Failed to read status; no live data yet."
+msgstr "状态读取失败，尚无实时数据。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:232
+msgid "Failed to read status; no live data yet. Configuration editing is unaffected."
+msgstr "状态读取失败，尚无实时数据。配置编辑不受影响。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:39
+msgid "Failed to read wireless status."
+msgstr "无线状态读取失败。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:44
+msgid "Firewall"
+msgstr "防火墙"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:582
+msgid "Firewall flow offloading is disabled; all forwarding runs on the CPU"
+msgstr "防火墙未开启流量卸载，所有转发均经由 CPU 处理"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:13
+msgid "Firmware"
+msgstr "固件"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:47
+msgid "Firmware info not provided"
+msgstr "固件信息未提供"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:327
+msgid "First-packet flow setup to FE · Proxy / unoffloaded slow path"
+msgstr "首包建流写入 FE · 代理/未卸载慢路径"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:30
+msgid "Fixed Frequency (userspace)"
+msgstr "固定频率 (userspace)"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:21
+msgid "Fixed Frequency (userspace, manual target frequency)"
+msgstr "固定频率 (userspace，手动锁定目标频率)"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:309
+msgid "Fixed frequency active"
+msgstr "固定频率运行中"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:214
+msgid "Fixed · userspace"
+msgstr "固定频率 · userspace"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:20
+msgid "Forward multicast based on group membership to avoid flooding all ports."
+msgstr "根据组成员关系转发组播，避免向所有端口泛洪。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:41
+msgid "Frequency"
+msgstr "频率"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:27
+msgid "From A2h 0x60/0x61"
+msgstr "来自 A2h 0x60/0x61"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:26
+msgid "From active driver mode"
+msgstr "来自驱动实际运行模式"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:376
+msgid "Governor"
+msgstr "调频策略"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:320
+msgid "Governor active"
+msgstr "策略已生效"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:218
+msgid "Governor · %s"
+msgstr "策略托管 · %s"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:420
+msgid "Guide"
+msgstr "配置指南"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:329
+msgid "HW Bypassed"
+msgstr "硬件旁路"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:590
+msgid "HW Not Ready"
+msgstr "硬件未就绪"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+msgid "HW Off"
+msgstr "硬件关"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:360
+msgid "HW Offload Off"
+msgstr "未开启硬卸载"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+msgid "HW On"
+msgstr "硬件开"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:660
+msgid "HW Table Slots"
+msgstr "硬件表槽位"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:588
+msgid "HW Unavailable"
+msgstr "硬件不可用"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:31
+msgid "Hardware Entropy"
+msgstr "硬件熵源"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:491
+msgid "Hardware Entropy (TRNG)"
+msgstr "硬件熵源 (TRNG)"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:9
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:12
+msgid "Hardware Identity"
+msgstr "硬件身份"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:662
+msgid "Hardware Offload"
+msgstr "硬件转发"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:33
+msgid "Hardware TRNG active"
+msgstr "硬件 TRNG 已激活"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:33
+msgid "Hardware TRNG inactive"
+msgstr "硬件 TRNG 未激活"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:499
+msgid "Hardware TRNG is active and continuously feeding the kernel RNG pool."
+msgstr "硬件 TRNG 已激活并持续向内核随机数池供熵。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:271
+msgid "Hardware VSFC idle scaling: Off"
+msgstr "硬件 VSFC 空闲分频：已关闭"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:268
+msgid "Hardware VSFC idle scaling: Off (triggered %s times)"
+msgstr "硬件 VSFC 空闲分频：已关闭（触发 %s 次）"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:270
+msgid "Hardware VSFC idle scaling: On"
+msgstr "硬件 VSFC 空闲分频：已开启"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:267
+msgid "Hardware VSFC idle scaling: On (triggered %s times)"
+msgstr "硬件 VSFC 空闲分频：已开启（触发 %s 次）"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:76
+msgid "Hardware Version"
+msgstr "硬件版本"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:572
+msgid "Hardware allocates dedicated exact counters for up to 32 interface/flow combinations; remaining flows shown as \"Active (Tracked)\" are also forwarded at line rate by the FE chip. The CoS / Queue column is backward-compatible with kernel flowtable exports (shows — when absent). To inspect plaintext IP/port 5-tuples (including [HW_OFFLOAD] markers), go to \"Status → Realtime Graphs → Connections\"."
+msgstr "硬件最多为 32 个接口/流组合分配独立精确计数器；其余显示“活动跟踪”的流同样由 FE 芯片全速硬件转发。CoS / 协议列向后兼容内核流表导出字段（未携带时显示 —）。如需查看明文 IP/端口五元组（含 [HW_OFFLOAD] 标记），可前往“状态 → 实时信息 → 连接”。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:500
+msgid "Hardware entropy is inactive (shown as unavailable); the kernel continues using its software entropy pool."
+msgstr "硬件熵源当前未激活（降级显示 unavailable）；系统仍使用内核软件熵池。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:584
+msgid "Hardware offloading is disabled; traffic is forwarded via CPU software flowtable"
+msgstr "硬件卸载未开启，流量经由 CPU 软件 Flowtable 转发"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:590
+msgid "Hardware offloading is requested, but the FE engine is not enabled"
+msgstr "已请求硬件卸载，但 FE 引擎未启用"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:588
+msgid "Hardware offloading is requested, but the driver does not provide FE"
+msgstr "已请求硬件卸载，但驱动未提供 FE"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:553
+msgid "Hash Slot"
+msgstr "Hash 槽"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:235
+msgid "High Temperature"
+msgstr "高温预警"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:556
+msgid "Hit Bytes"
+msgstr "命中字节"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:555
+msgid "Hit Packets"
+msgstr "命中包数"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:29
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:24
+msgid "IPTV & Multicast"
+msgstr "IPTV 与组播"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:25
+msgid "IPv4 Address"
+msgstr "IPv4 地址"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:25
+msgid "IPv4 Gateway"
+msgstr "IPv4 网关"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:27
+msgid "ISP Authentication"
+msgstr "运营商认证"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:15
+msgid "ITU-T SN (Hex)"
+msgstr "ITU-T SN（十六进制）"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:71
+msgid "Incomplete"
+msgstr "未完成"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:73
+msgid "Init Error"
+msgstr "初始化异常"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:18
+msgid "Init Error Code"
+msgstr "初始化错误码"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:541
+msgid "Inspect Hardware Flow Table (%d entries)"
+msgstr "查看硬件流表详情（共 %d 条）"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:540
+msgid "Inspect Hardware Flow Table (first %d of %d entries)"
+msgstr "查看硬件流表详情（前 %d / 共 %d 条）"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:542
+msgid "Inspect Hardware Flow Table (no active flows)"
+msgstr "查看硬件流表详情（暂无活跃流）"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:41
+msgid "Interface"
+msgstr "接口"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:179
+msgid "Interface MTU & Hardware Features"
+msgstr "接口 MTU 与硬件特性"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:219
+msgid "Interface Up"
+msgstr "接口已连接"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:44
+msgid "Interfaces / VLAN / Bridge"
+msgstr "接口 / VLAN / 桥接"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:41
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:20
+msgid "Internet"
+msgstr "上网配置"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:23
+msgid "Keep the current device selection; use Interfaces below to create VLANs or configure bridges."
+msgstr "保留当前设备选择；如需创建 VLAN 或配置桥接，请使用下方原生接口管理。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:13
+msgid "Kernel"
+msgstr "内核"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:495
+msgid "Kernel Entropy Pool"
+msgstr "内核可用熵池"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:505
+msgid "L2 Bridge"
+msgstr "二层桥接"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:182
+msgid "LAN Port MTU"
+msgstr "LAN 口 MTU"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:367
+msgid "LAN Ports"
+msgstr "LAN 端口"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:175
+msgid "LAN max_mtu is unlocked to %s, but PON max_mtu is still %s; both must allow >= 1508 for Baby Jumbo."
+msgstr "LAN 口 max_mtu 已放开至 %s，但 PON 口上限仍为 %s，需同步放开后方可使用 Baby Jumbo。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:69
+msgid "LOID Password"
+msgstr "LOID 密码"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:66
+msgid "Leave blank to use the factory identity; clear any custom value and apply to restore the factory MAC."
+msgstr "使用本机原厂身份时无需填写；清空自定义值后，应用即可恢复原厂身份。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:94
+msgid "Leave empty for default"
+msgstr "留空使用默认值"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:65
+msgid "Leave empty for factory MAC"
+msgstr "留空使用原厂 MAC"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:99
+msgid "Leave empty for factory SN; supports 12-char SN or 16-char hex."
+msgstr "留空使用原厂 SN；支持 12 字符 SN 或 16 位十六进制。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:84
+msgid "Leave empty for factory value"
+msgstr "留空使用原厂值"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:316
+msgid "Limits differ from config"
+msgstr "上下限与配置不同"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:123
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:16
+msgid "Line & Authentication"
+msgstr "线路与认证"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:23
+msgid "Line Configuration"
+msgstr "线路配置"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:32
+msgid "Line Protocol"
+msgstr "线路协议"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:48
+msgid "Line protocol not ready; authentication status unavailable."
+msgstr "线路协议尚未就绪，暂无认证状态。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:121
+msgid "Line registration and authentication do not guarantee Internet connectivity; check WAN status in Interfaces."
+msgstr "线路注册与认证不等同于互联网连通，请在接口管理中确认 WAN 状态。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:244
+msgid "Link Up"
+msgstr "已连"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:149
+msgid "Live CPU Frequency"
+msgstr "实时 CPU 频率"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:125
+msgid "Live Registration & Authentication"
+msgstr "查看实时注册与认证"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:164
+msgid "Live SoC Temperature"
+msgstr "SoC 实时温度"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:321
+msgid "Live governor matches configuration; the kernel manages CPU clock frequency automatically."
+msgstr "实时策略与配置完全一致，内核自动管理 CPU 时钟频率。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:133
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:159
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:166
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:171
+msgid "Loading"
+msgstr "读取中"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:128
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:138
+msgid "Loading…"
+msgstr "读取中…"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:437
+msgid "MAC · DMA · L3FE Demux (aggregates LAN/PON RX/TX, connects directly to FE / QM / CPU)"
+msgstr "MAC · DMA · L3FE Demux（承接 LAN 与 PON 收发汇总，并直连 FE / QM / CPU）"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:108
+msgid "MTU / Queue"
+msgstr "MTU / 队列"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:646
+msgid "MTU Slots %s/%s"
+msgstr "MTU 槽 %s/%s"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:37
+msgid "Manage Internet"
+msgstr "管理上网"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:44
+msgid "Manage Wi-Fi 6"
+msgstr "管理 Wi-Fi 6"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:34
+msgid "Manual"
+msgstr "手动"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:260
+msgid "Manual Fixed"
+msgstr "手动定频"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:98
+#: htdocs/luci-static/resources/rtl9617c/ui.js:140
+#: htdocs/luci-static/resources/rtl9617c/ui.js:143
+msgid "Max %s"
+msgstr "上限 %s"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:256
+msgid "Max Frequency"
+msgstr "锁定最高频"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:137
+msgid "Max MTU not provided"
+msgstr "MTU 上限未提供"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:14
+msgid "Maximum %d bytes."
+msgstr "最多 %d 字节。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:401
+msgid "Maximum Frequency"
+msgstr "最高频率上限"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:410
+msgid "Maximum frequency cannot be lower than minimum frequency"
+msgstr "最高频率上限不能低于最低频率下限"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:394
+msgid "Minimum Frequency"
+msgstr "最低频率下限"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:304
+msgid "Mismatch"
+msgstr "不一致"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:12
+msgid "Model"
+msgstr "型号"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:433
+msgid "Monitor live CPU frequency, temperature, and hardware OPP steps; adjust settings below and click \"Save & Apply\" to take effect immediately."
+msgstr "实时监控片上频率、温度与硬件 OPP 档位；调整下方策略后点击「保存并应用」即时生效。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:40
+msgid "Multicast"
+msgstr "组播"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:21
+msgid "Multicast Querier"
+msgstr "组播查询器"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:11
+msgid "Multicast Settings on Existing Bridges"
+msgstr "现有网桥的组播设置"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:436
+msgid "NI Network Interface"
+msgstr "NI 网络接口层"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:52
+msgid "No LOID auth result received"
+msgstr "未收到 LOID 认证结果"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:116
+msgid "No LOS"
+msgstr "未失光"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:79
+msgid "No OAM authentication sessions yet; awaiting logical link registration."
+msgstr "暂无 OAM 认证会话，等待逻辑链路注册。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:44
+msgid "No OMCI GEM service channels to display yet. EPON uses LLIDs instead of GEM."
+msgstr "尚无可展示的 OMCI GEM 业务通道。EPON 使用 LLID，不使用 GEM。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:44
+msgid "No OMCI multicast channels obtained yet. This does not mean IPTV is unavailable on the line; check EPON services and local VLANs in Interfaces."
+msgstr "尚未取得 OMCI 组播通道。不代表线路没有 IPTV；EPON 业务和本地 VLAN 请在接口管理中核对。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:125
+msgid "No TX Fault"
+msgstr "无发射故障"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:226
+msgid "No cpufreq policy interface detected."
+msgstr "未检测到 cpufreq 策略接口。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:77
+msgid "No incoming optical signal detected. Check the fiber and uplink."
+msgstr "未检测到接收光信号，请检查光纤与上联线路。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:31
+msgid "No native device-type bridges found yet. Edit legacy interface bridge configs in Interfaces."
+msgstr "尚未发现原生 device 类型的网桥。旧式接口配置请在原生接口管理中编辑。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:240
+msgid "No physical link"
+msgstr "无物理连接"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:300
+msgid "No target frequency set"
+msgstr "尚未指定固定频率"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:241
+msgid "Normal"
+msgstr "温度正常"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:329
+msgid "Not Enabled"
+msgstr "未开启"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:30
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:285
+msgid "Not Ready"
+msgstr "未就绪"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:48
+msgid "Not disabled by default. Enable only if the line does not support enhanced security; independent of OMCC version."
+msgstr "默认不禁用。仅在线路不支持增强认证时开启，与 OMCC 版本独立设置。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:116
+#: htdocs/luci-static/resources/rtl9617c/status.js:125
+#: htdocs/luci-static/resources/rtl9617c/ui.js:42
+#: htdocs/luci-static/resources/rtl9617c/ui.js:52
+#: htdocs/luci-static/resources/rtl9617c/ui.js:82
+#: htdocs/luci-static/resources/rtl9617c/ui.js:90
+#: htdocs/luci-static/resources/rtl9617c/ui.js:140
+#: htdocs/luci-static/resources/rtl9617c/ui.js:144
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:12
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:13
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:15
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:17
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:26
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:29
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:30
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:94
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:204
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:209
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:246
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:249
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:252
+msgid "Not provided"
+msgstr "未提供"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:79
+msgid "Note: EPON OLTs typically complete LLID allocation and CTC OAM provisioning for any ONU MAC (which vendor firmware reports as OLT registered/authenticated). ISPs may enforce MAC or broadband account binding at the service VLAN / BRAS layer; verify WAN connectivity accordingly."
+msgstr "说明：EPON OLT 通常对任意 ONU MAC 完成 LLID 分配与 CTC OAM 配置下发（原厂固件据此显示 OLT 已注册/已认证）；运营商对备案 MAC 或宽带账号的绑定校验可能在业务 VLAN / BRAS 层生效，请结合 WAN 接口连通状态判断。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:59
+msgid "O5 means the optical link is activated; service usability still depends on OLT provisioning and WAN configuration."
+msgstr "O5 表示光链路已激活；业务是否可用仍取决于 OLT 下发和 WAN 配置。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:71
+msgid "OAM Discovery"
+msgstr "OAM 发现"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:74
+msgid "OAM Model ID"
+msgstr "OAM 型号标识"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:73
+msgid "OLT Auth Result"
+msgstr "OLT 认证结果"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:61
+#: htdocs/luci-static/resources/rtl9617c/ui.js:64
+msgid "OLT Authenticated"
+msgstr "OLT 认证通过"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:56
+msgid "OLT LOID Auth"
+msgstr "OLT LOID 认证"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:30
+msgid "OLT Multicast Channels"
+msgstr "OLT 组播通道"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:64
+msgid "OLT Provisioned"
+msgstr "OLT 配置已下发"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:74
+msgid "OLT Provisioning (Vendor Criteria)"
+msgstr "OLT 配置下发（原厂判据）"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:108
+msgid "OLT completed OAM discovery and CTC service provisioning (vendor pass criteria for OLT registration). Some ISPs validate unregistered MACs at the upper VLAN/BRAS layer rather than OAM; verify actual WAN connectivity."
+msgstr "OLT 已完成 OAM 发现与 CTC 业务配置下发（原厂判据视为 OLT 注册成功）；部分运营商不在 OLT OAM 层拦截未备案 MAC，而在上层 VLAN/BRAS 放行数据，请以 WAN 拨号连通为准。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:103
+msgid "OLT rejected LOID authentication. Check your LOID and password."
+msgstr "OLT 拒绝 LOID 认证，请核对 LOID 和密码。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:103
+msgid "OLT rejected authentication. Check your ONU MAC address or ISP credentials."
+msgstr "OLT 拒绝认证，请核对 ONU MAC 地址或运营商认证参数。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:91
+msgid "OLT returned LOID auth status code: %s. Verify your ISP credentials."
+msgstr "OLT 返回 LOID 认证状态码：%s。请核对运营商认证参数。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:107
+msgid "OLT returned a CTC authentication pass result; if your ISP also checks MAC or account credentials at the service layer, verify your WAN dial-up or service status."
+msgstr "OLT 已返回 CTC 认证通过结果；若运营商在业务层校验 MAC/账号，请同时确认 WAN 拨号或业务通道状态。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:46
+msgid "OLT-Provisioned GEM Service Channels"
+msgstr "OLT 下发的 GEM 业务通道"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:36
+msgid "OMCC Version"
+msgstr "OMCC 版本"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:103
+msgid "OMCI Enhanced Auth PSK"
+msgstr "OMCI 增强认证 PSK"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:58
+msgid "OMCI Error Code"
+msgstr "OMCI 错误码"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:78
+msgid "OMCI Operator ID"
+msgstr "OMCI 运营商 ID"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:57
+msgid "OMCI RX / TX"
+msgstr "OMCI 收 / 发"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:55
+msgid "OMCI Status"
+msgstr "OMCI 状态"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:89
+msgid "OMCI Unavailable"
+msgstr "OMCI 状态不可用"
+
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:3
+msgid "ONU"
+msgstr "ONU"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:58
+msgid "ONU MAC Address"
+msgstr "ONU MAC 地址"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:70
+msgid "ONU Serial Number (SN)"
+msgstr "ONU 序列号（SN）"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:34
+msgid "Off"
+msgstr "关闭"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+msgid "Offload Mode"
+msgstr "卸载模式"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:360
+msgid "Offload flows to FE"
+msgstr "下发流表到 FE"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:27
+msgid "On-Demand (ondemand)"
+msgstr "按需调频 (ondemand)"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:18
+msgid "On-Demand (ondemand, scales dynamically with load)"
+msgstr "按需调频 (ondemand，按负载自动升降频)"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:120
+msgid "Only configured values are shown here, not live connection status. Configure dial-up, IPv6, VLANs, and bridging in Interfaces."
+msgstr "这里仅展示配置值，不代表实时连接状态。拨号、IPv6、VLAN 和桥接统一在原生接口管理中设置。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:121
+msgid "Open Interfaces →"
+msgstr "打开接口管理 →"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:30
+msgid "Optical Calibration"
+msgstr "光学校准"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:17
+msgid "Optical Calibration / Telemetry"
+msgstr "光学校准 / 遥测"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:26
+msgid "Optical Link"
+msgstr "光链路"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:29
+msgid "Optical TX"
+msgstr "光口发射"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:75
+msgid "Optical TX Fault"
+msgstr "光模块发射故障"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:27
+msgid "Optical Temperature"
+msgstr "光模块温度"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:19
+msgid "Optical link, service networks, and wireless at a glance. Interface up does not imply Internet reachability."
+msgstr "光链路、业务网络与无线，集中查看。接口连接不等于互联网可达。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:75
+msgid "Optical module reported TX Fault. Check Diagnostics."
+msgstr "光模块报告 TX Fault，请检查高级诊断。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:84
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:106
+msgid "Optional"
+msgstr "选填"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:622
+msgid "Other %d"
+msgstr "其他 %d"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:398
+msgid "PE Packet Edit"
+msgstr "PE 报文编辑"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:72
+msgid "PLOAM Password"
+msgstr "PLOAM 密码"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:119
+msgid "PON / LIVE OPTICAL LINK"
+msgstr "PON / 实时光链路"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:445
+msgid "PON Port"
+msgstr "PON 光口"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:181
+msgid "PON Port MTU / Max"
+msgstr "PON 口 MTU / 上限"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:158
+msgid "PON Queues TX %s / RX %s"
+msgstr "PON 队列 TX %s / RX %s"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:33
+msgid "PPPoE IPv6 Negotiation"
+msgstr "PPPoE IPv6 协商"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:24
+msgid "PPPoE Password"
+msgstr "PPPoE 密码"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:24
+msgid "PPPoE Username"
+msgstr "PPPoE 用户名"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:431
+msgid "PROCESSOR FREQUENCY & THERMAL · QUAD-CORE CORTEX-A55 SHARED CLOCK"
+msgstr "处理器频率与热管理 · 四核 CORTEX-A55 共享时钟域"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:135
+msgid "Partial (LAN Max %s / PON %s)"
+msgstr "部分就绪 (LAN 上限 %s / PON %s)"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:550
+msgid "Path"
+msgstr "通道方向"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:345
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:353
+msgid "Pause Refresh"
+msgstr "暂停刷新"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:294
+msgid "Pending Apply"
+msgstr "待应用"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:26
+msgid "Performance (performance)"
+msgstr "性能模式 (performance)"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:17
+msgid "Performance (performance, locked at max 1200 MHz)"
+msgstr "性能模式 (performance，锁定最高频 1200 MHz)"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:45
+msgid "Physical Ports & Cumulative Traffic"
+msgstr "物理端口与累计流量"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:172
+msgid "Physical interfaces allow max_mtu (%s, Baby Jumbo ready). Set PON/WAN MTU to 1508 (PPPoE 1500) in Internet or Interfaces."
+msgstr "物理接口已放开 max_mtu（%s，Baby Jumbo 就绪），可在上网配置或接口管理中将 PON/WAN MTU 设为 1508（PPPoE 1500）。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:171
+msgid "Physical interfaces support and have enabled >= %s MTU, satisfying RFC 4638 full 1500-byte PPPoE payload."
+msgstr "物理接口支持并已启用 >= %s MTU，满足 RFC 4638 PPPoE 满 1500 载荷。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:18
+msgid "Ping / Traceroute / DNS"
+msgstr "Ping / 路由 / DNS"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:108
+msgid "Please enter a 32-char hexadecimal key."
+msgstr "请输入 32 位十六进制密钥。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:62
+msgid "Please enter a non-zero unicast MAC address, or leave empty to use the factory identity."
+msgstr "请输入非零的单播 MAC 地址，或留空使用原厂身份。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:100
+msgid "Please enter a valid 12-char SN or 16-char hex SN."
+msgstr "请输入有效的 12 字符 SN 或 16 位十六进制 SN。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:552
+msgid "Policer"
+msgstr "限速策略"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:21
+msgid "Port MAC Addresses"
+msgstr "端口 MAC 地址"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:29
+msgid "Power Save (powersave)"
+msgstr "省电模式 (powersave)"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:20
+msgid "Power Save (powersave, locked at minimum frequency)"
+msgstr "省电模式 (powersave，锁定最低频)"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:258
+msgid "Power Saving"
+msgstr "节能模式"
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:9
+msgid "Preserves raw error codes, session liveness, and full multi-GEM data for troubleshooting line issues."
+msgstr "保留原始错误码、会话存活状态和完整多 GEM 数据，便于定位线路问题。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:22
+msgid "Preserves the native factory identity and calibration import flow. This page does not write MTD/UBI partitions or read identity data from other devices."
+msgstr "保留本机原厂身份与校准导入流程。此页不提供 MTD/UBI 写入，也不读取其他设备的身份数据。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:19
+msgid "Protocol"
+msgstr "协议"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:220
+msgid "Protocol / Device"
+msgstr "协议 / 设备"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:413
+msgid "QM Queue Mgr"
+msgstr "QM 队列管理"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:148
+msgid "Quad-core Cortex-A55 shared clock domain"
+msgstr "四核 Cortex-A55 共享时钟域"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:222
+msgid "Quad-core Cortex-A55 shared clock domain."
+msgstr "四核 Cortex-A55 共享时钟域。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:42
+msgid "Queue"
+msgstr "队列"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:184
+msgid "Queues & Offload Features"
+msgstr "队列与分段特性"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:377
+msgid "RTL9617C Hardware Offload Engine Data Path"
+msgstr "RTL9617C 硬件卸载引擎内部通路"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:109
+msgid "RX / TX"
+msgstr "接收 / 发送"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:77
+msgid "RX / TX Frames"
+msgstr "接收 / 发送帧"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:77
+#: htdocs/luci-static/resources/rtl9617c/status.js:115
+msgid "RX LOS"
+msgstr "接收失光"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:315
+msgid "Range Pending"
+msgstr "范围待应用"
+
+#: root/usr/share/rpcd/acl.d/luci-rtl9617c-system.json:3
+msgid "Read SoC temperature and configure the shared CPU frequency"
+msgstr "读取 SoC 温度并配置共享 CPU 频率"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:333
+msgid "Read failed"
+msgstr "读取失败"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:9
+msgid "Reads the active hardware identity without writing to factory partitions or exporting credentials."
+msgstr "读取设备实际生效的身份，不写入原厂分区，不导出认证密码。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:163
+msgid "Real-time sampling from on-chip cpu-thermal sensor; < 75 °C recommended for daily operation."
+msgstr "片上 cpu-thermal 传感器实时采样，建议日常 < 75 °C。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:361
+msgid "Refresh Now"
+msgstr "立即刷新"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:235
+msgid "Refresh Status"
+msgstr "刷新状态"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:249
+msgid "Refresh failed; the state below is from the last successful read, not live. Configuration editing is unaffected."
+msgstr "刷新失败，以下状态为上次成功读取的数据，并非当前状态。配置编辑不受影响。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:70
+msgid "Registered"
+msgstr "已注册"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:109
+msgid "Registered · Awaiting Auth"
+msgstr "已注册 · 等待认证"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:107
+msgid "Registered · OLT Authenticated"
+msgstr "已注册 · OLT 认证通过"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:108
+msgid "Registered · OLT Provisioned"
+msgstr "已注册 · OLT 配置已下发"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:70
+msgid "Registration"
+msgstr "注册"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:35
+msgid "Registration & Authentication"
+msgstr "注册与认证"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:345
+msgid "Resume Refresh"
+msgstr "恢复刷新"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:399
+msgid "Rewrite"
+msgstr "改写"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:40
+msgid "Running"
+msgstr "运行中"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:28
+msgid "Rx / Tx Power"
+msgstr "收 / 发光功率"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:39
+msgid "Rx Optical Power"
+msgstr "Rx 光功率"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:124
+msgid "Rx Signal"
+msgstr "接收光信号"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+msgid "SW Off"
+msgstr "软件关"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+msgid "SW On"
+msgstr "软件开"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:609
+#: htdocs/luci-static/resources/rtl9617c/status.js:612
+msgid "Sampling…"
+msgstr "采样中…"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:296
+msgid "Saved governor is %s, active is %s; click \"Save & Apply\" below to apply."
+msgstr "已保存策略为 %s，当前运行为 %s；点击底部「保存并应用」生效。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:289
+msgid "Scaling Error"
+msgstr "调频异常"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:286
+msgid "Scaling driver not ready"
+msgstr "调频驱动未就绪"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:301
+msgid "Select a target fixed frequency below and click \"Save & Apply\"."
+msgstr "请在下方选择目标固定频率并点击「保存并应用」。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:35
+msgid "Select according to your ISP line; the banner above shows the actual active protocol and does not change until applied."
+msgstr "按运营商线路选择；顶部显示设备实际运行的协议，不随未应用的选择改变。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:87
+msgid "Service Config Error"
+msgstr "业务配置异常"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:58
+msgid "Service Error Code"
+msgstr "业务错误码"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:37
+msgid "Service Networks"
+msgstr "业务网络"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:57
+msgid "Service Paths"
+msgstr "业务通道数"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:65
+msgid "Session Expired"
+msgstr "会话已失效"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:29
+msgid "Shut Off"
+msgstr "已关闭"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:355
+msgid "Slow-path DMA RX"
+msgstr "慢路径 DMA 收包"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:362
+msgid "Slow-path TX"
+msgstr "慢路径调度发送"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:327
+msgid "Software Flowtable only (via CPU)"
+msgstr "仅软件 Flowtable（经 CPU 转发）"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:584
+msgid "Software Only"
+msgstr "仅软件卸载"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:77
+msgid "Software Version"
+msgstr "软件版本"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:107
+msgid "Speed"
+msgstr "速率"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:136
+msgid "Standard MTU (Max %s)"
+msgstr "标准 MTU (上限 %s)"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:327
+msgid "Standard kernel forwarding (via CPU)"
+msgstr "普通内核转发（经 CPU 转发）"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:20
+msgid "Static Address"
+msgstr "静态地址"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:19
+#: root/usr/share/luci/menu.d/luci-app-rtl9617c-pon.json:8
+msgid "Status"
+msgstr "运行状态"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:79
+msgid "Status Unavailable"
+msgstr "状态不可用"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:40
+msgid "Stopped"
+msgstr "未运行"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:25
+msgid "Subnet Mask"
+msgstr "子网掩码"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:12
+msgid "System"
+msgstr "系统"
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:18
+msgid "System Log"
+msgstr "系统日志"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:125
+msgid "TX Alarm"
+msgstr "发射告警"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:125
+msgid "TX Fault"
+msgstr "发射故障"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:306
+msgid "Target %s, actual %s; please re-apply or check logs."
+msgstr "目标 %s，当前实测 %s，请重新应用或查看日志。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:389
+msgid "Target Fixed Frequency"
+msgstr "目标固定频率"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:305
+msgid "Target differs from actual"
+msgstr "目标与实测不符"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:37
+msgid "Temperature"
+msgstr "温度"
+
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:19
+msgid "Temperature, voltage, and optical power come from optical module A2h; — is shown when Tx/Rx is 0."
+msgstr "温度/电压/光功率来自光模块 A2h；Tx/Rx 为 0 时显示 —。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:573
+msgid "The FE hardware flow table is currently empty, or the debug interface returned no entries."
+msgstr "当前 FE 硬件流表为空，或调试接口未返回流表条目。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/diagnostics.js:19
+msgid "The snapshot only contains runtime state read by this page and excludes LOID, passwords, PSK, and factory images; it may still include line and service identifiers."
+msgstr "快照只包含本页读取的运行状态，不导出 LOID、密码、PSK 或原厂镜像；仍可能包含线路与业务标识。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:38
+msgid "Tx Bias"
+msgstr "Tx 偏置"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:38
+msgid "Tx Optical Power"
+msgstr "Tx 光功率"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:549
+msgid "Type"
+msgstr "类型"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:287
+msgid "Unable to read live frequency from /sys/devices/system/cpu/cpufreq/policy0."
+msgstr "未读取到 /sys/devices/system/cpu/cpufreq/policy0 实时频率。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:177
+msgid "Unable to read physical interface max_mtu (missing ip-full or interface not registered); showing active MTU only."
+msgstr "未能读取物理接口 max_mtu（缺少 ip-full 或接口未注册），当前仅展示活动 MTU。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:89
+msgid "Unable to read the latest state from a live control process; historical data remains in Diagnostics. Check the system log."
+msgstr "未取得存活控制进程的最新状态；历史数据保留在高级诊断中，请检查系统日志。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:331
+#: htdocs/luci-static/resources/rtl9617c/status.js:651
+#: htdocs/luci-static/resources/rtl9617c/ui.js:55
+msgid "Unavailable"
+msgstr "不可用"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:113
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:116
+#: htdocs/luci-static/resources/view/rtl9617c/hardware.js:17
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:18
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:299
+msgid "Unconfigured"
+msgstr "未配置"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:154
+msgid "Unconfigured / Disconnected"
+msgstr "未配置 / 未连接"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:40
+msgid "Unicast"
+msgstr "单播"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:262
+msgid "Unknown"
+msgstr "未知"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:70
+msgid "Unregistered"
+msgstr "未注册"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:653
+msgid "Up / Down Paths"
+msgstr "上行 / 下行通道"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:91
+msgid "Up to 14 bytes in ITU-T modes, up to 16 bytes in EPON modes."
+msgstr "ITU-T 模式最多 14 字节，EPON 模式最多 16 字节。"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:181
+msgid "Updated %s · 2s refresh"
+msgstr "更新于 %s · 2 秒刷新"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:236
+msgid "Updated %s · 5s refresh"
+msgstr "更新于 %s · 5 秒刷新"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:42
+msgid "Upstream AES"
+msgstr "上行加密"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:453
+msgid "Upstream Fast Path: LAN → NI → FE → PE → QM → NI → PON"
+msgstr "上行直通：LAN → NI → FE → PE → QM → NI → PON"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:11
+msgid "Uses Linux bridge / netifd IGMP snooping and querier settings directly. Does not automatically remove LAN ports, create service VLANs, or modify the firewall."
+msgstr "直接使用 Linux bridge / netifd 的 IGMP snooping 与 querier 设置。不会自动摘除 LAN 口、创建业务 VLAN 或修改防火墙。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:123
+msgid "Uses native device configuration. Modify only ISP-required parameters; the optical link may briefly reconnect when applied."
+msgstr "使用本机原生配置。只修改运营商要求的参数，应用时光链路可能短暂中断。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:56
+msgid "Usually 1."
+msgstr "通常为 1。"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:42
+msgid "Usually keep the default. Try 0x86 if the OLT is incompatible during OMCI provisioning."
+msgstr "通常保持默认。OLT 在 OMCI 配置阶段不兼容时，可尝试 0x86。"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:55
+msgid "Valid"
+msgstr "有效"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:73
+msgid "Vendor ID"
+msgstr "厂商 ID"
+
+#: htdocs/luci-static/resources/view/rtl9617c/iptv.js:29
+msgid "Verify OLT-provisioned multicast channels first, then configure local service VLANs and set-top box ports."
+msgstr "先核对 OLT 下发的组播通道，再配置本地业务 VLAN 和机顶盒端口。"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:41
+msgid "View live interface addresses and configure the existing WAN. Bridging, VLANs, IPv6, and advanced firewall settings remain managed by native OpenWrt."
+msgstr "查看接口实时地址，配置现有 WAN。桥接、VLAN、IPv6 与防火墙高级设置仍由原生 OpenWrt 管理。"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:37
+msgid "Voltage"
+msgstr "电压"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:21
+msgid "WAN Device"
+msgstr "WAN 设备"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:28
+msgid "WAN Interface"
+msgstr "上网接口"
+
+#: htdocs/luci-static/resources/rtl9617c/ui.js:183
+msgid "WAN Interface MTU"
+msgstr "WAN 接口 MTU"
+
+#: htdocs/luci-static/resources/view/network/rtl9617c-pon.js:112
+msgid "WAN Protocol"
+msgstr "WAN 配置协议"
+
+#: htdocs/luci-static/resources/view/rtl9617c/internet.js:11
+msgid "WAN Settings"
+msgstr "WAN 参数"
+
+#: htdocs/luci-static/resources/view/system/rtl9617c-cpu.js:419
+msgid "What Is This? (CPU Governor & Selection Guide)"
+msgstr "这是什么？（CPU 调频策略与选型指南）"
+
+#: htdocs/luci-static/resources/view/rtl9617c/overview.js:39
+msgid "Wireless Networks"
+msgstr "无线网络"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:336
+msgid "↑ %d flows"
+msgstr "↑ %d流"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:336
+msgid "↑ Upstream"
+msgstr "↑ 上行"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:337
+msgid "↓ %d flows"
+msgstr "↓ %d流"
+
+#: htdocs/luci-static/resources/rtl9617c/status.js:337
+msgid "↓ Downstream"
+msgstr "↓ 下行"
+
+msgid "Temperature read error"
+msgstr "温度读取失败"
+
+msgid "Temperature unavailable"
+msgstr "温度未提供"

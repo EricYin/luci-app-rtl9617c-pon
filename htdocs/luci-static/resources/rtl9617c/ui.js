@@ -37,49 +37,49 @@ function paths(data) {
 function services(data, multicastOnly) {
 	var available = paths(data).filter(function(path) { return !multicastOnly || path.multicast === '1'; });
 	return available.length ? grid(available.map(function(path) {
-		return status.card('GEM ' + path.gem, status.badge(path.multicast === '1' ? '组播' : '单播'), status.rows([
+		return status.card('GEM ' + path.gem, status.badge(path.multicast === '1' ? _('Multicast') : _('Unicast')), status.rows([
 			['VLAN', status.value(path.vlan)], ['Alloc-ID / T-CONT', status.value(path.alloc) + ' / ' + status.value(path.tcont)],
-			['队列', status.value(path.queue)], ['上行加密', path.upstream_aes == null ? '未提供' : path.upstream_aes === '1' ? '启用' : '未启用']
+			[_('Queue'), status.value(path.queue)], [_('Upstream AES'), path.upstream_aes == null ? _('Not provided') : path.upstream_aes === '1' ? _('Enabled') : _('Disabled')]
 		]));
-	})) : note(multicastOnly ? '尚未取得 OMCI 组播通道。不代表线路没有 IPTV；EPON 业务和本地 VLAN 请在接口管理中核对。' : '尚无可展示的 OMCI GEM 业务通道。EPON 使用 LLID，不使用 GEM。');
+	})) : note(multicastOnly ? _('No OMCI multicast channels obtained yet. This does not mean IPTV is unavailable on the line; check EPON services and local VLANs in Interfaces.') : _('No OMCI GEM service channels to display yet. EPON uses LLIDs instead of GEM.'));
 }
 function authentication(data) {
 	var mode = (data.serdes || {}).mode;
-	if (!status.modes[mode]) return note('线路协议尚未就绪，暂无认证状态。');
+	if (!status.modes[mode]) return note(_('Line protocol not ready; authentication status unavailable.'));
 	if (['gpon', 'xgpon', 'xgspon'].indexOf(mode) !== -1) {
 		var mac = data.mac || {}, activation = data.activation || {}, path = data.data_path || {};
 		var live = status.omciLive(data), omci = live ? data.omci : {};
-		var auth = omci.auth == null ? '未提供' : +omci.auth === 1 ? '认证通过' : +omci.auth > 1 ? '认证未通过（状态码 ' + omci.auth + '）' : '未收到 LOID 认证结果';
+		var auth = omci.auth == null ? _('Not provided') : +omci.auth === 1 ? _('Authenticated') : +omci.auth > 1 ? _('Authentication Failed (code %s)').format(omci.auth) : _('No LOID auth result received');
 		return E('div', {}, [status.rows([
-			['激活状态', status.value(mac.activation)], ['ONU-ID', status.value(mode === 'gpon' ? mac.onu_id : activation.omcc_onu_id)],
-			['OMCI 状态', status.badge(live ? '有效' : '不可用', live ? 'good' : 'danger')],
-			['OLT LOID 认证', auth],
-			['业务通道数', status.value(path.paths)], ['OMCI 收 / 发', status.value(omci.rx) + ' / ' + status.value(omci.tx)],
-			['OMCI 错误码', status.value(omci.error)], ['业务错误码', status.value(path.error)]
-		]), note('O5 表示光链路已激活；业务是否可用仍取决于 OLT 下发和 WAN 配置。')]);
+			[_('Activation State'), status.value(mac.activation)], ['ONU-ID', status.value(mode === 'gpon' ? mac.onu_id : activation.omcc_onu_id)],
+			[_('OMCI Status'), status.badge(live ? _('Valid') : _('Unavailable'), live ? 'good' : 'danger')],
+			[_('OLT LOID Auth'), auth],
+			[_('Service Paths'), status.value(path.paths)], [_('OMCI RX / TX'), status.value(omci.rx) + ' / ' + status.value(omci.tx)],
+			[_('OMCI Error Code'), status.value(omci.error)], [_('Service Error Code'), status.value(path.error)]
+		]), note(_('O5 means the optical link is activated; service usability still depends on OLT provisioning and WAN configuration.'))]);
 	}
-	var labels = { waiting: '等待认证', challenge: '正在认证', accepted: 'OLT 认证通过', rejected: '认证拒绝' };
+	var labels = { waiting: _('Awaiting Auth'), challenge: _('Authenticating'), accepted: _('OLT Authenticated'), rejected: _('Auth Rejected') };
 	return (data.oam_ports || []).length ? E('div', {}, [E('div', { class: 'tyf-sessions' }, data.oam_ports.map(function(port) {
 		var accepted = port.live && port.registered && port.discovery_stable && port.auth_state === 'accepted';
-		var acceptedText = port.auth_source === 'ctc-result' ? 'OLT 认证通过' : 'OLT 配置已下发';
-		var text = !port.live ? '会话已失效' : !port.registered ? '等待注册' :
-			port.auth_state === 'accepted' ? (accepted ? acceptedText : '等待 OAM 发现') : labels[port.auth_state] || '等待状态';
+		var acceptedText = port.auth_source === 'ctc-result' ? _('OLT Authenticated') : _('OLT Provisioned');
+		var text = !port.live ? _('Session Expired') : !port.registered ? _('Awaiting Registration') :
+			port.auth_state === 'accepted' ? (accepted ? acceptedText : _('Awaiting OAM Discovery')) : labels[port.auth_state] || _('Awaiting Status');
 		return E('section', { class: 'tyf-session' }, [
 			E('div', { class: 'tyf-card-head' }, [E('strong', {}, ['LLID ' + status.value(port.llid)]), status.badge(text,
 				accepted ? 'good' : port.live && port.registered && port.auth_state === 'rejected' ? 'danger' : 'muted')]),
-			status.rows([['注册', port.live && port.registered ? '已注册' : '未注册'],
-				['OAM 发现', port.live && port.discovery_stable ? '已完成' : '未完成'],
-				[_('认证方式'), port.auth_mode === 'mac' ? 'MAC' : port.auth_mode === 'loid' ? 'LOID' : '—'],
-				[_('认证依据'), port.auth_source === 'ctc-result' ? _('OLT 认证结果') :
-					port.auth_source === 'ctc-set-progress' ? _('OLT 配置下发（原厂判据）') : _('等待结果')],
-				[_('认证持续时间'), accepted && port.auth_duration_ms != null ?
-					Math.floor(port.auth_duration_ms / 1000) + ' ' + _('秒') : '—'],
-				['接收 / 发送帧', status.value(port.rx_frames) + ' / ' + status.value(port.tx_frames)]])
+			status.rows([[_('Registration'), port.live && port.registered ? _('Registered') : _('Unregistered')],
+				[_('OAM Discovery'), port.live && port.discovery_stable ? _('Completed') : _('Incomplete')],
+				[_('Auth Method'), port.auth_mode === 'mac' ? 'MAC' : port.auth_mode === 'loid' ? 'LOID' : '—'],
+				[_('Auth Source'), port.auth_source === 'ctc-result' ? _('OLT Auth Result') :
+					port.auth_source === 'ctc-set-progress' ? _('OLT Provisioning (Vendor Criteria)') : _('Awaiting Result')],
+				[_('Auth Duration'), accepted && port.auth_duration_ms != null ?
+					_('%d s').format(Math.floor(port.auth_duration_ms / 1000)) : '—'],
+				[_('RX / TX Frames'), status.value(port.rx_frames) + ' / ' + status.value(port.tx_frames)]])
 		]);
-	})), note('说明：EPON OLT 通常对任意 ONU MAC 完成 LLID 分配与 CTC OAM 配置下发（原厂固件据此显示 OLT 已注册/已认证）；运营商对备案 MAC 或宽带账号的绑定校验可能在业务 VLAN / BRAS 层生效，请结合 WAN 接口连通状态判断。')]) : note('暂无 OAM 认证会话，等待逻辑链路注册。');
+	})), note(_('Note: EPON OLTs typically complete LLID allocation and CTC OAM provisioning for any ONU MAC (which vendor firmware reports as OLT registered/authenticated). ISPs may enforce MAC or broadband account binding at the service VLAN / BRAS layer; verify WAN connectivity accordingly.'))]) : note(_('No OAM authentication sessions yet; awaiting logical link registration.'));
 }
 function formatDiagValue(val) {
-	if (val == null) return '未提供';
+	if (val == null) return _('Not provided');
 	if (typeof val === 'object') return JSON.stringify(val);
 	return String(val);
 }
@@ -87,7 +87,7 @@ function diagnostics(data) {
 	data = data || {};
 	return ['service', 'state', 'serdes', 'optical', 'bosa', 'mac', 'activation', 'mpcp', 'oam_ports', 'omci', 'data_path', 'fec', 'traffic', 'deepq', 'fe', 'fe_resources', 'entropy', 'mtu_summary', 'puc', 'pdc', 'llids'].map(function(name) {
 		var entry = name === 'data_path' ? data.data_path_raw : data[name];
-		return '[' + name + ']\n' + (entry == null ? '未提供' : Array.isArray(entry) ? JSON.stringify(entry, null, 2) : typeof entry === 'object'
+		return '[' + name + ']\n' + (entry == null ? _('Not provided') : Array.isArray(entry) ? JSON.stringify(entry, null, 2) : typeof entry === 'object'
 			? Object.keys(entry).map(function(key) { return key + ': ' + formatDiagValue(entry[key]); }).join('\n') : entry);
 	}).join('\n\n');
 }
@@ -95,7 +95,7 @@ function formatPortMtu(port) {
 	if (port.mtu == null) return '—';
 	var parts = [String(port.mtu)];
 	if (port.max_mtu != null && isFinite(Number(port.max_mtu)))
-		parts.push('上限 ' + port.max_mtu);
+		parts.push(_('Max %s').format(port.max_mtu));
 	if (port.qdisc)
 		parts.push(port.qdisc);
 	return parts.join(' · ');
@@ -103,11 +103,11 @@ function formatPortMtu(port) {
 function ports(data) {
 	return grid((data.ports || []).map(function(port) {
 		var up = port.present && port.carrier === '1', stats = port.statistics || {};
-		return status.card(port.device, status.badge(!port.present ? '不存在' : up ? '已连接' : '未连接', up ? 'good' : 'muted'), status.rows([
-			['速率', up && Number(port.speed) > 0 ? port.speed + ' Mbps' : '—'],
-			['MTU / 队列', formatPortMtu(port)],
-			['接收 / 发送', bytes(stats.rx_bytes) + ' / ' + bytes(stats.tx_bytes)],
-			['丢包 RX / TX', status.value(stats.rx_dropped) + ' / ' + status.value(stats.tx_dropped)]
+		return status.card(port.device, status.badge(!port.present ? _('Absent') : up ? _('Connected') : _('Disconnected'), up ? 'good' : 'muted'), status.rows([
+			[_('Speed'), up && Number(port.speed) > 0 ? port.speed + ' Mbps' : '—'],
+			[_('MTU / Queue'), formatPortMtu(port)],
+			[_('RX / TX'), bytes(stats.rx_bytes) + ' / ' + bytes(stats.tx_bytes)],
+			[_('Dropped RX / TX'), status.value(stats.rx_dropped) + ' / ' + status.value(stats.tx_dropped)]
 		]));
 	}));
 }
@@ -129,19 +129,19 @@ function mtuSummary(snapshotData) {
 	var configured = summary.configured === true || (ponMtu != null && ponMtu >= threshold);
 
 	var badgeText = supported === true
-		? (configured ? 'Baby Jumbo 已启用' : 'Baby Jumbo 就绪')
+		? (configured ? _('Baby Jumbo Enabled') : _('Baby Jumbo Ready'))
 		: supported === false
 			? (lanMax != null && lanMax >= threshold
-				? ('部分就绪 (LAN 上限 ' + lanMax + ' / PON ' + status.value(ponMax) + ')')
-				: ('标准 MTU (上限 ' + (ponMax != null ? ponMax : 1500) + ')'))
-			: 'MTU 上限未提供';
+				? _('Partial (LAN Max %s / PON %s)').format(lanMax, status.value(ponMax))
+				: _('Standard MTU (Max %s)').format(ponMax != null ? ponMax : 1500))
+			: _('Max MTU not provided');
 	var badgeTone = supported === true ? 'good' : (supported === false && lanMax != null && lanMax >= threshold ? 'warn' : 'muted');
 
-	var ponText = ponMtu == null ? '未提供' : (ponMtu + (ponMax != null ? (' / 上限 ' + ponMax) : ''));
+	var ponText = ponMtu == null ? _('Not provided') : (ponMtu + (ponMax != null ? (' / ' + _('Max %s').format(ponMax)) : ''));
 	var lanText = lanPorts.length
 		? lanPorts.map(function(p) { return p.device + ':' + status.value(p.mtu); }).join(' · ') +
-			(lanMax != null ? (' (上限 ' + lanMax + ')') : '')
-		: '未提供';
+			(lanMax != null ? (' (' + _('Max %s').format(lanMax) + ')') : '')
+		: _('Not provided');
 
 	var wanNets = ((snapshotData && snapshotData.networks) || []).filter(function(n) {
 		return n && (n.name === 'wan' || n.name === 'wan6' || /^pppoe-/.test(n.device || ''));
@@ -151,11 +151,11 @@ function mtuSummary(snapshotData) {
 		var dev = n.device;
 		var m = dev && netMtus[dev] && netMtus[dev].mtu != null ? netMtus[dev].mtu : null;
 		return n.name + (dev ? ('(' + dev + ')') : '') + (m != null ? (': ' + m) : '');
-	}).join(' · ') : '未配置 / 未连接';
+	}).join(' · ') : _('Unconfigured / Disconnected');
 
 	var featParts = [];
 	if (ponPort && (ponPort.tx_queues != null || ponPort.rx_queues != null))
-		featParts.push('PON 队列 TX ' + status.value(ponPort.tx_queues) + ' / RX ' + status.value(ponPort.rx_queues));
+		featParts.push(_('PON Queues TX %s / RX %s').format(status.value(ponPort.tx_queues), status.value(ponPort.rx_queues)));
 	if (ponPort && ponPort.gso_max_size != null)
 		featParts.push('GSO ' + ponPort.gso_max_size + 'B');
 	if (ponPort && ponPort.tso_max_size != null)
@@ -164,24 +164,24 @@ function mtuSummary(snapshotData) {
 		featParts.push('GRO ' + ponPort.gro_max_size + 'B');
 	var feRes = pon.fe_resources || {};
 	if (feRes.mtu)
-		featParts.push('FE MTU 槽 ' + feRes.mtu.used + '/' + feRes.mtu.total);
+		featParts.push(_('FE MTU Slots %s/%s').format(feRes.mtu.used, feRes.mtu.total));
 
 	var help = supported === true
 		? (configured
-			? '物理接口支持并已启用 >= ' + threshold + ' MTU，满足 RFC 4638 PPPoE 满 1500 载荷。'
-			: '物理接口已放开 max_mtu（' + ponMax + '，Baby Jumbo 就绪），可在上网配置或接口管理中将 PON/WAN MTU 设为 1508（PPPoE 1500）。')
+			? _('Physical interfaces support and have enabled >= %s MTU, satisfying RFC 4638 full 1500-byte PPPoE payload.').format(threshold)
+			: _('Physical interfaces allow max_mtu (%s, Baby Jumbo ready). Set PON/WAN MTU to 1508 (PPPoE 1500) in Internet or Interfaces.').format(ponMax))
 		: supported === false
 			? (lanMax != null && lanMax >= threshold
-				? 'LAN 口 max_mtu 已放开至 ' + lanMax + '，但 PON 口上限仍为 ' + status.value(ponMax) + '，需同步放开后方可使用 Baby Jumbo。'
-				: '当前物理接口 max_mtu 为 ' + status.value(ponMax) + '，PPPoE 上限为 1492（未开启 Baby Jumbo）。')
-			: '未能读取物理接口 max_mtu（缺少 ip-full 或接口未注册），当前仅展示活动 MTU。';
+				? _('LAN max_mtu is unlocked to %s, but PON max_mtu is still %s; both must allow >= 1508 for Baby Jumbo.').format(lanMax, status.value(ponMax))
+				: _('Current physical interface max_mtu is %s; PPPoE payload is capped at 1492 (Baby Jumbo inactive).').format(status.value(ponMax)))
+			: _('Unable to read physical interface max_mtu (missing ip-full or interface not registered); showing active MTU only.');
 
-	return status.card('接口 MTU 与硬件特性', status.badge(badgeText, badgeTone), [
+	return status.card(_('Interface MTU & Hardware Features'), status.badge(badgeText, badgeTone), [
 		status.rows([
-			['PON 口 MTU / 上限', ponText],
-			['LAN 口 MTU', lanText],
-			['WAN 接口 MTU', wanText],
-			['队列与分段特性', featParts.length ? featParts.join(' · ') : '—']
+			[_('PON Port MTU / Max'), ponText],
+			[_('LAN Port MTU'), lanText],
+			[_('WAN Interface MTU'), wanText],
+			[_('Queues & Offload Features'), featParts.length ? featParts.join(' · ') : '—']
 		]),
 		note(help)
 	]);
@@ -214,10 +214,10 @@ function snapshot() {
 	});
 }
 function networks(data) {
-	if (data.networkError) return note('网络状态读取失败；未将历史数据作为实时连接状态。');
+	if (data.networkError) return note(_('Failed to read network status; historical data is not shown as live state.'));
 	return grid((data.networks || []).filter(function(net) { return net.name !== 'loopback'; }).map(function(net) {
-		return status.card(net.name, status.badge(net.up ? '接口已连接' : '未连接', net.up ? 'good' : 'muted'), status.rows([
-			['协议 / 设备', net.proto + ' / ' + status.value(net.device)],
+		return status.card(net.name, status.badge(net.up ? _('Interface Up') : _('Disconnected'), net.up ? 'good' : 'muted'), status.rows([
+			[_('Protocol / Device'), net.proto + ' / ' + status.value(net.device)],
 			['IPv4', net.ipv4.length ? net.ipv4.join(' · ') : '—'], ['IPv6', net.ipv6.length ? net.ipv6.join(' · ') : '—']
 		]));
 	}));
@@ -229,11 +229,11 @@ function page(title, description, initial, read, render, form) {
 		if (info && info.model)
 			eyebrow.textContent = info.model + ' / ONU';
 	}).catch(function() {});
-	var warning = E('p', { class: 'alert-message warning', role: 'status', hidden: initial != null }, '状态读取失败，尚无实时数据。配置编辑不受影响。');
+	var warning = E('p', { class: 'alert-message warning', role: 'status', hidden: initial != null }, _('Failed to read status; no live data yet. Configuration editing is unaffected.'));
 	var live = E('div', { class: 'tyf-live' }, initial == null ? null : render(initial));
 	var updated = E('span', { class: 'tyf-updated' });
-	var button = E('button', { type: 'button', class: 'cbi-button', click: refresh }, '刷新状态');
-	function showTime() { updated.textContent = last ? '更新于 ' + last.toLocaleTimeString() + ' · 5 秒刷新' : '等待首次读取'; }
+	var button = E('button', { type: 'button', class: 'cbi-button', click: refresh }, _('Refresh Status'));
+	function showTime() { updated.textContent = last ? _('Updated %s · 5s refresh').format(last.toLocaleTimeString()) : _('Awaiting initial read'); }
 	function refresh() {
 		if (pending) return pending;
 		button.disabled = true;
@@ -246,7 +246,7 @@ function page(title, description, initial, read, render, form) {
 			last = new Date();
 		}).catch(function() {
 			warning.hidden = false;
-			warning.textContent = last ? '刷新失败，以下状态为上次成功读取的数据，并非当前状态。配置编辑不受影响。' : '状态读取失败，尚无实时数据。';
+			warning.textContent = last ? _('Refresh failed; the state below is from the last successful read, not live. Configuration editing is unaffected.') : _('Failed to read status; no live data yet.');
 		}).finally(function() { pending = null; button.disabled = false; showTime(); });
 		return pending;
 	}
