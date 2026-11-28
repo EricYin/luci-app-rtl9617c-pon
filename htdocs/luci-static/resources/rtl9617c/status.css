@@ -25,8 +25,39 @@
 html[data-vt-look-theme] .tyf-pon {
 	--tyf-border-soft: var(--v-line);
 }
+html[data-argon-mode] .tyf-pon {
+	--tyf-border: var(--border-color, #e2e8f0);
+	--tyf-border-2: var(--control-border, #d5dce6);
+	--tyf-border-soft: rgba(50, 50, 93, .08);
+	--tyf-shadow: 0 2px 10px rgba(20, 32, 60, .05), 0 1px 2px rgba(20, 32, 60, .03);
+	--tyf-btn-bg: #ffffff;
+	--tyf-btn-hover: #f6f9fc;
+	--tyf-btn-text: var(--text-strong, #32325d);
+	--tyf-btn-border: #d5dce6;
+	--tyf-thead-bg: #f8fafc;
+	--tyf-row-hover: #f6f9fc;
+}
 .tyf-pon *, .tyf-pon *::before, .tyf-pon *::after { box-sizing: border-box; }
 .tyf-pon .tyf-page-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin: 8px 0 24px; }
+/* Argon paints a 2rem header::after primary banner behind #maincontent; elevate hero into a native card. */
+html[data-argon-mode] .tyf-pon .tyf-page-header {
+	margin: 0;
+	padding: 18px 22px;
+	border: 1px solid var(--tyf-border);
+	border-radius: var(--tyf-radius);
+	background: var(--tyf-surface);
+	box-shadow: var(--tyf-shadow);
+}
+html[data-argon-mode] .tyf-pon :is(.cbi-button, .btn):not(.cbi-button-apply):not(.cbi-button-action):not(.cbi-button-positive):not(.cbi-button-add):not(.cbi-button-save):not(.cbi-button-remove):not(.cbi-button-negative):not(.cbi-button-reset):not(.cbi-button-success):not(.cbi-button-download):not(.cbi-button-edit):not(.cbi-button-reload):not(.cbi-button-link):not(.primary):not(.danger):not(.btn-danger) {
+	background-color: var(--tyf-btn-bg);
+	color: var(--tyf-btn-text);
+	border: 1px solid var(--tyf-btn-border);
+}
+html[data-argon-mode] .tyf-pon :is(.cbi-button, .btn):not(.cbi-button-apply):not(.cbi-button-action):not(.cbi-button-positive):not(.cbi-button-add):not(.cbi-button-save):not(.cbi-button-remove):not(.cbi-button-negative):not(.cbi-button-reset):not(.cbi-button-success):not(.cbi-button-download):not(.cbi-button-edit):not(.cbi-button-reload):not(.cbi-button-link):not(.primary):not(.danger):not(.btn-danger):hover:not(:disabled) {
+	background-color: var(--tyf-btn-hover);
+	border-color: var(--tyf-accent);
+	color: var(--tyf-accent);
+}
 .tyf-pon .tyf-page-header h2 { margin: 0; padding: 0; border: 0; font-size: var(--v-fs-2xl, 26px); font-weight: 600; letter-spacing: -.025em; color: var(--tyf-text); }
 .tyf-pon .tyf-page-header h2.vt-repeat {
 	position: static !important; width: auto !important; height: auto !important;
@@ -58,6 +89,16 @@ html[data-vt-look-theme] .tyf-pon .tyf-page-header h2 { letter-spacing: -.02em; 
 		--tyf-shadow: var(--v-shadow, 0 3px 12px rgba(0, 0, 0, .35));
 		--tyf-shadow-sm: var(--v-shadow, 0 1px 3px rgba(0, 0, 0, .3));
 	}
+	html[data-argon-mode="normal"] .tyf-pon {
+		--tyf-border-soft: rgba(255, 255, 255, .08);
+		--tyf-shadow: 0 2px 12px rgba(0, 0, 0, .35);
+		--tyf-btn-bg: #2f3136;
+		--tyf-btn-hover: #3a3d45;
+		--tyf-btn-text: var(--text-strong, #e6e6e6);
+		--tyf-btn-border: #4a4d55;
+		--tyf-thead-bg: #2b2d30;
+		--tyf-row-hover: rgba(255, 255, 255, .035);
+	}
 }
 :root[data-darkmode="true"] .tyf-pon,
 :root[data-argon-mode="dark"] .tyf-pon {
@@ -70,6 +111,16 @@ html[data-vt-look-theme] .tyf-pon .tyf-page-header h2 { letter-spacing: -.02em; 
 	--tyf-text: var(--v-text, var(--text-strong, #e6e6e6));
 	--tyf-shadow: var(--v-shadow, 0 3px 12px rgba(0, 0, 0, .35));
 	--tyf-shadow-sm: var(--v-shadow, 0 1px 3px rgba(0, 0, 0, .3));
+}
+html[data-argon-mode="dark"] .tyf-pon {
+	--tyf-border-soft: rgba(255, 255, 255, .08);
+	--tyf-shadow: 0 2px 12px rgba(0, 0, 0, .35);
+	--tyf-btn-bg: #2f3136;
+	--tyf-btn-hover: #3a3d45;
+	--tyf-btn-text: var(--text-strong, #e6e6e6);
+	--tyf-btn-border: #4a4d55;
+	--tyf-thead-bg: #2b2d30;
+	--tyf-row-hover: rgba(255, 255, 255, .035);
 }
 
 .tyf-pon .tyf-live > div > .tyf-card { margin: 18px 0; }
@@ -114,6 +165,7 @@ html[data-vt-look-theme] .tyf-pon .tyf-tile { background: var(--tyf-surface); }
 .tyf-pon .tyf-config .cbi-map { margin: 0; }
 .tyf-pon .tyf-config .cbi-map > h2 { font-size: 19px; }
 .tyf-pon .tyf-config .cbi-section { border-radius: var(--tyf-radius); }
+html[data-argon-mode] .tyf-pon .tyf-config .cbi-section { border: 1px solid var(--tyf-border); box-shadow: var(--tyf-shadow); }
 html[data-argon-mode] .tyf-pon .tyf-config .cbi-tabmenu { display: flex; flex-wrap: wrap; }
 .tyf-pon .tyf-config input, .tyf-pon .tyf-config select { max-width: 100%; }
 .tyf-pon .tyf-config .cbi-value-field { min-width: 0; }
@@ -238,8 +290,12 @@ html[data-vt-look-theme] .tyf-pon .tyf-fe-cap-bar { background: var(--tyf-surfac
 .tyf-pon .tyf-fe-table-wrap { margin-top: 10px; max-height: 280px; overflow: auto; border: 1px solid var(--tyf-border); border-radius: var(--v-r-lg, 8px); background: var(--tyf-inset); }
 html[data-vt-look-theme] .tyf-pon .tyf-fe-table-wrap { background: var(--tyf-surface-2); }
 .tyf-pon .tyf-fe-table { width: 100%; border-collapse: collapse; font-size: 11.5px; font-variant-numeric: tabular-nums; text-align: left; }
-.tyf-pon .tyf-fe-table th, .tyf-pon .tyf-fe-table td { padding: 7px 10px; border-bottom: 1px solid var(--tyf-border); white-space: nowrap; }
+.tyf-pon .tyf-fe-table th, .tyf-pon .tyf-fe-table td { padding: 7px 10px; border-top: 0; border-bottom: 1px solid var(--tyf-border); white-space: nowrap; }
 .tyf-pon .tyf-fe-table thead th { position: sticky; top: 0; background: var(--tyf-surface); color: var(--tyf-muted); font-weight: 600; z-index: 1; }
+html[data-argon-mode] .tyf-pon .tyf-fe-table thead th { background: var(--tyf-thead-bg); border-top: 0; padding: 7px 10px; }
+html[data-argon-mode] .tyf-pon .tyf-fe-table td { border-top: 0; padding: 7px 10px; }
+html[data-argon-mode] .tyf-pon .tyf-fe-table tbody tr { background: transparent; }
+html[data-argon-mode] .tyf-pon .tyf-fe-table tbody tr:hover td { background: var(--tyf-row-hover); }
 html[data-vt-look-theme] .tyf-pon .tyf-fe-table thead th {
 	font-size: var(--v-fs-micro, 10.5px); letter-spacing: .06em; text-transform: uppercase;
 	border-bottom-color: var(--v-line-2);
@@ -265,6 +321,7 @@ html[data-vt-look-theme] .tyf-pon .tyf-fe-table tbody tr:hover td {
 .tyf-pon a:focus-visible, .tyf-pon button:focus-visible, .tyf-pon summary:focus-visible { outline: 2px solid var(--v-focus, var(--tyf-accent)); outline-offset: 3px; }
 @media (max-width: 720px) {
 	.tyf-pon .tyf-page-header { margin: 4px 0 16px; gap: 10px; }
+	html[data-argon-mode] .tyf-pon .tyf-page-header { margin: 0; padding: 14px 16px; }
 	.tyf-pon .tyf-page-header h2,
 	.tyf-pon .tyf-page-header h2.vt-repeat { font-size: var(--v-fs-xl, 21px); }
 	.tyf-pon .tyf-refresh-controls { width: 100%; justify-content: space-between; gap: 8px; }
