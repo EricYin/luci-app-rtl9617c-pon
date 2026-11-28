@@ -40,8 +40,9 @@ html[data-argon-mode] .tyf-pon {
 .tyf-pon *, .tyf-pon *::before, .tyf-pon *::after { box-sizing: border-box; }
 .tyf-pon .tyf-page-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin: 8px 0 24px; }
 /* Argon paints a 2rem header::after primary banner behind #maincontent; elevate hero into a native card. */
+html[data-argon-mode] #view > .tyf-pon.cbi-map { gap: 0; }
 html[data-argon-mode] .tyf-pon .tyf-page-header {
-	margin: 0;
+	margin: 0 0 18px;
 	padding: 18px 22px;
 	border: 1px solid var(--tyf-border);
 	border-radius: var(--tyf-radius);
@@ -68,7 +69,10 @@ html[data-vt-look-theme] .tyf-pon .tyf-page-header h2 { letter-spacing: -.02em; 
 .tyf-pon .tyf-eyebrow { color: var(--tyf-accent); font-size: var(--v-fs-micro, 11px); font-weight: 600; letter-spacing: .14em; margin: 0 0 8px; text-transform: uppercase; }
 .tyf-pon .tyf-page-header .tyf-note { max-width: 56em; margin-bottom: 0; }
 .tyf-pon .tyf-refresh-controls, .tyf-pon .tyf-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.tyf-pon .tyf-refresh-controls .cbi-button, .tyf-pon .tyf-actions .cbi-button { min-height: var(--v-ctl-h, 34px); }
+.tyf-pon .tyf-refresh-controls .cbi-button, .tyf-pon .tyf-actions .cbi-button {
+	display: inline-flex; align-items: center; justify-content: center;
+	height: auto; min-height: var(--v-ctl-h, 34px); line-height: 1.35;
+}
 .tyf-pon .tyf-updated { font-size: 12px; color: var(--tyf-muted); font-variant-numeric: tabular-nums; }
 .tyf-pon .tyf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; margin: 18px 0; }
 .tyf-pon .tyf-card, .tyf-pon .tyf-tile, .tyf-pon .tyf-link-panel, .tyf-pon .tyf-fold {
@@ -321,7 +325,7 @@ html[data-vt-look-theme] .tyf-pon .tyf-fe-table tbody tr:hover td {
 .tyf-pon a:focus-visible, .tyf-pon button:focus-visible, .tyf-pon summary:focus-visible { outline: 2px solid var(--v-focus, var(--tyf-accent)); outline-offset: 3px; }
 @media (max-width: 720px) {
 	.tyf-pon .tyf-page-header { margin: 4px 0 16px; gap: 10px; }
-	html[data-argon-mode] .tyf-pon .tyf-page-header { margin: 0; padding: 14px 16px; }
+	html[data-argon-mode] .tyf-pon .tyf-page-header { margin: 0 0 14px; padding: 14px 16px; }
 	.tyf-pon .tyf-page-header h2,
 	.tyf-pon .tyf-page-header h2.vt-repeat { font-size: var(--v-fs-xl, 21px); }
 	.tyf-pon .tyf-refresh-controls { width: 100%; justify-content: space-between; gap: 8px; }
